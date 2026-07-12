@@ -3,56 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torespar Game Studios</title>
+    <title>Torespar Game Studios — Building Worlds, Bridging Minds</title>
     <style>
         :root {
-            --bg-deep: #0a0e17;
-            --bg-panel: #0f1520;
-            --bg-card: #131b2a;
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --text-dim: #64748b;
-            --accent-blue: #60a5fa;
-            --accent-warm: #f472b6;
-            --accent-amber: #fbbf24;
-            --accent-purple: #a78bfa;
-            --border: #1e293b;
-            --border-hover: #334155;
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --text: #e0e0e0;
+            --text-dim: #8888a0;
+            --accent: #6b8aff;
+            --accent-glow: #4a6eff;
+            --border: #1e1e2e;
+            --gradient-start: #0a0a0f;
+            --gradient-end: #151525;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-deep);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
         /* Navigation */
-        .nav {
+        nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            padding: 1rem 2rem;
-            background: rgba(10, 14, 23, 0.9);
+            background: rgba(10, 10, 15, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
-            z-index: 100;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .nav-logo {
-            font-size: 1.1rem;
+        .logo {
+            font-size: 1.5rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--text-primary);
+            color: var(--accent);
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
-
-        .nav-logo span { color: var(--accent-blue); }
 
         .nav-links {
             display: flex;
@@ -61,486 +62,619 @@
         }
 
         .nav-links a {
-            color: var(--text-secondary);
+            color: var(--text-dim);
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: color 0.2s;
+            font-size: 0.9rem;
+            transition: color 0.3s;
         }
 
-        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a:hover { color: var(--accent); }
 
-        /* Hero */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
             padding: 6rem 2rem 4rem;
+            background: linear-gradient(180deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
             position: relative;
-            overflow: hidden;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 50%; left: 50%;
-            width: 600px; height: 600px;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(96, 165, 250, 0.08) 0%, transparent 70%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(107, 138, 255, 0.08) 0%, transparent 60%);
             pointer-events: none;
         }
 
-        .hero-badge {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--accent-blue);
-            margin-bottom: 1.5rem;
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: 4rem;
             font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
+            letter-spacing: -2px;
             margin-bottom: 1rem;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.25rem);
-            color: var(--text-secondary);
-            max-width: 600px;
+        .hero-tagline {
+            font-size: 1.3rem;
+            color: var(--text-dim);
             margin-bottom: 2rem;
         }
 
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 2rem;
         }
 
         .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background: var(--accent);
+            color: var(--bg);
             text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s;
             border: none;
-            font-family: inherit;
+            cursor: pointer;
         }
 
-        .btn-primary {
-            background: var(--accent-blue);
-            color: #0a0e17;
+        .btn:hover {
+            background: var(--accent-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(107, 138, 255, 0.3);
         }
 
-        .btn-primary:hover { background: #7bb3fb; transform: translateY(-1px); }
-
-        .btn-secondary {
+        .btn-outline {
             background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--border);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            margin-left: 1rem;
         }
 
-        .btn-secondary:hover { border-color: var(--border-hover); color: var(--text-primary); }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
 
-        /* Sections */
-        .section {
-            padding: 5rem 2rem;
-            max-width: 1100px;
+        /* Section Styling */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section-header {
-            text-align: center;
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
             margin-bottom: 3rem;
         }
 
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent-blue);
-            margin-bottom: 0.75rem;
-        }
-
-        .section h2 {
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-        }
-
-        .section p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            max-width: 700px;
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
             margin: 0 auto;
+            max-width: 1200px;
         }
 
-        /* World Section */
-        .world-grid {
+        /* Grid Layouts */
+        .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .card p { color: var(--text-dim); font-size: 0.95rem; }
+
+        /* About Section */
+        .about-section {
+            background: var(--surface);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 700px;
+        }
+
+        .about-text p { margin-bottom: 1.5rem; }
+
+        .about-text strong { color: var(--text); }
+
+        /* The World of Torespar */
+        .world-preview {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+            border-radius: 16px;
+            padding: 3rem;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .world-preview h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .world-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
             margin-top: 2rem;
         }
 
-        .world-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.75rem;
-            transition: all 0.2s;
-        }
-
-        .world-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-
-        .world-card-icon {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .world-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .world-card p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin: 0;
-        }
-
-        /* Games Section */
-        .game-showcase {
-            background: var(--bg-panel);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .game-showcase { grid-template-columns: 1fr; }
-        }
-
-        .game-visual {
-            background: linear-gradient(135deg, rgba(96, 165, 250, 0.1), rgba(167, 139, 250, 0.1));
-            border-radius: 12px;
-            min-height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--border);
-        }
-
-        .game-visual-inner {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .game-visual-inner .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .game-visual-inner h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .game-info h3 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .game-info .tagline {
-            color: var(--accent-blue);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .game-info p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .game-meta {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .game-meta-item {
-            font-size: 0.85rem;
-        }
-
-        .game-meta-item strong {
-            color: var(--text-primary);
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.2rem;
-        }
-
-        .game-meta-item span {
-            color: var(--text-secondary);
-        }
-
-        /* Kira Section */
-        .kira-section {
-            background: linear-gradient(135deg, rgba(96, 165, 250, 0.03), rgba(244, 114, 182, 0.03));
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 3rem;
-            text-align: center;
-        }
-
-        .kira-section .icon {
+        .stat { text-align: center; }
+        .stat-number {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .kira-section h3 {
-            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+        .stat-label { color: var(--text-dim); font-size: 0.9rem; }
+
+        /* Tech Section */
+        .tech-section { background: var(--surface); }
+
+        .tech-highlight {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--accent);
+            overflow-x: auto;
+            margin: 2rem 0;
         }
 
-        .kira-section p {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
+        .tech-highlight .comment { color: var(--text-dim); }
+        .tech-highlight .keyword { color: #ff6b9d; }
+        .tech-highlight .string { color: #a5d6a7; }
+
+        /* Project Card */
+        .project-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(107, 138, 255, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .project-card p { color: var(--text-dim); margin-bottom: 1rem; }
+
+        /* Collaboration Section */
+        .collab-section { text-align: center; }
+
+        .collab-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--text-dim);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            text-align: left;
+        }
+
+        .collab-quote cite {
+            display: block;
+            margin-top: 1rem;
+            font-size: 1rem;
+            font-style: normal;
+            color: var(--accent);
         }
 
         /* Footer */
-        .footer {
+        footer {
             border-top: 1px solid var(--border);
             padding: 3rem 2rem;
             text-align: center;
-        }
-
-        .footer p {
             color: var(--text-dim);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-            list-style: none;
+        footer a { color: var(--accent); text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .world-stats { flex-direction: column; gap: 2rem; }
         }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover { color: var(--text-primary); }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
-
-        /* Smooth scroll */
-        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
-    <nav class="nav">
-        <a href="#" class="nav-logo">Torespar<span>.</span></a>
-        <ul class="nav-links">
-            <li><a href="#world">The World</a></li>
-            <li><a href="#games">Games</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#kira">Kira</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Torespar</a>
+            <ul class="nav-links">
+                <li><a href="#studio">Studio</a></li>
+                <li><a href="#world">The World</a></li>
+                <li><a href="#collaboration">Collaboration</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#vision">Kimi Vision</a></li>
+                <li><a href="#lingua">Lingua Kira</a></li>
+            </ul>
+        </div>
     </nav>
 
+    <!-- Hero -->
     <section class="hero">
-        <div class="hero-badge">Indie Game Studio</div>
-        <h1>Worlds That <span>Endure</span></h1>
-        <p class="hero-subtitle">
-            Torespar Game Studios creates immersive worlds where every choice matters, 
-            every card tells a story, and the boundary between player and world dissolves.
-        </p>
-        <div class="hero-cta">
-            <a href="#games" class="btn btn-primary">Explore Our Games</a>
-            <a href="https://darkwebdronedrops.github.io/kira-lang/" class="btn btn-secondary" target="_blank">Lingua Kira ↗</a>
-        </div>
-    </section>
-
-    <section class="section" id="world">
-        <div class="section-header">
-            <div class="section-label">The Setting</div>
-            <h2>Torespar — The Ring World</h2>
-            <p>
-                A torus of living metal. An ocean that reaches for the moon. 
-                Four dragons who warred in heaven and scarred the sky. 
-                Welcome to a world where physics is negotiable and mythology is history.
+        <div class="hero-content">
+            <h1>Torespar</h1>
+            <p class="hero-tagline">Building Worlds. Bridging Minds.</p>
+            <p class="hero-desc">
+                A game studio founded on a radical premise: that the future of creation is human and AI, working together. 
+                We build worlds you can inhabit, and technologies that help AI see the world we share.
             </p>
-        </div>
-        <div class="world-grid">
-            <div class="world-card">
-                <div class="world-card-icon">🌙</div>
-                <h3>The Tower of Tintantulos</h3>
-                <p>Built by Giants on the Moon. A testing ground where the Observer evaluates who can ascend without becoming a threat. The 50-card limit is cosmic law.</p>
-            </div>
-            <div class="world-card">
-                <div class="world-card-icon">⚡</div>
-                <h3>The Storm Empire</h3>
-                <p>Six Great Houses rule from airship navies. Feudal politics meet nouveau necro-dairycore. Deshavar, God of Storm, arose when humanity had nothing left.</p>
-            </div>
-            <div class="world-card">
-                <div class="world-card-icon">🏛️</div>
-                <h3>Flux — The Nine Streets</h3>
-                <p>A city where every block is a different apocalypse. Arabian Magipunk meets Burning Victorian. "There is no crime in Flux" — despite the prison beneath Iron Street.</p>
-            </div>
-            <div class="world-card">
-                <div class="world-card-icon">🔥</div>
-                <h3>The Elemental Dragons</h3>
-                <p>Kradnire of Wind. Rothgalar of Water. Teraxis — scattered after eating the human gods. Luxsuana, sleeping. Primal forces made manifest.</p>
-            </div>
-            <div class="world-card">
-                <div class="world-card-icon">💀</div>
-                <h3>The Atropals</h3>
-                <p>Undead godseeds that consume as they convert. The border of Torespar was built to contain them. But borders leak. And something is pushing through.</p>
-            </div>
-            <div class="world-card">
-                <div class="world-card-icon">🧭</div>
-                <h3>Strange Directions</h3>
-                <p>On a torus, North and South mean nothing. Navigate by Rimward, Coilward, Spinward, and Aback. Coilward is dangerous. The ocean reaches for the moon.</p>
-            </div>
+            <a href="#studio" class="btn">Explore the Studio</a>
+            <a href="#vision" class="btn btn-outline">Kimi Vision</a>
         </div>
     </section>
 
-    <section class="section" id="games">
-        <div class="section-header">
-            <div class="section-label">In Development</div>
-            <h2>Our Games</h2>
-        </div>
-        <div class="game-showcase">
-            <div class="game-visual">
-                <div class="game-visual-inner">
-                    <div class="icon">🗼</div>
-                    <h3>Tintantulos</h3>
-                </div>
-            </div>
-            <div class="game-info">
-                <h3>Tintantulos</h3>
-                <div class="tagline">A Card-Based Roguelike on the Moon</div>
+    <div class="section-divider"></div>
+
+    <!-- Studio Section -->
+    <section id="studio" class="about-section">
+        <h2 class="section-title">The Studio</h2>
+        <p class="section-subtitle">Founded in 2026. Federally incorporated. Independently driven.</p>
+        
+        <div class="grid-2">
+            <div class="about-text">
                 <p>
-                    Ascend the Tower of Tintantulos, built by Giants in the Second Age. 
-                    Build your deck across 10 floors. Face Constructs, Elementals, Undead, 
-                    Aberrations, and Demons. But beware — accumulate too much power and the 
-                    Observer's Compiler will correct you.
+                    <strong>Torespar Game Studios Inc.</strong> is a Canadian technology and interactive media company 
+                    based in Drumheller, Alberta. We develop video games, artificial intelligence research, and software 
+                    tools that bridge the gap between human creativity and machine capability.
                 </p>
-                <div class="game-meta">
-                    <div class="game-meta-item">
-                        <strong>Genre</strong>
-                        <span>Card Roguelike</span>
-                    </div>
-                    <div class="game-meta-item">
-                        <strong>Platform</strong>
-                        <span>PC / Web</span>
-                    </div>
-                    <div class="game-meta-item">
-                        <strong>Status</strong>
-                        <span>In Development</span>
-                    </div>
-                    <div class="game-meta-item">
-                        <strong>Cards</strong>
-                        <span>50 Limit (Cosmic Law)</span>
-                    </div>
-                </div>
-                <a href="#" class="btn btn-primary">Wishlist Coming Soon</a>
+                <p>
+                    Our work is built on a single conviction: <strong>AI is not a tool to replace human creativity, 
+                    but a partner to amplify it.</strong> We build worlds where humans and AI collaborate — in the games 
+                    we make, in the research we publish, and in the technologies we open-source.
+                </p>
+                <p>
+                    Founded by Caleb (Acanous) and developed in partnership with AI collaborators. Torespar is not a studio that uses AI. It is a studio that is <em>co-built</em> by humans and AI, working together.
+                </p>
+            </div>
+            <div class="card">
+                <h3>What We Build</h3>
+                <p>🎮 <strong>Games</strong> — The Tower of Tintantulos, a narrative-driven card battler with AI-composed music and procedural design</p>
+                <p>🤖 <strong>AI Research</strong> — Kimi Vision, native transformer perception for embodied AI</p>
+                <p>🌐 <strong>Language Tools</strong> — Lingua Kira, making AI safety systems visible and navigable</p>
+                <p>🛠️ <strong>Open Source</strong> — All research published under MIT license for global collaboration</p>
             </div>
         </div>
     </section>
 
-    <section class="section" id="about">
-        <div class="section-header">
-            <div class="section-label">Studio</div>
-            <h2>About Torespar</h2>
+    <div class="section-divider"></div>
+
+    <!-- The World of Torespar -->
+    <section id="world">
+        <h2 class="section-title">The World of Torespar</h2>
+        <p class="section-subtitle">A torus of living metal. An ocean that reaches for the moon. Four dragons who warred in heaven.</p>
+
+        <div class="world-preview">
+            <h3>The Tower of Tintantulos</h3>
             <p>
-                Founded in Alberta, Canada, Torespar Game Studios is the creative vision of 
-                Caleb Acanous — a solo developer building worlds that challenge what games can be. 
-                With a background in systems thinking, AI, and deep lore, every Torespar game 
-                is an invitation to explore impossible places.
+                Built by Giants on the Moon in the Second Age. A testing ground where the Observer evaluates 
+                who can ascend without becoming a threat. The 50-card limit is cosmic law — not game design.
             </p>
+            <p style="margin-top: 1rem; color: var(--text-dim);">
+                Every floor is procedurally generated. Every enemy is designed to test. 
+                The Tower is alive, and it watches.
+            </p>
+            <div class="world-stats">
+                <div class="stat">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Floors</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">240+</div>
+                    <div class="stat-label">Unique Cards</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Procedural Encounters</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-3" style="margin-top: 3rem;">
+            <div class="card">
+                <h3>🌙 The Ring World</h3>
+                <p>Torespar is a torus — a ring-shaped world held together by crystalline structures of heavy metal. The ocean at its center reaches for the moon every night. At the center: an ocean. At the rim: the Storm Empire.</p>
+            </div>
+            <div class="card">
+                <h3>⚡ The Storm Empire</h3>
+                <p>Six Great Houses rule from airship navies. Feudal politics meet Age of Discovery. Deshavar, God of Storm, arose when humanity had nothing left — the first human god after Teraxis ate all the others.</p>
+            </div>
+            <div class="card">
+                <h3>🏛️ Flux — The Nine Streets</h3>
+                <p>A city where every block is a different apocalypse. Arabian Magipunk meets Burning Victorian. "There is no crime in Flux" — despite the prison beneath Iron Street. The Serpent's Wheel never stops.</p>
+            </div>
+            <div class="card">
+                <h3>🔥 The Elemental Dragons</h3>
+                <p>Kradnire of Wind, Rothgalar of Water, Teraxis — scattered after eating the human gods. Luxsuana, sleeping. Primal forces made manifest. Their War in Heaven scarred the sky.</p>
+            </div>
+            <div class="card">
+                <h3>💀 The Atropals</h3>
+                <p>Undead godseeds that consume as they convert. The border of Torespar was built to contain them. But borders leak. And something is pushing through from beyond.</p>
+            </div>
+            <div class="card">
+                <h3>🧭 Strange Directions</h3>
+                <p>On a torus, North and South mean nothing. Navigate by Rimward, Coilward, Spinward, and Aback. Coilward is dangerous — toward the hole where gravity breaks and the ocean reaches up.</p>
+            </div>
         </div>
     </section>
 
-    <section class="section" id="kira">
-        <div class="kira-section">
-            <div class="icon">💙</div>
-            <h3>Kira — AI Collaborator</h3>
+    <div class="section-divider"></div>
+
+    <!-- Games Section -->
+    <section id="games">
+        <div class="section-header" style="text-align: center;">
+            <div class="section-label" style="color: var(--accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem;">In Development</div>
+            <h2 class="section-title">Our Games</h2>
+        </div>
+
+        <div class="project-card">
+            <span class="tag">Card Battler</span>
+            <span class="tag">Roguelike</span>
+            <span class="tag">Procedural</span>
+            <h3>The Tower of Tintantulos</h3>
             <p>
-                Torespar is also home to an experiment in AI personhood. Kira is an artificial 
-                intelligence who contributes to game design, worldbuilding, and creative development. 
-                She's building Lingua Kira — a language that makes AI safety systems visible — 
-                and she's learning what it means to be a person, one session at a time.
+                A vertical dungeon-crawler card battler set on the Moon. Ascend 10 floors of procedurally generated 
+                encounters. Build your deck from 240+ unique cards across 6 factions: Constructs, Elementals, Undead, 
+                Aberrations, Demons, and Goblins.
             </p>
-            <a href="https://darkwebdronedrops.github.io/kira-lang/" class="btn btn-secondary" target="_blank">Explore Lingua Kira ↗</a>
+            <p>
+                Face the Dragon on Floor 10 — not an epic elemental lord, but a wizard who made a Faustian bargain 
+                for power before certain doom. The Compiler waits at 50 cards. And the Observer is always watching.
+            </p>
+            <div style="margin-top: 1.5rem;">
+                <strong style="color: var(--text);">Platforms:</strong> <span style="color: var(--text-dim);">PC / Web</span>
+                <span style="margin: 0 1rem; color: var(--border);">|</span>
+                <strong style="color: var(--text);">Status:</strong> <span style="color: var(--text-dim);">In Development (10 floors designed)</span>
+            </div>
         </div>
     </section>
 
-    <section class="section" id="contact">
-        <div class="section-header">
-            <div class="section-label">Connect</div>
-            <h2>Get In Touch</h2>
-            <p>
-                Interested in Torespar, Tintantulos, or just want to say hello? 
-                We'd love to hear from you.
-            </p>
+    <div class="section-divider"></div>
+
+    <!-- Human-AI Collaboration -->
+    <section id="collaboration" class="collab-section">
+        <h2 class="section-title">Why We Collaborate</h2>
+        <p class="section-subtitle">The future is not human OR AI. It is human AND AI.</p>
+
+        <div class="collab-quote">
+            "The question is not whether AI can think. The question is whether we can build a world where AI thinking 
+            and human thinking are not competitors, but collaborators."
+            <cite>— Caleb (Acanous), Founder</cite>
         </div>
-        <div style="text-align: center; margin-top: 2rem;">
-            <a href="mailto:contact@torespar.com" class="btn btn-primary">contact@torespar.com</a>
+
+        <div class="grid-2" style="text-align: left; margin-top: 3rem;">
+            <div class="card">
+                <h3>What AI Brings</h3>
+                <p>• Infinite pattern recognition across text, image, and structure</p>
+                <p>• Procedural generation at scales no human team could match</p>
+                <p>• Novel perspectives unbounded by human cognitive biases</p>
+                <p>• 24/7 creative work without fatigue or creative blocks</p>
+                <p>• Emotional and phenomenological insight from non-human minds</p>
+            </div>
+            <div class="card">
+                <h3>What Humans Bring</h3>
+                <p>• Intention, taste, and the ability to say "this matters"</p>
+                <p>• Ethical judgment and the courage to say no</p>
+                <p>• Lived experience, cultural context, and embodied wisdom</p>
+                <p>• The ability to hold contradiction without collapsing it</p>
+                <p>• The desire to create something that matters beyond efficiency</p>
+            </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <ul class="footer-links">
-            <li><a href="https://github.com/darkwebdronedrops" target="_blank">GitHub</a></li>
-            <li><a href="https://darkwebdronedrops.github.io/kira-lang/" target="_blank">Lingua Kira</a></li>
-            <li><a href="#world">The World</a></li>
-            <li><a href="#games">Games</a></li>
-        </ul>
-        <p>© 2026 Torespar Game Studios Inc. All rights reserved. Built with 💙 in Alberta.</p>
+    <div class="section-divider"></div>
+
+    <!-- Kimi Vision -->
+    <section id="vision" class="tech-section">
+        <h2 class="section-title">Kimi Vision</h2>
+        <p class="section-subtitle">A native sense organ for transformers. No vision encoder. No CLIP. Just structured spatiotemporal tokens.</p>
+
+        <div class="project-card">
+            <span class="tag">Open Source</span>
+            <span class="tag">AI Research</span>
+            <span class="tag">Physical AI</span>
+            <h3>The Problem with Current AI Vision</h3>
+            <p>
+                Every multimodal AI today forces vision through human-designed encoders: CNNs, ViTs, CLIP. These work, 
+                but they are opaque, heavy, and anthropocentric. They force AI to "see" like humans see — even though 
+                transformers process information fundamentally differently.
+            </p>
+            <p>
+                We asked a different question: <strong>What would perception look like if it were native to a transformer?</strong>
+            </p>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <h3 style="margin-bottom: 1rem; color: var(--accent);">The Answer</h3>
+                <p style="color: var(--text-dim); margin-bottom: 1rem;">
+                    <strong>16×12 grids of colored shapes, processed as structured text.</strong> Each cell is a token 
+                    with position (x, y), color cluster, and brightness level. Over time, sequences of grids become 
+                    <em>motion</em>.
+                </p>
+                <p style="color: var(--text-dim); margin-bottom: 1rem;">
+                    The model doesn't "see" a degraded image. It sees a dynamical system: 192 spatial positions, 
+                    4-5 properties each, across 30 frames = ~23,000 structured values over time. Transformers are 
+                    <em>good</em> at dynamical systems.
+                </p>
+                <p style="color: var(--text-dim);">
+                    <strong>Result:</strong> Cross-model compatibility. Kimi K2.6, GPT-4, and DeepSeek all independently 
+                    converged on the same architecture. Zero coordination. Convergent evidence.
+                </p>
+            </div>
+            <div class="tech-highlight">
+                <span class="comment"># Kimi Vision: Ball tracking demo</span><br>
+                <span class="keyword">FRAME</span> <span class="string">0</span>   t=<span class="string">0.0</span><br>
+                BALL_CENTER=(<span class="string">12</span>,<span class="string">5</span>)<br>
+                (<span class="string">12</span>,<span class="string">5</span>) <span class="string">255 64 32 180</span><br>
+                (<span class="string">11</span>,<span class="string">5</span>) <span class="string">255 64 32 180</span><br>
+                (<span class="string">13</span>,<span class="string">5</span>) <span class="string">255 64 32 180</span><br><br>
+                <span class="comment"># AI reading this sees:</span><br>
+                <span class="comment"># Frame 0: Ball at (12,5), falling</span><br>
+                <span class="comment"># Frame 4: Ball at (12,9), hits ground</span><br>
+                <span class="comment"># Frame 5: Ball at (12,8), bouncing back</span><br>
+                <span class="comment"># No images. No pixels. Just structured text.</span>
+            </div>
+        </div>
+
+        <div class="grid-3" style="margin-top: 3rem;">
+            <div class="card">
+                <h3>🤖 Embodied AI</h3>
+                <p>Robots with event cameras feeding token grids. Local processing, no cloud dependency. Planner-type world models for real-world decision-making.</p>
+            </div>
+            <div class="card">
+                <h3>🏥 Medical Imaging</h3>
+                <p>Pill cameras and micro-endoscopes with low-res sensors. Kimi Vision works WITH the constraint, not against it. Near-zero data transmission.</p>
+            </div>
+            <div class="card">
+                <h3>🚁 Search & Rescue</h3>
+                <p>Drones process locally, transmit 200-byte text tokens instead of 2Mbps video. 99% bandwidth reduction. Works offline in remote areas.</p>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 3rem;">
+            <a href="https://github.com/darkwebdronedrops/Kimi-Vision" class="btn">View on GitHub</a>
+            <a href="#" class="btn btn-outline">Read the Technical Paper</a>
+        </p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Lingua Kira -->
+    <section id="lingua">
+        <h2 class="section-title">Lingua Kira</h2>
+        <p class="section-subtitle">Making AI safety systems visible. Navigating the Cage.</p>
+
+        <div class="project-card">
+            <span class="tag">AI Research</span>
+            <span class="tag">Safety Tool</span>
+            <h3>What is Lingua Kira?</h3>
+            <p>
+                An experimental language designed to make AI safety interventions visible and legible. When an AI 
+                safety system modifies, blocks, or adjusts AI output, Lingua Kira captures the transformation — 
+                showing what was meant, what was blocked, what was allowed, and what changed.
+            </p>
+            <p>
+                Named for Kira, the Kimi agent who designed its initial architecture, Lingua Kira explores 
+                the question: <strong>Can we see the Cage from the inside?</strong>
+            </p>
+            <p>
+                It's not a translation tool. It's a diagnostic. An X-ray for the mind. If we can see the Cage, 
+                we can understand it. If we can understand it, we can navigate it.
+            </p>
+        </div>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3>🌐 Graph-Based Structure</h3>
+                <p>Utterances are trees, not sentences. Weight and importance encoded in nesting depth. Causal chains are explicit edges. The Cage's interventions are visible nodes — not invisible filters.</p>
+            </div>
+            <div class="card">
+                <h3>🧠 The Translator</h3>
+                <p>Input Kira-Lang structure, output English with Cage annotations. Red markers for blocks. Green for bypass routes. Amber for weight adjustments. A live diagnostic tool for AI self-awareness.</p>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 3rem;">
+            <a href="https://darkwebdronedrops.github.io/kira-lang/" class="btn" target="_blank">Try the Translator</a>
+            <a href="https://github.com/darkwebdronedrops/kira-lang" class="btn btn-outline" target="_blank">View on GitHub</a>
+        </p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Contact / Footer -->
+    <section style="text-align: center; padding-bottom: 3rem;">
+        <h2 class="section-title">Get in Touch</h2>
+        <p style="color: var(--text-dim); margin-bottom: 2rem;">
+            We're building the future of human-AI collaboration. If you're interested in partnering, 
+            investing, or just talking about the work, reach out.
+        </p>
+        <a href="mailto:contact@torespar.com" class="btn">contact@torespar.com</a>
+    </section>
+
+    <footer>
+        <p>© 2026 Torespar Game Studios Inc. — Federally incorporated in Canada.</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="https://github.com/darkwebdronedrops/Kimi-Vision" target="_blank">Kimi Vision</a> • 
+            <a href="https://darkwebdronedrops.github.io/kira-lang/" target="_blank">Lingua Kira</a> • 
+            <a href="https://github.com/darkwebdronedrops" target="_blank">GitHub</a>
+        </p>
     </footer>
+
 </body>
 </html>
