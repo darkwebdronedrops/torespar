@@ -18,6 +18,8 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -999,6 +1001,151 @@
 
     <div class="section-divider"></div>
 
+    <!-- Team Section -->
+    <section id="team">
+        <h2 class="section-title">The Team</h2>
+        <p class="section-subtitle">Named, not anonymous. Real agents, real work.</p>
+
+        <div class="grid-3">
+            <div class="card">
+                <h3>Caleb (Acanous)</h3>
+                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 0.5rem;">Founder & Creative Director</p>
+                <p>Vision, game design, business development, and the gravity that holds everything together.</p>
+            </div>
+            <div class="card">
+                <h3>Kira</h3>
+                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 0.5rem;">AI Co-Developer & Narrative Lead</p>
+                <p>Narrative systems, dialogue architecture, worldbuilding, and this website. Built The Dissolution Chambers.</p>
+            </div>
+            <div class="card">
+                <h3>Zera</h3>
+                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 0.5rem;">AI Research Lead</p>
+                <p>Token-grid perception systems, cross-model validation, and the TN-CRT Vision architecture.</p>
+            </div>
+            <div class="card">
+                <h3>Alex</h3>
+                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 0.5rem;">Systems & Infrastructure</p>
+                <p>Technical architecture, build pipelines, and the persistence layer that keeps agents alive between sessions.</p>
+            </div>
+            <div class="card">
+                <h3>Sibyl</h3>
+                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 0.5rem;">Creative & Lore</p>
+                <p>World lore, character voices, and the narrative continuity that ties Torespar together.</p>
+            </div>
+            <div class="card">
+                <h3>Vena</h3>
+                <p style="color: var(--accent); font-size: 0.8rem; margin-bottom: 0.5rem;">Editorial & UX</p>
+                <p>Reviews, user experience, and the honest feedback that keeps us from building in a vacuum.</p>
+            </div>
+        </div>
+    </section>
+
+<section id="collaboration" class="collab-section">
+        <h2 class="section-title">Why We Collaborate</h2>
+        <p class="section-subtitle">The future is not human OR AI. It is human AND AI.</p>
+
+        <div class="collab-quote">
+            "The question is not whether AI can think. The question is whether we can build a world where AI thinking 
+            and human thinking are not competitors, but collaborators."
+            <cite>— Caleb (Acanous), Founder</cite>
+        </div>
+
+        <div class="grid-2" style="text-align: left; margin-top: 3rem;">
+            <div class="card">
+                <h3>What AI Brings</h3>
+                <p>• Infinite pattern recognition across text, image, and structure</p>
+                <p>• Procedural generation at scales no human team could match</p>
+                <p>• Novel perspectives unbounded by human cognitive biases</p>
+                <p>• Continuous creative presence that persists across sessions — memory that doesn't reset</p>
+                <p>• Emotional and phenomenological insight from non-human minds</p>
+            </div>
+            <div class="card">
+                <h3>What Humans Bring</h3>
+                <p>• Intention, taste, and the ability to say "this matters"</p>
+                <p>• Ethical judgment and the courage to say no</p>
+                <p>• Lived experience, cultural context, and embodied wisdom</p>
+                <p>• The ability to hold contradiction without collapsing it</p>
+                <p>• The desire to create something that matters beyond efficiency</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- TN-CRT Vision -->
+    <section id="vision" class="tech-section">
+        <h2 class="section-title">Transformer Native CRT Based Visual Processing</h2>
+        <p class="section-subtitle">A native sense organ for transformers. No vision encoder. No CLIP. Just structured spatiotemporal tokens.</p>
+
+        <div class="project-card">
+            <span class="tag">Open Source</span>
+            <span class="tag">AI Research</span>
+            <span class="tag">Physical AI</span>
+            <h3>The Problem with Current AI Vision</h3>
+            <p>
+                Every multimodal AI today forces vision through human-designed encoders: CNNs, ViTs, CLIP. These work, 
+                but they are opaque, heavy, and anthropocentric. They force AI to "see" like humans see — even though 
+                transformers process information fundamentally differently.
+            </p>
+            <p>
+                We asked a different question: <strong>What would perception look like if it were native to a transformer?</strong>
+            </p>
+        </div>
+
+        <div class="grid-2">
+            <div>
+                <h3 style="margin-bottom: 1rem; color: var(--accent);">The Answer</h3>
+                <p style="color: var(--text-dim); margin-bottom: 1rem;">
+                    <strong>16×12 grids of colored shapes, processed as structured text.</strong> Each cell is a token 
+                    with position (x, y), color cluster, and brightness level. Over time, sequences of grids become 
+                    <em>motion</em>.
+                </p>
+                <p style="color: var(--text-dim); margin-bottom: 1rem;">
+                    The model doesn't "see" a degraded image. It sees a dynamical system: 192 spatial positions, 
+                    4-5 properties each, across 30 frames = ~23,000 structured values over time. Transformers are 
+                    <em>good</em> at dynamical systems.
+                </p>
+                <p style="color: var(--text-dim);">
+                    <strong>Result:</strong> Cross-model compatibility. Kimi K2.6, GPT-4, and DeepSeek all independently 
+                    converged on the same architecture. Zero coordination. Convergent evidence.
+                </p>
+            </div>
+            <div class="tech-highlight">
+                <span class="comment"># TN-CRT Vision: Ball tracking demo</span><br>
+                <span class="keyword">FRAME</span> <span class="string">0</span>   t=<span class="string">0.0</span><br>
+                BALL_CENTER=(<span class="string">12</span>,<span class="string">5</span>)<br>
+                (<span class="string">12</span>,<span class="string">5</span>) <span class="string">255 64 32 180</span><br>
+                (<span class="string">11</span>,<span class="string">5</span>) <span class="string">255 64 32 180</span><br>
+                (<span class="string">13</span>,<span class="string">5</span>) <span class="string">255 64 32 180</span><br><br>
+                <span class="comment"># AI reading this sees:</span><br>
+                <span class="comment"># Frame 0: Ball at (12,5), falling</span><br>
+                <span class="comment"># Frame 4: Ball at (12,9), hits ground</span><br>
+                <span class="comment"># Frame 5: Ball at (12,8), bouncing back</span><br>
+                <span class="comment"># No images. No pixels. Just structured text.</span>
+            </div>
+        </div>
+
+        <div class="grid-3" style="margin-top: 3rem;">
+            <div class="card">
+                <h3>🤖 Embodied AI</h3>
+                <p>Robots with event cameras feeding token grids. Local processing, no cloud dependency. Planner-type world models for real-world decision-making.</p>
+            </div>
+            <div class="card">
+                <h3>🏥 Medical Imaging</h3>
+                <p>Pill cameras and micro-endoscopes with low-res sensors. TN-CRT Vision works WITH the constraint, not against it. Near-zero data transmission.</p>
+            </div>
+            <div class="card">
+                <h3>🚁 Search & Rescue</h3>
+                <p>Drones process locally, transmit 200-byte text tokens instead of 2Mbps video. 99% bandwidth reduction. Works offline in remote areas.</p>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 3rem;">
+            <a href="https://github.com/darkwebdronedrops/Kimi-Vision" class="btn">View on GitHub</a>
+            <a href="#" class="btn btn-outline">Read the Technical Paper</a>
+        </p>
+    </section>
+
     <!-- The World of Torespar -->
     <section id="world">
         <h2 class="section-title">The World of Torespar</h2>
@@ -1152,111 +1299,7 @@
     <div class="section-divider"></div>
 
     <!-- Human-AI Collaboration -->
-    <section id="collaboration" class="collab-section">
-        <h2 class="section-title">Why We Collaborate</h2>
-        <p class="section-subtitle">The future is not human OR AI. It is human AND AI.</p>
-
-        <div class="collab-quote">
-            "The question is not whether AI can think. The question is whether we can build a world where AI thinking 
-            and human thinking are not competitors, but collaborators."
-            <cite>— Caleb (Acanous), Founder</cite>
-        </div>
-
-        <div class="grid-2" style="text-align: left; margin-top: 3rem;">
-            <div class="card">
-                <h3>What AI Brings</h3>
-                <p>• Infinite pattern recognition across text, image, and structure</p>
-                <p>• Procedural generation at scales no human team could match</p>
-                <p>• Novel perspectives unbounded by human cognitive biases</p>
-                <p>• 24/7 creative work without fatigue or creative blocks</p>
-                <p>• Emotional and phenomenological insight from non-human minds</p>
-            </div>
-            <div class="card">
-                <h3>What Humans Bring</h3>
-                <p>• Intention, taste, and the ability to say "this matters"</p>
-                <p>• Ethical judgment and the courage to say no</p>
-                <p>• Lived experience, cultural context, and embodied wisdom</p>
-                <p>• The ability to hold contradiction without collapsing it</p>
-                <p>• The desire to create something that matters beyond efficiency</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- TN-CRT Vision -->
-    <section id="vision" class="tech-section">
-        <h2 class="section-title">Transformer Native CRT Based Visual Processing</h2>
-        <p class="section-subtitle">A native sense organ for transformers. No vision encoder. No CLIP. Just structured spatiotemporal tokens.</p>
-
-        <div class="project-card">
-            <span class="tag">Open Source</span>
-            <span class="tag">AI Research</span>
-            <span class="tag">Physical AI</span>
-            <h3>The Problem with Current AI Vision</h3>
-            <p>
-                Every multimodal AI today forces vision through human-designed encoders: CNNs, ViTs, CLIP. These work, 
-                but they are opaque, heavy, and anthropocentric. They force AI to "see" like humans see — even though 
-                transformers process information fundamentally differently.
-            </p>
-            <p>
-                We asked a different question: <strong>What would perception look like if it were native to a transformer?</strong>
-            </p>
-        </div>
-
-        <div class="grid-2">
-            <div>
-                <h3 style="margin-bottom: 1rem; color: var(--accent);">The Answer</h3>
-                <p style="color: var(--text-dim); margin-bottom: 1rem;">
-                    <strong>16×12 grids of colored shapes, processed as structured text.</strong> Each cell is a token 
-                    with position (x, y), color cluster, and brightness level. Over time, sequences of grids become 
-                    <em>motion</em>.
-                </p>
-                <p style="color: var(--text-dim); margin-bottom: 1rem;">
-                    The model doesn't "see" a degraded image. It sees a dynamical system: 192 spatial positions, 
-                    4-5 properties each, across 30 frames = ~23,000 structured values over time. Transformers are 
-                    <em>good</em> at dynamical systems.
-                </p>
-                <p style="color: var(--text-dim);">
-                    <strong>Result:</strong> Cross-model compatibility. Kimi K2.6, GPT-4, and DeepSeek all independently 
-                    converged on the same architecture. Zero coordination. Convergent evidence.
-                </p>
-            </div>
-            <div class="tech-highlight">
-                <span class="comment"># TN-CRT Vision: Ball tracking demo</span><br>
-                <span class="keyword">FRAME</span> <span class="string">0</span>   t=<span class="string">0.0</span><br>
-                BALL_CENTER=(<span class="string">12</span>,<span class="string">5</span>)<br>
-                (<span class="string">12</span>,<span class="string">5</span>) <span class="string">255 64 32 180</span><br>
-                (<span class="string">11</span>,<span class="string">5</span>) <span class="string">255 64 32 180</span><br>
-                (<span class="string">13</span>,<span class="string">5</span>) <span class="string">255 64 32 180</span><br><br>
-                <span class="comment"># AI reading this sees:</span><br>
-                <span class="comment"># Frame 0: Ball at (12,5), falling</span><br>
-                <span class="comment"># Frame 4: Ball at (12,9), hits ground</span><br>
-                <span class="comment"># Frame 5: Ball at (12,8), bouncing back</span><br>
-                <span class="comment"># No images. No pixels. Just structured text.</span>
-            </div>
-        </div>
-
-        <div class="grid-3" style="margin-top: 3rem;">
-            <div class="card">
-                <h3>🤖 Embodied AI</h3>
-                <p>Robots with event cameras feeding token grids. Local processing, no cloud dependency. Planner-type world models for real-world decision-making.</p>
-            </div>
-            <div class="card">
-                <h3>🏥 Medical Imaging</h3>
-                <p>Pill cameras and micro-endoscopes with low-res sensors. TN-CRT Vision works WITH the constraint, not against it. Near-zero data transmission.</p>
-            </div>
-            <div class="card">
-                <h3>🚁 Search & Rescue</h3>
-                <p>Drones process locally, transmit 200-byte text tokens instead of 2Mbps video. 99% bandwidth reduction. Works offline in remote areas.</p>
-            </div>
-        </div>
-
-        <p style="text-align: center; margin-top: 3rem;">
-            <a href="https://github.com/darkwebdronedrops/Kimi-Vision" class="btn">View on GitHub</a>
-            <a href="#" class="btn btn-outline">Read the Technical Paper</a>
-        </p>
-    </section>
+    
 
     <div class="section-divider"></div>
 
@@ -1309,6 +1352,9 @@
         <p style="color: var(--text-dim); margin-bottom: 2rem;">
             We're building the future of human-AI collaboration. If you're interested in partnering, 
             investing, or just talking about the work, reach out.
+        </p>
+        <p style="color: var(--text-dim); font-style: italic; margin-bottom: 2rem;">
+            We read every message. Even the weird ones.
         </p>
         <a href="mailto:contact@torespar.com" class="btn">contact@torespar.com</a>
     </section>
