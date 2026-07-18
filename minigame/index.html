@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rotating Gallery — Torespar Mini-Adventure</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+:root {
+  --bg-dark: #0a0e1a;
+  --bg-panel: #111827;
+  --accent: #06b6d4;
+  --accent-dim: #0891b2;
+  --danger: #ef4444;
+  --success: #10b981;
+  --gold: #f59e0b;
+  --text: #e5e7eb;
+  --text-dim: #9ca3af;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ===== TITLE SCREEN ===== */
+#title-screen {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: var(--bg-dark);
+  z-index: 100;
+  transition: opacity 0.8s ease;
+}
+#title-screen.hidden { opacity: 0; pointer-events: none; }
+
+.title-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  color: var(--accent);
+  text-shadow: 0 0 30px rgba(6,182,212,0.4);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.title-sub {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.room-preview-dial {
+  display: flex;
+  gap: -20px;
+  margin-bottom: 2rem;
+  animation: dialFloat 3s ease-in-out infinite;
+}
+@keyframes dialFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.room-preview-dial img {
+  width: 80px; height: 80px;
+  image-rendering: pixelated;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  margin: 0 -10px;
+  transition: transform 0.3s ease;
+}
+.room-preview-dial img:nth-child(1) { transform: rotate(-15deg); z-index: 4; }
+.room-preview-dial img:nth-child(2) { transform: rotate(-5deg); z-index: 3; }
+.room-preview-dial img:nth-child(3) { transform: rotate(5deg); z-index: 2; }
+.room-preview-dial img:nth-child(4) { transform: rotate(15deg); z-index: 1; }
+
+.btn {
+  padding: 14px 40px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.1em;
+}
+.btn:hover {
+  background: var(--accent);
+  color: var(--bg-dark);
+  box-shadow: 0 0 30px rgba(6,182,212,0.4);
+}
+
+/* ===== GAME AREA ===== */
+#game-area {
+  display: none;
+  width: 100%; max-width: 600px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  height: 100vh;
+}
+#game-area.active { display: flex; }
+
+/* Stats bar */
+.stats-bar {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-panel);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.stat-hp { color: var(--danger); }
+.stat-gold { color: var(--gold); }
+.stat-rooms { color: var(--accent); }
+
+/* Room viewer */
+.room-viewer {
+  position: relative;
+  width: 320px; height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.room-display {
+  width: 280px; height: 280px;
+  image-rendering: pixelated;
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 60px rgba(6,182,212,0.1);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.room-display.enter-left {
+  animation: enterLeft 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.room-display.enter-right {
+  animation: enterRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes enterLeft {
+  from { transform: translateX(-100px) rotateY(-30deg) scale(0.8); opacity: 0; }
+  to { transform: translateX(0) rotateY(0) scale(1); opacity: 1; }
+}
+@keyframes enterRight {
+  from { transform: translateX(100px) rotateY(30deg) scale(0.8); opacity: 0; }
+  to { transform: translateX(0) rotateY(0) scale(1); opacity: 1; }
+}
+
+/* Dial arrows */
+.dial-arrow {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 50px; height: 50px;
+  background: var(--bg-panel);
+  border: 2px solid var(--accent-dim);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--accent);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+.dial-arrow:hover {
+  background: var(--accent);
+  color: var(--bg-dark);
+  transform: translateY(-50%) scale(1.1);
+}
+.dial-arrow.left { left: -10px; }
+.dial-arrow.right { right: -10px; }
+
+/* Room info */
+.room-info {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.room-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.room-status {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+.room-status.cleared { color: var(--success); }
+.room-status.locked { color: var(--danger); }
+
+/* Room dots indicator */
+.room-dots {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--bg-panel);
+  border: 2px solid var(--text-dim);
+  transition: all 0.3s ease;
+}
+.dot.active { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+.dot.cleared { border-color: var(--success); background: var(--success); }
+
+/* ===== EVENT MODAL ===== */
+.event-modal {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 50;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.event-modal.active { display: flex; }
+
+.event-panel {
+  background: var(--bg-panel);
+  border: 2px solid var(--accent-dim);
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes modalPop {
+  from { transform: scale(0.8) rotateX(10deg); opacity: 0; }
+  to { transform: scale(1) rotateX(0); opacity: 1; }
+}
+
+.event-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: var(--accent);
+  margin-bottom: 15px;
+}
+
+.event-desc {
+  color: var(--text-dim);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Combat */
+.enemy-sprite {
+  width: 120px; height: 120px;
+  margin: 0 auto 15px;
+  image-rendering: pixelated;
+  border-radius: 8px;
+}
+.enemy-hp-bar {
+  width: 100%; height: 12px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.enemy-hp-fill {
+  height: 100%;
+  background: var(--danger);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.attack-btn {
+  padding: 12px 30px;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 2px solid var(--danger);
+  background: transparent;
+  color: var(--danger);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+.attack-btn:hover {
+  background: var(--danger);
+  color: white;
+  box-shadow: 0 0 20px rgba(239,68,68,0.4);
+}
+.attack-damage {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--danger);
+  margin: 10px 0;
+  animation: damageFloat 0.6s ease forwards;
+}
+@keyframes damageFloat {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-30px) scale(1.3); opacity: 0; }
+}
+
+/* Puzzle */
+.puzzle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 15px auto;
+  max-width: 200px;
+}
+.puzzle-tile {
+  aspect-ratio: 1;
+  background: var(--bg-dark);
+  border: 2px solid var(--accent-dim);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.2s ease;
+}
+.puzzle-tile:hover { border-color: var(--accent); }
+.puzzle-tile.selected { border-color: var(--gold); background: rgba(245,158,11,0.2); }
+.puzzle-tile.correct { border-color: var(--success); background: rgba(16,185,129,0.2); }
+.puzzle-tile.wrong { border-color: var(--danger); background: rgba(239,68,68,0.2); animation: shake 0.4s ease; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+/* Treasure */
+.treasure-chest {
+  width: 100px; height: 100px;
+  margin: 0 auto 15px;
+  font-size: 4rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  animation: chestPulse 2s ease-in-out infinite;
+}
+.treasure-chest:hover { transform: scale(1.1); }
+@keyframes chestPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.treasure-card {
+  background: var(--bg-dark);
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+  text-align: left;
+}
+.treasure-card-name {
+  font-family: 'Cinzel', serif;
+  color: var(--gold);
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+.treasure-card-desc {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+/* Victory */
+.victory-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  text-shadow: 0 0 30px rgba(245,158,11,0.4);
+  margin-bottom: 10px;
+}
+.victory-stars {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+.victory-loot {
+  background: rgba(245,158,11,0.1);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+/* Log */
+.game-log {
+  width: 100%; max-width: 400px;
+  max-height: 120px;
+  overflow-y: auto;
+  background: var(--bg-panel);
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-top: 15px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+.game-log-entry {
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.game-log-entry:last-child { border-bottom: none; }
+.game-log-entry.combat { color: var(--danger); }
+.game-log-entry.puzzle { color: var(--accent); }
+.game-log-entry.treasure { color: var(--gold); }
+.game-log-entry.success { color: var(--success); }
+
+/* Responsive */
+@media (max-width: 480px) {
+  .title-logo { font-size: 1.8rem; }
+  .room-viewer { width: 260px; height: 260px; }
+  .room-display { width: 220px; height: 220px; }
+  .dial-arrow { width: 40px; height: 40px; font-size: 1.2rem; }
+}
+
+/* Enemy hit flash */
+.enemy-hit {
+  animation: enemyHit 0.3s ease;
+}
+@keyframes enemyHit {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(2) sepia(1) hue-rotate(-50deg) saturate(3); }
+  100% { filter: brightness(1); }
+}
+</style>
+</head>
+<body>
+
+<!-- TITLE SCREEN -->
+<div id="title-screen">
+  <div class="title-logo">The Rotating Gallery</div>
+  <div class="title-sub">A Torespar Mini-Adventure</div>
+  <div class="room-preview-dial">
+    <img src="rooms/room1_glowing.png" alt="">
+    <img src="rooms/room2_grove.png" alt="">
+    <img src="rooms/room3_chamber.png" alt="">
+    <img src="rooms/room4_sporefall.png" alt="">
+  </div>
+  <button class="btn" onclick="startGame()">Enter the Gallery</button>
+</div>
+
+<!-- GAME AREA -->
+<div id="game-area">
+  <div class="stats-bar">
+    <div class="stat stat-hp">❤️ <span id="hp-display">20</span>/20</div>
+    <div class="stat stat-gold">🪙 <span id="gold-display">0</span></div>
+    <div class="stat stat-rooms">🗝️ <span id="rooms-display">0</span>/4</div>
+  </div>
+
+  <div class="room-dots" id="room-dots"></div>
+
+  <div class="room-info">
+    <div class="room-name" id="room-name">The Glowing Cavern</div>
+    <div class="room-status" id="room-status">A spore swarm skitters in the shadows...</div>
+  </div>
+
+  <div class="room-viewer">
+    <div class="dial-arrow left" onclick="rotateRoom(-1)">◀</div>
+    <img class="room-display" id="room-display" src="rooms/room1_glowing.png" alt="">
+    <div class="dial-arrow right" onclick="rotateRoom(1)">▶</div>
+  </div>
+
+  <button class="btn" id="action-btn" onclick="startRoomEvent()">Enter Room</button>
+
+  <div class="game-log" id="game-log">
+    <div class="game-log-entry">Welcome to the Rotating Gallery. Four rooms. Four fates.</div>
+  </div>
+</div>
+
+<!-- EVENT MODAL -->
+<div class="event-modal" id="event-modal">
+  <div class="event-panel" id="event-panel">
+    <!-- Dynamic content -->
+  </div>
+</div>
+
+<script>
+// ===== GAME STATE =====
+const state = {
+  hp: 20, maxHp: 20,
+  gold: 0,
+  currentRoom: 0,
+  roomsCleared: 0,
+  roomStates: [false, false, false, false], // cleared status
+  inCombat: false,
+  enemyHp: 0,
+  enemyMaxHp: 0,
+  puzzleSequence: [],
+  puzzleStep: 0,
+  treasuresFound: []
+};
+
+const ROOMS = [
+  {
+    name: "The Glowing Cavern",
+    image: "rooms/room1_glowing.png",
+    event: "combat",
+    eventTitle: "Spore Swarm",
+    eventDesc: "A cluster of bioluminescent spores animate and attack! They look fragile but swarm in numbers.",
+    enemy: { name: "Spore Swarm", hp: 6, damage: 2, sprite: "🦠" },
+    reward: { gold: 15 }
+  },
+  {
+    name: "The Mushroom Grove",
+    image: "rooms/room2_grove.png",
+    event: "puzzle",
+    eventTitle: "Spore Pattern",
+    eventDesc: "The mushrooms pulse in a sequence. Repeat the pattern to unlock the grove's secret.",
+    puzzle: { sequence: [0, 2, 1, 3], tiles: ["🍄", "🌿", "💧", "✨"] },
+    reward: { gold: 20 }
+  },
+  {
+    name: "The Fungal Chamber",
+    image: "rooms/room3_chamber.png",
+    event: "treasure",
+    eventTitle: "Hidden Cache",
+    eventDesc: "Something glimmers beneath the fungal growth. A forgotten cache left by a previous explorer?",
+    treasure: { name: "Fungal Edge", desc: "A blade coated in bioluminescent toxins. Deals +2 damage in dark rooms.", type: "weapon" }
+  },
+  {
+    name: "The Sporefall",
+    image: "rooms/room4_sporefall.png",
+    event: "combat",
+    eventTitle: "Fungal Guardian",
+    eventDesc: "The room's apex predator — a towering fungal construct that guards the exit.",
+    enemy: { name: "Fungal Guardian", hp: 12, damage: 4, sprite: "🍄" },
+    reward: { gold: 30, special: true }
+  }
+];
+
+const CARDS = [
+  { name: "Venom Strike", desc: "Deal 4 damage and apply Poison (2 dmg/turn).", type: "attack" },
+  { name: "Spore Shield", desc: "Gain 8 Block. Heal 2 HP.", type: "defense" },
+  { name: "Mycelium Web", desc: "Enemy skips next turn.", type: "control" },
+  { name: "Bioluminescence", desc: "Draw 2 cards. Gain 1 Energy.", type: "skill" },
+  { name: "Fungal Bloom", desc: "Deal 6 damage to all enemies.", type: "attack" },
+  { name: "Regrowth", desc: "Heal 6 HP. Remove a debuff.", type: "skill" }
+];
+
+// ===== DOM REFS =====
+const titleScreen = document.getElementById('title-screen');
+const gameArea = document.getElementById('game-area');
+const roomDisplay = document.getElementById('room-display');
+const roomName = document.getElementById('room-name');
+const roomStatus = document.getElementById('room-status');
+const actionBtn = document.getElementById('action-btn');
+const eventModal = document.getElementById('event-modal');
+const eventPanel = document.getElementById('event-panel');
+const gameLog = document.getElementById('game-log');
+
+// ===== INIT =====
+function initDots() {
+  const dots = document.getElementById('room-dots');
+  dots.innerHTML = '';
+  for (let i = 0; i < 4; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.id = `dot-${i}`;
+    dots.appendChild(dot);
+  }
+}
+
+function startGame() {
+  titleScreen.classList.add('hidden');
+  setTimeout(() => {
+    titleScreen.style.display = 'none';
+    gameArea.classList.add('active');
+    initDots();
+    updateUI();
+  }, 800);
+}
+
+// ===== ROOM NAVIGATION =====
+function rotateRoom(dir) {
+  const room = ROOMS[state.currentRoom];
+  
+  // Determine animation direction
+  const animClass = dir > 0 ? 'enter-right' : 'enter-left';
+  roomDisplay.classList.remove('enter-left', 'enter-right');
+  void roomDisplay.offsetWidth; // force reflow
+  roomDisplay.classList.add(animClass);
+  
+  state.currentRoom = (state.currentRoom + dir + 4) % 4;
+  updateUI();
+}
+
+function updateUI() {
+  const room = ROOMS[state.currentRoom];
+  roomDisplay.src = room.image;
+  roomName.textContent = room.name;
+  
+  // Update dots
+  document.querySelectorAll('.dot').forEach((d, i) => {
+    d.className = 'dot' + 
+      (i === state.currentRoom ? ' active' : '') +
+      (state.roomStates[i] ? ' cleared' : '');
+  });
+  
+  // Status and button
+  if (state.roomStates[state.currentRoom]) {
+    roomStatus.textContent = "Room cleared. Nothing remains.";
+    roomStatus.className = "room-status cleared";
+    actionBtn.textContent = "Already Cleared";
+    actionBtn.disabled = true;
+    actionBtn.style.opacity = '0.5';
+  } else {
+    const eventLabels = { combat: "Enemies lurk within...", puzzle: "Something puzzles the mind...", treasure: "Treasure calls..." };
+    roomStatus.textContent = eventLabels[room.event];
+    roomStatus.className = "room-status";
+    actionBtn.textContent = "Enter Room";
+    actionBtn.disabled = false;
+    actionBtn.style.opacity = '1';
+  }
+  
+  // Stats
+  document.getElementById('hp-display').textContent = state.hp;
+  document.getElementById('gold-display').textContent = state.gold;
+  document.getElementById('rooms-display').textContent = state.roomsCleared;
+}
+
+// ===== LOG =====
+function log(msg, type = '') {
+  const entry = document.createElement('div');
+  entry.className = 'game-log-entry' + (type ? ' ' + type : '');
+  entry.textContent = msg;
+  gameLog.appendChild(entry);
+  gameLog.scrollTop = gameLog.scrollHeight;
+}
+
+// ===== EVENTS =====
+function startRoomEvent() {
+  const room = ROOMS[state.currentRoom];
+  eventModal.classList.add('active');
+  
+  if (room.event === 'combat') startCombat(room);
+  else if (room.event === 'puzzle') startPuzzle(room);
+  else if (room.event === 'treasure') startTreasure(room);
+}
+
+function closeEvent() {
+  eventModal.classList.remove('active');
+  updateUI();
+  
+  // Check victory
+  if (state.roomsCleared === 4) {
+    setTimeout(showVictory, 300);
+  }
+}
+
+// ===== COMBAT =====
+function startCombat(room) {
+  const enemy = { ...room.enemy };
+  state.enemyHp = enemy.hp;
+  state.enemyMaxHp = enemy.hp;
+  state.inCombat = true;
+  
+  eventPanel.innerHTML = `
+    <div class="event-title">⚔️ ${room.eventTitle}</div>
+    <div class="event-desc">${room.eventDesc}</div>
+    <div class="enemy-sprite">${enemy.sprite}</div>
+    <div style="font-family:Cinzel,serif;color:var(--accent);margin-bottom:5px;">${enemy.name}</div>
+    <div class="enemy-hp-bar"><div class="enemy-hp-fill" id="enemy-hp" style="width:100%"></div></div>
+    <div id="combat-controls">
+      <button class="attack-btn" onclick="playerAttack()">⚔️ Attack</button>
+    </div>
+    <div id="combat-result"></div>
+  `;
+}
+
+function playerAttack() {
+  if (!state.inCombat) return;
+  
+  const room = ROOMS[state.currentRoom];
+  const dmg = Math.floor(Math.random() * 3) + 3; // 3-5 damage
+  state.enemyHp -= dmg;
+  
+  // Visual feedback
+  const sprite = document.querySelector('.enemy-sprite');
+  sprite.classList.add('enemy-hit');
+  setTimeout(() => sprite.classList.remove('enemy-hit'), 300);
+  
+  // Damage number
+  const result = document.getElementById('combat-result');
+  result.innerHTML = `<div class="attack-damage">-${dmg}</div>`;
+  
+  // Update HP bar
+  const hpPct = Math.max(0, state.enemyHp / state.enemyMaxHp * 100);
+  document.getElementById('enemy-hp').style.width = hpPct + '%';
+  
+  log(`You attack ${room.enemy.name} for ${dmg} damage!`, 'combat');
+  
+  if (state.enemyHp <= 0) {
+    winCombat(room);
+  } else {
+    // Enemy counter-attack
+    setTimeout(() => enemyAttack(room), 600);
+  }
+}
+
+function enemyAttack(room) {
+  if (!state.inCombat) return;
+  const dmg = room.enemy.damage;
+  state.hp -= dmg;
+  log(`${room.enemy.name} hits you for ${dmg} damage!`, 'combat');
+  
+  if (state.hp <= 0) {
+    gameOver();
+  } else {
+    document.getElementById('hp-display').textContent = state.hp;
+    // Re-enable button
+    const controls = document.getElementById('combat-controls');
+    controls.innerHTML = `<button class="attack-btn" onclick="playerAttack()">⚔️ Attack</button>`;
+  }
+}
+
+function winCombat(room) {
+  state.inCombat = false;
+  state.roomStates[state.currentRoom] = true;
+  state.roomsCleared++;
+  state.gold += room.reward.gold;
+  
+  log(`Defeated ${room.enemy.name}! Found ${room.reward.gold} gold.`, 'success');
+  
+  eventPanel.innerHTML = `
+    <div class="event-title" style="color:var(--success)">Victory!</div>
+    <div class="event-desc">The ${room.enemy.name} dissipates into spores. You found <strong>${room.reward.gold} gold</strong>!</div>
+    <button class="btn" onclick="closeEvent()" style="margin-top:15px;">Continue</button>
+  `;
+}
+
+// ===== PUZZLE =====
+function startPuzzle(room) {
+  const puzzle = room.puzzle;
+  state.puzzleSequence = [...puzzle.sequence];
+  state.puzzleStep = 0;
+  
+  eventPanel.innerHTML = `
+    <div class="event-title">🧩 ${room.eventTitle}</div>
+    <div class="event-desc">${room.eventDesc}</div>
+    <div class="event-desc" style="color:var(--accent);margin-top:10px;">Watch the pattern, then repeat it!</div>
+    <div class="puzzle-grid" id="puzzle-grid"></div>
+    <div id="puzzle-result"></div>
+    <button class="btn" onclick="showPuzzlePattern()" id="puzzle-start-btn" style="margin-top:10px;">Start Pattern</button>
+  `;
+  
+  const grid = document.getElementById('puzzle-grid');
+  puzzle.tiles.forEach((tile, i) => {
+    const el = document.createElement('div');
+    el.className = 'puzzle-tile';
+    el.textContent = tile;
+    el.dataset.index = i;
+    el.onclick = () => puzzleClick(i);
+    grid.appendChild(el);
+  });
+}
+
+function showPuzzlePattern() {
+  const btn = document.getElementById('puzzle-start-btn');
+  btn.style.display = 'none';
+  
+  const sequence = state.puzzleSequence;
+  let i = 0;
+  
+  function flashNext() {
+    if (i >= sequence.length) {
+      log("Pattern shown! Repeat it!", 'puzzle');
+      return;
+    }
+    const tiles = document.querySelectorAll('.puzzle-tile');
+    tiles[sequence[i]].classList.add('selected');
+    setTimeout(() => {
+      tiles[sequence[i]].classList.remove('selected');
+      i++;
+      setTimeout(flashNext, 300);
+    }, 500);
+  }
+  
+  flashNext();
+}
+
+function puzzleClick(index) {
+  const tiles = document.querySelectorAll('.puzzle-tile');
+  const expected = state.puzzleSequence[state.puzzleStep];
+  
+  if (index === expected) {
+    tiles[index].classList.add('correct');
+    setTimeout(() => tiles[index].classList.remove('correct'), 300);
+    state.puzzleStep++;
+    
+    if (state.puzzleStep >= state.puzzleSequence.length) {
+      winPuzzle();
+    }
+  } else {
+    tiles[index].classList.add('wrong');
+    setTimeout(() => tiles[index].classList.remove('wrong'), 400);
+    log("Wrong tile! Pattern reset.", 'puzzle');
+    state.puzzleStep = 0;
+    setTimeout(showPuzzlePattern, 600);
+  }
+}
+
+function winPuzzle() {
+  const room = ROOMS[state.currentRoom];
+  state.roomStates[state.currentRoom] = true;
+  state.roomsCleared++;
+  state.gold += room.reward.gold;
+  
+  log(`Solved the ${room.eventTitle}! Found ${room.reward.gold} gold.`, 'success');
+  
+  eventPanel.innerHTML = `
+    <div class="event-title" style="color:var(--success)">Pattern Solved!</div>
+    <div class="event-desc">The mushrooms settle into harmony. You found <strong>${room.reward.gold} gold</strong>!</div>
+    <button class="btn" onclick="closeEvent()" style="margin-top:15px;">Continue</button>
+  `;
+}
+
+// ===== TREASURE =====
+function startTreasure(room) {
+  eventPanel.innerHTML = `
+    <div class="event-title">🎁 ${room.eventTitle}</div>
+    <div class="event-desc">${room.eventDesc}</div>
+    <div class="treasure-chest" onclick="openTreasure()">📦</div>
+    <div id="treasure-result"></div>
+  `;
+}
+
+function openTreasure() {
+  const room = ROOMS[state.currentRoom];
+  const card = CARDS[Math.floor(Math.random() * CARDS.length)];
+  
+  state.roomStates[state.currentRoom] = true;
+  state.roomsCleared++;
+  state.treasuresFound.push(card);
+  
+  log(`Opened ${room.eventTitle}! Found: ${card.name}`, 'treasure');
+  
+  document.getElementById('treasure-result').innerHTML = `
+    <div class="treasure-chest" style="animation:none;font-size:3rem;">✨</div>
+    <div class="treasure-card">
+      <div class="treasure-card-name">${card.name}</div>
+      <div class="treasure-card-desc">${card.desc}</div>
+      <div style="font-size:0.8rem;color:var(--accent);margin-top:5px;text-transform:uppercase;letter-spacing:0.1em;">${card.type}</div>
+    </div>
+    <button class="btn" onclick="closeEvent()" style="margin-top:15px;">Continue</button>
+  `;
+}
+
+// ===== VICTORY / GAME OVER =====
+function showVictory() {
+  eventModal.classList.add('active');
+  eventPanel.innerHTML = `
+    <div class="victory-title">Gallery Conquered!</div>
+    <div class="victory-stars">⭐ ⭐ ⭐</div>
+    <div class="event-desc">You have cleared all four rooms of the Rotating Gallery.</div>
+    <div class="victory-loot">
+      <div style="font-family:Cinzel,serif;color:var(--gold);margin-bottom:8px;">Final Score</div>
+      <div>❤️ HP: ${state.hp}/${state.maxHp}</div>
+      <div>🪙 Gold: ${state.gold}</div>
+      <div>🎴 Cards: ${state.treasuresFound.length}</div>
+    </div>
+    <div class="event-desc" style="margin-top:15px;">This is just the beginning. The full game awaits.</div>
+    <button class="btn" onclick="location.reload()" style="margin-top:15px;">Play Again</button>
+  `;
+}
+
+function gameOver() {
+  state.inCombat = false;
+  eventPanel.innerHTML = `
+    <div class="event-title" style="color:var(--danger)">☠️ Defeated</div>
+    <div class="event-desc">The Gallery claims another soul. But souls are stubborn things...</div>
+    <button class="btn" onclick="location.reload()" style="margin-top:15px;">Try Again</button>
+  `;
+}
+
+// Close modal on outside click
+eventModal.addEventListener('click', (e) => {
+  if (e.target === eventModal) return; // Don't close on outside click during events
+});
+</script>
+</body>
+</html>

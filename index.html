@@ -194,6 +194,12 @@
             gap: 2rem;
         }
 
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -343,7 +349,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
-            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
             .nav-links { display: none; }
             .world-stats { flex-direction: column; gap: 2rem; }
         }
@@ -1274,7 +1280,7 @@
     <!-- Interactive Showcase -->
     <section style="padding: 3rem 2rem;">
         <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">See It In Action</h2>
-        <div class="grid-3" style="max-width: 900px; margin: 0 auto;">
+        <div class="grid-4" style="max-width: 1100px; margin: 0 auto;">
             <div class="card" style="text-align: center;">
                 <h3 style="color: var(--accent); margin-bottom: 1rem;">Play a Card</h3>
                 <div class="card-play-demo" id="card-demo" onclick="playCardDemo()">
@@ -1298,6 +1304,16 @@
                 <h3 style="color: var(--accent); margin-bottom: 1rem;">The Mechanism</h3>
                 <img class="gear-spin" src=data:image/png;base64,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 alt="Gear" style="width: 100px; height: 100px; margin: 20px auto;">
                 <p style="color: var(--text-dim); margin-top: 1rem; font-size: 0.85rem;">Floor 3: Rotate the lights to align</p>
+            </div>
+            <div class="card" style="text-align: center;">
+                <h3 style="color: var(--accent); margin-bottom: 1rem;">The Rotating Gallery</h3>
+                <a href="minigame/" style="text-decoration: none; display: block;">
+                    <div style="width: 120px; height: 120px; margin: 20px auto; display: flex; align-items: center; justify-content: center; gap: -10px; position: relative;">
+                        <img src="minigame/rooms/room1_glowing.png" style="width: 60px; height: 60px; image-rendering: pixelated; border-radius: 6px; position: absolute; left: 10px; top: 10px; transform: rotate(-8deg); box-shadow: 0 2px 10px rgba(0,0,0,0.4); z-index: 2;">
+                        <img src="minigame/rooms/room4_sporefall.png" style="width: 60px; height: 60px; image-rendering: pixelated; border-radius: 6px; position: absolute; right: 10px; bottom: 10px; transform: rotate(8deg); box-shadow: 0 2px 10px rgba(0,0,0,0.4); z-index: 1;">
+                    </div>
+                    <p style="color: var(--text-dim); margin-top: 1rem; font-size: 0.85rem;">Play the mini-adventure →</p>
+                </a>
             </div>
         </div>
     </section>
