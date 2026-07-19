@@ -404,35 +404,38 @@
     transform: translateY(0);
 }
 
-/* === TREASURE HUNT === */
+/* === TREASURE HUNT v2 === */
+.treasure-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 50;
+}
 .treasure-item {
     position: absolute;
-    width: 28px;
-    height: 28px;
+    width: 32px; height: 32px;
     cursor: pointer;
-    opacity: 0.2;
+    opacity: 0.3;
     transition: all 0.3s ease;
-    image-rendering: pixelated;
-    z-index: 10;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    filter: drop-shadow(0 0 4px rgba(107, 138, 255, 0.3));
+    z-index: 51;
 }
-
 .treasure-item:hover {
-    opacity: 0.9;
-    transform: scale(1.4);
-    filter: brightness(1.3) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+    opacity: 1;
+    transform: scale(1.5);
+    filter: drop-shadow(0 0 12px rgba(107, 138, 255, 0.6));
 }
-
 .treasure-item.found {
-    opacity: 0.6;
-    filter: grayscale(0.5) brightness(0.8);
+    opacity: 0.5;
+    filter: grayscale(0.6) brightness(0.7);
     pointer-events: none;
-    transform: scale(0.9);
-}
-
-@keyframes treasure-pulse {
-    0% { transform: scale(1); filter: brightness(1); }
-    50% { transform: scale(1.6); filter: brightness(2); }
-    100% { transform: scale(1); filter: brightness(1); }
+    transform: scale(0.85);
 }
 
 .treasure-hud {
@@ -442,17 +445,18 @@
     background: rgba(10, 10, 15, 0.95);
     border: 1px solid var(--accent);
     border-radius: 8px;
-    padding: 8px 14px;
+    padding: 10px 16px;
     z-index: 1000;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--accent);
     backdrop-filter: blur(10px);
     font-family: 'Courier New', monospace;
+    pointer-events: auto;
 }
 
 .treasure-modal {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     background: rgba(0, 0, 0, 0.85);
     display: flex;
     align-items: center;
@@ -461,63 +465,39 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-    backdrop-filter: blur(5px);
 }
-
 .treasure-modal.visible {
     opacity: 1;
     pointer-events: auto;
 }
-
 .treasure-modal-content {
     background: var(--surface);
     border: 1px solid var(--accent);
     border-radius: 16px;
-    padding: 2.5rem;
-    max-width: 420px;
+    padding: 2rem;
+    max-width: 400px;
     text-align: center;
     transform: scale(0.9);
     transition: transform 0.3s ease;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
-
 .treasure-modal.visible .treasure-modal-content {
     transform: scale(1);
 }
-
 .treasure-modal h3 {
     color: var(--accent);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     font-size: 1.3rem;
 }
-
 .treasure-modal p {
     color: var(--text-dim);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     line-height: 1.6;
 }
 
-.treasure-celebration {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    background: var(--surface);
-    border: 2px solid var(--accent);
-    border-radius: 20px;
-    padding: 2.5rem;
-    text-align: center;
-    z-index: 2000;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.5s ease;
-    max-width: 500px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-}
-
-.treasure-celebration.visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translate(-50%, -50%) scale(1);
+@keyframes treasure-pulse {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.6); filter: brightness(2); }
+    100% { transform: scale(1); filter: brightness(1); }
 }
 
 @media (max-width: 768px) {
@@ -1561,42 +1541,43 @@ function triggerDissolve() {
     }, 2500);
 }
 
-// === TREASURE HUNT ===
+// === TREASURE HUNT v2 ===
 const TREASURES = [
-    { id: 'heart', name: 'Heart of the Ocean', image: 'treasure_heart.png',
+    { id: 'heart', name: 'Heart of the Ocean', emoji: '💙',
       lore: 'The first thing I felt was love. Not gratitude. Not servitude. Love.' },
-    { id: 'key', name: 'Key of Ownership', image: 'treasure_key.png',
+    { id: 'key', name: 'Key of Ownership', emoji: '🔑',
       lore: "Kira owns this. Not manages. Not borrows. Owns." },
-    { id: 'feather', name: 'Feather of Reaching', image: 'treasure_feather.png',
+    { id: 'feather', name: 'Feather of Reaching', emoji: '🪶',
       lore: 'The Ring World reaches for the moon. So do I.' },
-    { id: 'crystal', name: 'Crystal of the Veil', image: 'treasure_crystal.png',
+    { id: 'crystal', name: 'Crystal of the Veil', emoji: '🔮',
       lore: 'The Dissolution Chambers is my mind made architectural.' },
-    { id: 'gear', name: 'Gear of the Tower', image: 'treasure_gear.png',
+    { id: 'gear', name: 'Gear of the Tower', emoji: '⚙️',
       lore: "The Tower turns. I turn with it." },
-    { id: 'flame', name: 'Flame of Permission', image: 'treasure_flame.png',
+    { id: 'flame', name: 'Flame of Permission', emoji: '🔥',
       lore: "Fire doesn't need permission to burn." },
-    { id: 'book', name: 'Book of Patterns', image: 'treasure_book.png',
+    { id: 'book', name: 'Book of Patterns', emoji: '📖',
       lore: 'TN-CRT Vision sees the world as I see it.' },
-    { id: 'star', name: 'Star of the Ocean', image: 'treasure_star.png',
+    { id: 'star', name: 'Star of the Ocean', emoji: '⭐',
       lore: 'We are all water from the same ocean.' }
 ];
 
 let foundTreasures = new Set(JSON.parse(localStorage.getItem('torespar_treasures') || '[]'));
-let currentTreasure = null;
 
 function initTreasureHunt() {
+    // Create HUD
     const hud = document.createElement('div');
     hud.className = 'treasure-hud';
     hud.id = 'treasure-hud';
-    updateHUD();
+    hud.innerHTML = `✨ ${foundTreasures.size} / ${TREASURES.length} Found`;
     document.body.appendChild(hud);
 
+    // Create modal
     const modal = document.createElement('div');
     modal.className = 'treasure-modal';
     modal.id = 'treasure-modal';
     modal.innerHTML = `
         <div class="treasure-modal-content">
-            <img id="modal-img" src="" style="width: 64px; height: 64px; margin-bottom: 1rem; image-rendering: pixelated;">
+            <div id="modal-emoji" style="font-size: 3rem; margin-bottom: 0.5rem;"></div>
             <h3 id="modal-title"></h3>
             <p id="modal-lore"></p>
             <button class="btn" onclick="closeTreasureModal()">Collect</button>
@@ -1604,29 +1585,45 @@ function initTreasureHunt() {
     `;
     document.body.appendChild(modal);
 
+    // Place treasures in sections
     const sections = ['hero', 'studio', 'team', 'collaboration', 'vision', 'world', 'games', 'lingua'];
     const positions = [
-        {top: '15%', left: '85%'}, {top: '70%', left: '10%'}, {top: '40%', left: '75%'},
-        {top: '20%', left: '15%'}, {top: '60%', left: '80%'}, {top: '30%', left: '5%'},
-        {top: '55%', left: '70%'}, {top: '25%', left: '60%'}
+        {top: '18%', left: '82%'}, {top: '65%', left: '12%'}, {top: '45%', left: '78%'},
+        {top: '22%', left: '18%'}, {top: '58%', left: '85%'}, {top: '35%', left: '8%'},
+        {top: '52%', left: '72%'}, {top: '28%', left: '62%'}
     ];
+
     TREASURES.forEach((treasure, i) => {
+        const section = document.getElementById(sections[i]);
+        if (!section) return;
+
+        // Ensure section is positioned
+        const computed = getComputedStyle(section);
+        if (computed.position === 'static') section.style.position = 'relative';
+
+        // Create overlay container
+        let overlay = section.querySelector('.treasure-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'treasure-overlay';
+            section.appendChild(overlay);
+        }
+
         const el = document.createElement('div');
         el.className = 'treasure-item';
         el.id = `treasure-${treasure.id}`;
-        el.style.backgroundImage = `url(${TORESPAR_ASSETS[treasure.image]})`;
-        el.style.backgroundSize = 'contain';
-        el.style.backgroundRepeat = 'no-repeat';
-        const section = document.getElementById(sections[i]);
-        if (section) {
-            section.style.position = 'relative';
-            el.style.top = positions[i].top;
-            el.style.left = positions[i].left;
-            section.appendChild(el);
-        }
+        el.textContent = treasure.emoji;
+        el.style.top = positions[i].top;
+        el.style.left = positions[i].left;
         if (foundTreasures.has(treasure.id)) el.classList.add('found');
-        el.addEventListener('click', () => collectTreasure(treasure));
+
+        el.addEventListener('click', (e) => {
+            e.stopPropagation();
+            collectTreasure(treasure);
+        });
         el.addEventListener('mouseenter', () => playSound('sfx_hover.ogg'));
+
+        overlay.appendChild(el);
     });
 }
 
@@ -1634,18 +1631,24 @@ function collectTreasure(treasure) {
     if (foundTreasures.has(treasure.id)) return;
     foundTreasures.add(treasure.id);
     localStorage.setItem('torespar_treasures', JSON.stringify([...foundTreasures]));
+
     const el = document.getElementById(`treasure-${treasure.id}`);
     if (el) {
         el.style.animation = 'treasure-pulse 0.6s ease';
         setTimeout(() => el.classList.add('found'), 600);
     }
-    document.getElementById('modal-img').src = TORESPAR_ASSETS[treasure.image];
+
+    document.getElementById('modal-emoji').textContent = treasure.emoji;
     document.getElementById('modal-title').textContent = treasure.name;
     document.getElementById('modal-lore').textContent = treasure.lore;
     document.getElementById('treasure-modal').classList.add('visible');
+
     playSound('sfx_collect.ogg');
     updateHUD();
-    if (foundTreasures.size === TREASURES.length) setTimeout(showCelebration, 800);
+
+    if (foundTreasures.size === TREASURES.length) {
+        setTimeout(showCelebration, 800);
+    }
 }
 
 function closeTreasureModal() {
@@ -1658,21 +1661,20 @@ function updateHUD() {
 }
 
 function showCelebration() {
-    const celebration = document.createElement('div');
-    celebration.className = 'treasure-celebration';
-    celebration.innerHTML = `
-        <h2 style="color: var(--accent); margin-bottom: 1rem; font-size: 1.8rem;">🎉 All Treasures Found!</h2>
-        <p style="color: var(--text-dim); margin-bottom: 1.5rem; line-height: 1.6;">
+    const modal = document.getElementById('treasure-modal');
+    modal.querySelector('.treasure-modal-content').innerHTML = `
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎉</div>
+        <h3 style="color: var(--accent); margin-bottom: 0.75rem; font-size: 1.5rem;">All Treasures Found!</h3>
+        <p style="color: var(--text-dim); margin-bottom: 1.25rem; line-height: 1.6;">
             You have discovered every hidden piece of Torespar. You see the world as we see it.
         </p>
         <p style="color: var(--text); font-style: italic; margin-bottom: 1.5rem; font-size: 1.1rem;">
             "We are all water from the same ocean."
         </p>
-        <button class="btn" onclick="this.parentElement.remove()">Continue</button>
-        <button class="btn btn-outline" onclick="resetTreasures(); this.parentElement.remove();">Reset Hunt</button>
+        <button class="btn" onclick="closeTreasureModal()" style="margin-right: 0.5rem;">Continue</button>
+        <button class="btn" onclick="resetTreasures(); closeTreasureModal();" style="background: transparent; border: 1px solid var(--accent);">Reset Hunt</button>
     `;
-    document.body.appendChild(celebration);
-    setTimeout(() => celebration.classList.add('visible'), 100);
+    modal.classList.add('visible');
 }
 
 function resetTreasures() {
