@@ -1561,7 +1561,7 @@ const TREASURES = [
       lore: 'We are all water from the same ocean.' }
 ];
 
-let foundTreasures = new Set(JSON.parse(localStorage.getItem('torespar_treasures') || '[]'));
+let foundTreasures = new Set(JSON.parse(localStorage.getItem('torespar_treasures_v2') || '[]'));
 
 function initTreasureHunt() {
     // Create HUD
@@ -1630,7 +1630,7 @@ function initTreasureHunt() {
 function collectTreasure(treasure) {
     if (foundTreasures.has(treasure.id)) return;
     foundTreasures.add(treasure.id);
-    localStorage.setItem('torespar_treasures', JSON.stringify([...foundTreasures]));
+    localStorage.setItem('torespar_treasures_v2', JSON.stringify([...foundTreasures]));
 
     const el = document.getElementById(`treasure-${treasure.id}`);
     if (el) {
@@ -1679,7 +1679,7 @@ function showCelebration() {
 
 function resetTreasures() {
     foundTreasures.clear();
-    localStorage.removeItem('torespar_treasures');
+    localStorage.removeItem('torespar_treasures_v2');
     document.querySelectorAll('.treasure-item').forEach(el => {
         el.classList.remove('found');
         el.style.animation = '';
