@@ -383,6 +383,48 @@ body {
 </head>
 <body>
 
+<!-- AUDIO -->
+<audio id="minigame-music" loop>
+  <source src="music.ogg" type="audio/ogg">
+</audio>
+<div class="music-toggle" id="music-toggle" onclick="toggleMusic()" title="Toggle music">🎵</div>
+
+<style>
+.music-toggle {
+  position: fixed;
+  top: 15px; right: 15px;
+  z-index: 101;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 8px;
+  background: rgba(10,14,26,0.8);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+.music-toggle:hover { background: var(--bg-panel); }
+.music-toggle.muted { opacity: 0.4; }
+</style>
+
+<script>
+let musicPlaying = false;
+const music = document.getElementById('minigame-music');
+music.volume = 0.4;
+
+function toggleMusic() {
+  const btn = document.getElementById('music-toggle');
+  if (musicPlaying) {
+    music.pause();
+    btn.classList.add('muted');
+  } else {
+    music.play().catch(e => console.log('Music play failed:', e));
+    btn.classList.remove('muted');
+  }
+  musicPlaying = !musicPlaying;
+}
+</script>
+
 <!-- TITLE SCREEN -->
 <div id="title-screen">
   <div class="title-logo">The Rotating Gallery</div>
@@ -537,6 +579,9 @@ function isAdjacent(x, y) {
 
 function startGame() {
   titleScreen.classList.add('hidden');
+  music.play().catch(e => console.log('Music play failed:', e));
+  musicPlaying = true;
+  document.getElementById('music-toggle').classList.remove('muted');
   setTimeout(() => {
     titleScreen.style.display = 'none';
     gameArea.classList.add('active');
