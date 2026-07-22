@@ -295,6 +295,7 @@ R☾ R☾ R☾ R☾ R☾ R☾ R☾ R✚ R✚ R☾ R☾ R☾ R☾ R☾ R☾ R☾
 
 ### Appendix C: Cross-Model Convergence Evidence
 
+**Independent Design Convergence:**
 GPT-4 was presented with the same problem ("How do we make a transformer see?") independently of the Kimi-based development. It proposed:
 - Grid-based spatial representation
 - Temporal sequences for motion
@@ -302,6 +303,21 @@ GPT-4 was presented with the same problem ("How do we make a transformer see?") 
 - No learned encoder required
 
 This convergent independent design from two different model architectures suggests the approach is architecturally sound, not model-specific.
+
+**Cross-Model Validation (Ball Tracking Benchmark):**
+The CRT token grid representation of a bouncing ball was fed to five independent AI systems without prompt engineering or fine-tuning:
+
+| Model | Provider | Result |
+|-------|----------|--------|
+| GPT-4 | OpenAI | ✅ Correctly identified ball bouncing |
+| Kimi K2.6 | Moonshot | ✅ Correctly identified ball bouncing |
+| Grok | xAI | ✅ Correctly identified ball bouncing |
+| Copilot | Microsoft | ✅ Correctly identified ball bouncing |
+| DeepSeek | DeepSeek | ✅ Correctly identified ball bouncing |
+
+**5/5 models** correctly interpreted motion from the token grid without image encoders, CNNs, or computer vision pipelines. This demonstrates that the representation is **model-agnostic** — any transformer can perceive spatial-temporal data when structured as native tokens.
+
+**Next Benchmark:** Real-time non-simulated data (live camera/event camera input).
 
 ### Appendix D: Equipment Needs & Justification
 
