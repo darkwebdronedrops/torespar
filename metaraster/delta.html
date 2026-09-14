@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>META.RASTER.DELTA — Temporal Differencing</title>
+<style>
+  :root {
+    --phosphor: #41ff70;
+    --phosphor-dim: #1a5c2e;
+    --phosphor-bright: #8fffb0;
+    --bg: #050a06;
+    --panel: #0a120c;
+    --border: #1a3a24;
+    --amber: #ffb347;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--phosphor);
+    font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+    min-height: 100vh;
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--phosphor-bright);
+    text-shadow: 0 0 12px rgba(65, 255, 112, 0.4);
+  }
+  .subtitle {
+    color: var(--phosphor-dim);
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 14px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--phosphor-dim);
+    text-transform: uppercase;
+  }
+  select, button, input[type="range"] {
+    background: var(--bg);
+    color: var(--phosphor);
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    font-family: inherit;
+    font-size: 13px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  select:hover, button:hover { border-color: var(--phosphor-dim); }
+  button {
+    background: var(--panel);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+  }
+  button.primary {
+    background: var(--phosphor);
+    color: var(--bg);
+    font-weight: bold;
+    border: none;
+  }
+  button.primary:hover { background: var(--phosphor-bright); }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .value-readout {
+    color: var(--amber);
+    font-size: 12px;
+    min-width: 40px;
+  }
+  .panels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px;
+  }
+  .panel h3 {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--phosphor-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  canvas {
+    width: 100%;
+    image-rendering: pixelated;
+    background: #000;
+    border: 1px solid var(--border);
+    display: block;
+  }
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 14px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+  .stat { display: flex; flex-direction: column; }
+  .stat .label { font-size: 10px; color: var(--phosphor-dim); text-transform: uppercase; letter-spacing: 1px; }
+  .stat .value { color: var(--phosphor-bright); font-size: 18px; }
+  .output-section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px;
+  }
+  .output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  textarea {
+    width: 100%;
+    height: 220px;
+    background: #000;
+    color: var(--phosphor);
+    border: 1px solid var(--border);
+    font-family: inherit;
+    font-size: 11px;
+    padding: 10px;
+    resize: vertical;
+    line-height: 1.4;
+  }
+  .hint {
+    color: var(--phosphor-dim);
+    font-size: 11px;
+    margin-top: 8px;
+  }
+  .same-token {
+    color: var(--amber);
+    font-weight: bold;
+  }
+  video { display: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>META.RASTER.DELTA</h1>
+  <div class="subtitle">Temporal frame differencing · <span class="same-token">_</span> = same as previous frame · client-only</div>
+</header>
+
+<div class="controls">
+  <div class="control-group">
+    <label>Source</label>
+    <select id="source">
+      <option value="webcam">Webcam</option>
+      <option value="ball" selected>Bouncing Ball Demo</option>
+    </select>
+  </div>
+  <div class="control-group">
+    <label>Resolution</label>
+    <select id="resolution">
+      <option value="16,12">16×12 Micro (~192 tok/frame)</option>
+      <option value="32,24">32×24 Mid (~768 tok/frame)</option>
+      <option value="64,48" selected>64×48 Std (~3,072 tok/frame)</option>
+    </select>
+  </div>
+  <div class="control-group">
+    <label>FPS: <span class="value-readout" id="fpsVal">4</span></label>
+    <input type="range" id="fps" min="1" max="10" value="4" style="width:120px">
+  </div>
+  <div class="control-group">
+    <label>Sensitivity: <span class="value-readout" id="sensVal">1</span> lvls</label>
+    <input type="range" id="sens" min="0" max="4" value="1" style="width:120px">
+  </div>
+  <div class="control-group">
+    <label>Keyframe every <span class="value-readout" id="kfVal">30</span></label>
+    <input type="range" id="keyframe" min="5" max="100" value="30" style="width:120px">
+  </div>
+  <div class="control-group" style="flex-direction:row; gap:8px; align-items:flex-end; margin-left:auto">
+    <button class="primary" id="startBtn">Start</button>
+    <button id="stopBtn" disabled>Stop</button>
+    <button id="copyBtn">Copy Stream</button>
+    <button id="clearBtn">Clear</button>
+  </div>
+</div>
+
+<div class="panels">
+  <div class="panel">
+    <h3>Source</h3>
+    <canvas id="srcCanvas" width="64" height="48"></canvas>
+  </div>
+  <div class="panel">
+    <h3>Delta Mask <span style="color:var(--amber)">■</span> changed · <span style="color:#123">■</span> same</h3>
+    <canvas id="maskCanvas" width="64" height="48"></canvas>
+  </div>
+  <div class="panel">
+    <h3>Decoder Reconstruction</h3>
+    <canvas id="decCanvas" width="64" height="48"></canvas>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><span class="label">Frame</span><span class="value" id="statFrame">0</span></div>
+  <div class="stat"><span class="label">Changed</span><span class="value" id="statChanged">—</span></div>
+  <div class="stat"><span class="label">Same</span><span class="value" id="statSame">—</span></div>
+  <div class="stat"><span class="label">Chars (frame)</span><span class="value" id="statChars">—</span></div>
+  <div class="stat"><span class="label">~Tokens (frame)</span><span class="value" id="statTokens">—</span></div>
+  <div class="stat"><span class="label">Stream total</span><span class="value" id="statTotal">0 tok</span></div>
+  <div class="stat"><span class="label">Compression</span><span class="value" id="statComp">—</span></div>
+</div>
+
+<div class="output-section">
+  <div class="output-header">
+    <label>Delta Stream Output</label>
+    <span style="font-size:11px;color:var(--phosphor-dim)" id="frameType">idle</span>
+  </div>
+  <textarea id="output" readonly placeholder="Press Start to begin encoding..."></textarea>
+  <div class="hint">
+    Format: <span class="same-token">_</span> = unchanged pixel · LC pair = new value ·
+    mode=delta requires previous frame (first frame is always a keyframe).
+    Paste a stream into the decoder section of MetaRaster.3 with a persistent-canvas decoder, or use the reconstruction above.
+  </div>
+</div>
+
+<video id="video" autoplay playsinline></video>
+
+<script>
+'use strict';
+
+// === TN-CRT V3 Alphabetical Chroma constants ===
+const CHARSET = '.:-=+*#%@';                    // 9 luminance levels
+const CHROMA  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';    // A=red 0° .. Z=blue 240°
+const SAME    = '_';
+const SAT_THRESHOLD = 0.25;
+
+// === DOM ===
+const $ = id => document.getElementById(id);
+const srcCanvas = $('srcCanvas'), maskCanvas = $('maskCanvas'), decCanvas = $('decCanvas');
+const srcCtx = srcCanvas.getContext('2d');
+const maskCtx = maskCanvas.getContext('2d');
+const decCtx = decCanvas.getContext('2d');
+const video = $('video');
+const output = $('output');
+
+// === State ===
+let running = false;
+let rafId = null;
+let prevFrame = null;      // Array of "LC" strings
+let decodedFrame = null;   // decoder persistent state
+let frameNum = 0;
+let streamChars = 0;
+let streamTokens = 0;
+let mediaStream = null;
+let ballState = null;
+let lastTick = 0;
+
+// === Chroma conversion ===
+function rgbToLC(r, g, b) {
+  const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+  const li = Math.min(8, Math.floor(luma / 256 * 9));
+  const L = CHARSET[li];
+
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const sat = max === 0 ? 0 : (max - min) / max;
+  if (sat < SAT_THRESHOLD) return L + '.';
+
+  let hue;
+  if (max === r)      hue = ((g - b) / (max - min)) % 6;
+  else if (max === g) hue = (b - r) / (max - min) + 2;
+  else                hue = (r - g) / (max - min) + 4;
+  hue *= 60;
+  if (hue < 0) hue += 360;
+
+  const ci = Math.max(0, Math.min(25, Math.round(hue / 240 * 25)));
+  return L + CHROMA[ci];
+}
+
+function lcToRgb(l, c) {
+  const li = Math.max(0, CHARSET.indexOf(l));
+  const v = (li + 0.5) / 9; // 0..1
+  if (c === '.' || CHROMA.indexOf(c) === -1) {
+    const g = Math.round(v * 255);
+    return [g, g, g];
+  }
+  const hue = CHROMA.indexOf(c) / 25 * 240;
+  const s = 1.0;
+  const h = hue / 60;
+  const i = Math.floor(h) % 6;
+  const f = h - Math.floor(h);
+  const p = v * (1 - s), q = v * (1 - s * f), t = v * (1 - s * (1 - f));
+  const rgb = [[v,t,p],[q,v,p],[p,v,t],[p,q,v],[t,p,v],[v,p,q]][i];
+  return rgb.map(x => Math.round(x * 255));
+}
+
+function lumaIndex(lc) { return CHARSET.indexOf(lc[0]); }
+function chromaOf(lc)  { return lc[1]; }
+
+function pixelSame(a, b, sens) {
+  if (a === null || b === null) return false;
+  const dl = Math.abs(lumaIndex(a) - lumaIndex(b));
+  if (dl > sens) return false;
+  const ca = chromaOf(a), cb = chromaOf(b);
+  // Chroma tolerance: equal, or either is neutral gray, or adjacent hue
+  if (ca === cb) return true;
+  if (ca === '.' || cb === '.') return true;
+  const ia = CHROMA.indexOf(ca), ib = CHROMA.indexOf(cb);
+  return Math.abs(ia - ib) <= 1;
+}
+
+// === Sources ===
+function drawBallDemo(w, h) {
+  if (!ballState) ballState = { x: w/2, y: h/2, vx: 1.8, vy: 1.2, r: 3 };
+  const b = ballState;
+  // physics
+  b.x += b.vx; b.y += b.vy;
+  if (b.x < b.r || b.x >= w - b.r) b.vx *= -1;
+  if (b.y < b.r || b.y >= h - b.r) b.vy *= -1;
+  // floor friction on bounce
+  if (b.y >= h - b.r) { b.vy *= 0.95; b.vx *= 0.99; if (Math.abs(b.vy) < 0.6) b.vy = -1.4; }
+
+  // draw
+  srcCtx.fillStyle = '#0a0a12';
+  srcCtx.fillRect(0, 0, w, h);
+  // subtle grid so static detail exists
+  srcCtx.fillStyle = '#101018';
+  for (let gy = 0; gy < h; gy += 6)
+    for (let gx = 0; gx < w; gx += 6)
+      srcCtx.fillRect(gx, gy, 1, 1);
+  // ball with gradient
+  const grad = srcCtx.createRadialGradient(b.x - 1, b.y - 1, 0.5, b.x, b.y, b.r);
+  grad.addColorStop(0, '#ffdd88');
+  grad.addColorStop(0.5, '#ff6622');
+  grad.addColorStop(1, '#881100');
+  srcCtx.fillStyle = grad;
+  srcCtx.beginPath();
+  srcCtx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+  srcCtx.fill();
+}
+
+async function startWebcam() {
+  mediaStream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 } });
+  video.srcObject = mediaStream;
+  await video.play();
+}
+
+function drawWebcam(w, h) {
+  srcCtx.drawImage(video, 0, 0, w, h);
+}
+
+// === Main encode tick ===
+function tick(now) {
+  if (!running) return;
+  const fps = parseInt($('fps').value);
+  const interval = 1000 / fps;
+  if (now - lastTick < interval) { rafId = requestAnimationFrame(tick); return; }
+  lastTick = now;
+
+  const sens = parseInt($('sens').value);
+  const kfInterval = parseInt($('keyframe').value);
+  const isKeyframe = (frameNum % kfInterval === 0) || !prevFrame;
+
+  const w = srcCanvas.width, h = srcCanvas.height;
+
+  // 1. Source → canvas
+  const source = $('source').value;
+  if (source === 'ball') drawBallDemo(w, h);
+  else drawWebcam(w, h);
+
+  // 2. Canvas → LC grid
+  const img = srcCtx.getImageData(0, 0, w, h);
+  const data = img.data;
+  const frame = new Array(w * h);
+  for (let i = 0, p = 0; i < data.length; i += 4, p++) {
+    frame[p] = rgbToLC(data[i], data[i+1], data[i+2]);
+  }
+
+  // 3. Delta vs previous
+  let changed = 0;
+  const tokens = new Array(w * h);
+  for (let p = 0; p < frame.length; p++) {
+    if (!isKeyframe && prevFrame && pixelSame(prevFrame[p], frame[p], sens)) {
+      tokens[p] = SAME;
+    } else {
+      tokens[p] = frame[p];
+      changed++;
+    }
+  }
+  const same = w * h - changed;
+
+  // 4. Update decoder persistent state + render reconstruction
+  if (!decodedFrame) decodedFrame = new Array(w * h).fill('.');
+  for (let p = 0; p < tokens.length; p++) {
+    if (tokens[p] !== SAME) decodedFrame[p] = tokens[p];
+  }
+  renderDecoded(w, h);
+
+  // 5. Render delta mask
+  renderMask(tokens, w, h);
+
+  // 6. Build frame block
+  const rows = [];
+  for (let y = 0; y < h; y++) {
+    rows.push(tokens.slice(y * w, (y + 1) * w).join(' '));
+  }
+  const header = `''' Image start w=${w} h=${h} mode=delta frame=${frameNum}${isKeyframe ? ' keyframe=1' : ''} charset=${CHARSET} chroma=${CHROMA}.`;
+  const block = header + '\n' + rows.join('\n') + "\nImage end '''";
+  const frameChars = block.length;
+  const frameTokens = Math.ceil(frameChars / 4);
+
+  // 7. Output + stats
+  output.value += (output.value ? '\n\n' : '') + block;
+  output.scrollTop = output.scrollHeight;
+  streamChars += frameChars;
+  streamTokens += frameTokens;
+
+  $('statFrame').textContent = frameNum;
+  $('statChanged').textContent = changed + ' (' + Math.round(changed / (w*h) * 100) + '%)';
+  $('statSame').textContent = same;
+  $('statChars').textContent = frameChars.toLocaleString();
+  $('statTokens').textContent = '~' + frameTokens.toLocaleString();
+  $('statTotal').textContent = '~' + streamTokens.toLocaleString() + ' tok';
+  const fullFrame = w * h * 2;
+  $('statComp').textContent = Math.round((1 - frameChars / fullFrame) * 100) + '%';
+  $('frameType').textContent = isKeyframe ? 'KEYFRAME (full)' : 'DELTA';
+
+  // 8. Next
+  prevFrame = frame;
+  frameNum++;
+  rafId = requestAnimationFrame(tick);
+}
+
+function renderMask(tokens, w, h) {
+  const img = maskCtx.createImageData(w, h);
+  for (let p = 0; p < tokens.length; p++) {
+    const i = p * 4;
+    if (tokens[p] === SAME) {
+      img.data[i] = 10; img.data[i+1] = 20; img.data[i+2] = 12; img.data[i+3] = 255;
+    } else {
+      img.data[i] = 65; img.data[i+1] = 255; img.data[i+2] = 112; img.data[i+3] = 255;
+    }
+  }
+  maskCtx.putImageData(img, 0, 0);
+}
+
+function renderDecoded(w, h) {
+  const img = decCtx.createImageData(w, h);
+  for (let p = 0; p < decodedFrame.length; p++) {
+    const lc = decodedFrame[p];
+    const [r, g, b] = lcToRgb(lc[0], lc[1]);
+    const i = p * 4;
+    img.data[i] = r; img.data[i+1] = g; img.data[i+2] = b; img.data[i+3] = 255;
+  }
+  decCtx.putImageData(img, 0, 0);
+}
+
+// === Controls ===
+$('resolution').addEventListener('change', () => {
+  const [w, h] = $('resolution').value.split(',').map(Number);
+  for (const c of [srcCanvas, maskCanvas, decCanvas]) { c.width = w; c.height = h; }
+  prevFrame = null;
+  decodedFrame = null;
+  frameNum = 0;
+});
+
+$('fps').addEventListener('input', () => $('fpsVal').textContent = $('fps').value);
+$('sens').addEventListener('input', () => $('sensVal').textContent = $('sens').value);
+$('keyframe').addEventListener('input', () => $('kfVal').textContent = $('keyframe').value);
+
+$('startBtn').addEventListener('click', async () => {
+  running = true;
+  lastTick = 0;
+  $('startBtn').disabled = true;
+  $('stopBtn').disabled = false;
+  $('source').disabled = true;
+  if ($('source').value === 'webcam') {
+    try { await startWebcam(); }
+    catch (e) {
+      alert('Webcam failed: ' + e.message + '\nFalling back to ball demo.');
+      $('source').value = 'ball';
+    }
+  }
+  rafId = requestAnimationFrame(tick);
+});
+
+$('stopBtn').addEventListener('click', () => {
+  running = false;
+  if (rafId) cancelAnimationFrame(rafId);
+  if (mediaStream) { mediaStream.getTracks().forEach(t => t.stop()); mediaStream = null; }
+  $('startBtn').disabled = false;
+  $('stopBtn').disabled = true;
+  $('source').disabled = false;
+  $('frameType').textContent = 'stopped';
+});
+
+$('copyBtn').addEventListener('click', () => {
+  output.select();
+  navigator.clipboard.writeText(output.value).then(() => {
+    $('copyBtn').textContent = 'Copied!';
+    setTimeout(() => $('copyBtn').textContent = 'Copy Stream', 1200);
+  });
+});
+
+$('clearBtn').addEventListener('click', () => {
+  output.value = '';
+  streamChars = 0; streamTokens = 0;
+  frameNum = 0;
+  prevFrame = null;
+  decodedFrame = null;
+  ballState = null;
+  $('statFrame').textContent = '0';
+  $('statChanged').textContent = '—';
+  $('statSame').textContent = '—';
+  $('statChars').textContent = '—';
+  $('statTokens').textContent = '—';
+  $('statTotal').textContent = '0 tok';
+  $('statComp').textContent = '—';
+  $('frameType').textContent = 'idle';
+});
+
+// Init
+(function init() {
+  const [w, h] = $('resolution').value.split(',').map(Number);
+  for (const c of [srcCanvas, maskCanvas, decCanvas]) { c.width = w; c.height = h; }
+})();
+</script>
+</body>
+</html>
