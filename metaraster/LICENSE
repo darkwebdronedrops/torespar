@@ -1,0 +1,20 @@
+MetaRaster — Copyright (c) 2026 Torespar Studios, Inc.
+
+All rights reserved.
+
+MetaRaster.3 and META.RASTER.DELTA (the software in this directory) are the
+proprietary property of Torespar Studios, Inc. No part of these works may be
+copied, modified, distributed, or used to build derivative works without
+express written permission from Torespar Studios, Inc.
+
+Viewing and interacting with the deployed versions at
+https://darkwebdronedrops.github.io/torespar/metaraster/ is permitted;
+reproduction of the source code is not.
+
+The underlying research — Transformer Native CRT-based Visual Encoding —
+is published separately under the MIT License:
+https://github.com/darkwebdronedrops/Kimi-Vision
+
+Research program: Transformer Native CRT-based Visual Encoding
+Product: MetaRaster
+In-house name: Kimi Vision

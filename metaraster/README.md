@@ -22,4 +22,7 @@ MetaRaster is a working implementation of the **Transformer Native CRT-based Vis
 - GitHub: https://github.com/darkwebdronedrops/Kimi-Vision
 - Studio: https://darkwebdronedrops.github.io/torespar/
 
-© 2026 Torespar Studios, Inc.
+## License
+
+- **MetaRaster** (this directory): proprietary — © 2026 Torespar Studios, Inc. All rights reserved. See [LICENSE](LICENSE).
+- **Research** (Transformer Native CRT-based Visual Encoding): [MIT](https://github.com/darkwebdronedrops/Kimi-Vision/blob/main/LICENSE)
