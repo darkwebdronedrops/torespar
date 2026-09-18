@@ -56,5 +56,39 @@ Image end
 </script>
   <script>(function(){function m(a){var h=a.getAttribute("href");if(!h)return;try{var u=new URL(h,document.baseURI);if((u.protocol==="http:"||u.protocol==="https:")&&u.host!==location.host){a.target="_blank";a.rel="noopener noreferrer";}}catch(e){}}function s(){document.querySelectorAll("a[href]").forEach(m);}if(document.readyState!=="loading"){s();}else{document.addEventListener("DOMContentLoaded",s);}document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[href]");if(a){m(a);}},true);})();</script>
   
+<script>
+/* C TABLE collapsible patch: the alphabetical-chroma legend renders ~18,000px
+   tall and blows out the layout. Collapse it to a tap-to-expand row by default. */
+(function(){
+  function patch(){
+    var labels = Array.prototype.slice.call(document.querySelectorAll('label'));
+    var lab = labels.find(function(l){ return l.textContent.indexOf('C TABLE') !== -1; });
+    if(!lab || lab.dataset.ctablePatched) return;
+    var box = lab.parentElement;
+    if(!box) return;
+    lab.dataset.ctablePatched = '1';
+    lab.style.cursor = 'pointer';
+    lab.title = 'Click to show/hide the chroma reference table';
+    var targets = Array.prototype.slice.call(box.children).filter(function(c){ return c !== lab; });
+    var hint = document.createElement('span');
+    hint.style.color = '#41ff70';
+    lab.appendChild(hint);
+    var open = false;
+    function apply(){
+      targets.forEach(function(t){ t.style.display = open ? '' : 'none'; });
+      hint.textContent = open ? ' \u25be tap to collapse' : ' \u25b8 tap to expand';
+    }
+    apply();
+    lab.addEventListener('click', function(){ open = !open; apply(); });
+  }
+  function boot(){
+    setTimeout(patch, 500);
+    setTimeout(patch, 1500);
+    setTimeout(patch, 3000);
+  }
+  if (document.readyState === 'complete') boot();
+  else window.addEventListener('load', boot);
+})();
+</script>
 </body>
 </html>
