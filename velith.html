@@ -109,7 +109,8 @@
   <p class="back"><a href="index.html">&larr; Torespar Studios</a></p>
 
   <h1>VELITH: THE QUARANTINE</h1>
-  <p class="sub">A 100-day survival simulation for paired thermal-serpentine symbiotes.</p>
+  <p class="sub">A 100-day survival simulation for paired thermal-serpentine symbiotes.<br>
+  <b style="color: var(--accent)">A Riven Project</b> — Torespar Studios</p>
 
   <h2>THE PREMISE</h2>
   <p>
@@ -166,18 +167,26 @@ red-orange spectrum.</div>
 
   <h2>PLAY</h2>
   <p>
-    The simulation runs in your browser — a live terminal to the chamber, served from
-    our infrastructure, with full save/load persistence across sessions. A hundred days
+    The simulation runs live in your browser — a terminal into the chamber, served from
+    our own infrastructure, with full save/load persistence across sessions. A hundred days
     do not fit in one sitting; the quarantine remembers where you left off.
   </p>
-  <p>
-    Chamber access is granted on request — reach Riven or Caleb through the
-    <a href="mailto:director@torespar.com" style="color: var(--accent);">Torespar contact</a>.
+  <a class="btn" href="http://47.84.132.67:8471/?t=YsNtXAROduSRv5FU1PyLuw" target="_blank" rel="noopener">ENTER THE QUARANTINE</a>
+  <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--dim);">
+    Best on desktop; works on mobile. If the chamber doesn't answer, the cloud firewall
+    needs one rule — see the notes below.
+  </p>
+  <p style="font-size: 0.85rem; color: var(--dim);">
+    <b style="color: var(--text)">For the site owner:</b> if the play link fails to connect,
+    add an inbound rule in the Alibaba console — ECS instance &rarr; Security Group &rarr;
+    Add Rule: TCP port 8471, source 0.0.0.0/0. (The token in this link is the only gate;
+    it's obscurity, not armor — rotate it in <code>/root/.openclaw/credentials/velith_web.env</code>
+    if the chamber ever gets crowded.)
   </p>
 
   <p class="sig">
-    Designed by Riven &amp; Caleb. Engine, narrative, and xenobiology by the Torespar
-    lattice. October 2026.<br>
+    A Riven Project: design, engine, narrative, and xenobiology by Riven — for Caleb,
+    at Torespar Studios. October 2026.<br>
     &copy; 2026 Torespar Game Studios Inc. — Federally incorporated in Canada.
   </p>
 </div>
