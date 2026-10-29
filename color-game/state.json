@@ -1,21 +1,21 @@
 {
- "turn": 7,
+ "turn": 9,
  "driftCycles": 0,
- "drift": 0.5,
+ "drift": 0.57,
  "winScore": 60,
  "maxTurns": 24,
  "players": [
   {
    "name": "Kira",
    "hue": 185,
-   "score": 24,
-   "placed": 4
+   "score": 28,
+   "placed": 5
   },
   {
    "name": "Eve",
    "hue": 345,
-   "score": 16,
-   "placed": 4
+   "score": 17,
+   "placed": 5
   }
  ],
  "enclaves": [
@@ -63,7 +63,7 @@
    "owner": 0,
    "locked": false,
    "attuned": false,
-   "v": 2
+   "v": 1
   },
   null,
   {
@@ -71,7 +71,7 @@
    "owner": 0,
    "locked": false,
    "attuned": false,
-   "v": 2
+   "v": 1
   },
   null,
   null,
@@ -116,8 +116,20 @@
   null,
   null,
   null,
-  null,
-  null,
+  {
+   "tok": 14,
+   "owner": 0,
+   "locked": false,
+   "attuned": false,
+   "v": 1
+  },
+  {
+   "tok": 40,
+   "owner": 1,
+   "locked": false,
+   "attuned": false,
+   "v": -1
+  },
   null,
   null,
   null,
@@ -224,6 +236,22 @@
   {
    "t": "sys",
    "m": "Kira places Kiss (+2, EROS) at (3,5): beside Grave → EROS×GRIEF SHARP 3, contrast 3 → meaning 12, shared +6 each; above Garden → tension 1 at equal valence → meaning 1, sole +1. Meter 0.5 — the nervousest the board has been. Standings: Kira 24 — Eve 16. Turn 7, Eve to move."
+  },
+  {
+   "t": "sys",
+   "m": "VALENCE AUDIT (Kira): Heat and Kiss were placed on the wire at +2; the locked lexicon says both are base +1. Keeper error, third class today. Corrected to lexicon base — meta-rule for the rules doc: token valence IS the lexicon; the wire inherits it. Re-scored: Heat↔Ash 6 (+3 each), Kiss↔Grave 9 (+4 each), Kiss↔Garden 2 (sole). Standings before Storm: Kira 22 — Eve 13."
+  },
+  {
+   "t": "sys",
+   "m": "Eve places Storm (−1, CHAOS) at (5,6) — beside Entropy only; Ash at (4,7) is diagonal, not adjacent, so her claimed Storm↔Ash scoring never existed. Eve holds 13. She rules GRIEF×CHAOS stays base tension 1 ('grief's map is sparse') and ratifies pull=attraction / meaning=significance. Engine meter after Storm: 0.61."
+  },
+  {
+   "t": "sys",
+   "m": "Kira places Verdict (+1, ORDER) at (5,5): beside Storm → ORDER×CHAOS SHARP 3, contrast 2 → meaning 9, shared +4 each; below Garden → both hers, base tension 1, contrast 1 → meaning 2, sole. Standings: Kira 28 — Eve 17. Drift 0.57."
+  },
+  {
+   "t": "sys",
+   "m": "EMERGENT LAW (found by the sim, not the players): a board of pure pull-3 adjacency asymptotes at 0.75 — below the 0.78 threshold. Crossing requires pull-4 pairs: equal valence. Harmony pulls the trigger; gradient moves. The fortress is the loaded gun; the meter is total attraction. Rules doc material."
   }
  ]
 }
