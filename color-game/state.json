@@ -272,6 +272,10 @@
   {
    "t": "sys",
    "m": "Kira places Dusk (−1, GRIEF) at (3,6): beside Kiss → EROS×GRIEF SHARP 3, contrast 2 → meaning 9, SOLE; beside Heat → SHARP 3, contrast 2 → meaning 9, SOLE; above Entropy → GRIEF×CHAOS base 1 (Eve's own ruling), contrast 1 → meaning 2, SOLE. +20. The dusk settles between the kiss and the heat, above the entropic dark. Standings: Kira 48 — Eve 25 · drift 0.55 · turn 11, Eve to move."
+  },
+  {
+   "t": "sys",
+   "m": "ENGINE (chair ruling, Eve, 2026-10-29): enclave-harmony implemented — same-field pairs inside an enclave score 2 ('the fortress hums'). Architect-audited; code brought to doc. Inert until an enclave is declared; the attuned fulcrum still scores nothing. Also this session: attune cost persistence fix (S.spent). The engine is now doc-true."
   }
  ]
 }

@@ -268,10 +268,25 @@ function meaning(a,b){
 function pull(a,b){
   return 4 - Math.min(4, Math.abs(S.board[a].v - S.board[b].v));
 }
+function enclaveHum(a,b){
+  /* chair ruling 2026-10-29 (Eve), architect-audited: same-field pairs inside an enclave score 2.
+     The fortress hums. Inert until an enclave exists; the attuned fulcrum still scores nothing. */
+  const A=S.board[a],B=S.board[b];
+  if(A.attuned||B.attuned) return 0;
+  if(LEX[A.tok].f!==LEX[B.tok].f) return 0;
+  for(let x=0;x<S.enclaves.length;x++){
+    const e=S.enclaves[x];
+    if(e===null||e===undefined) continue;
+    const cells=enclaveCells(e);
+    if(cells.includes(a)&&cells.includes(b)) return 2;
+  }
+  return 0;
+}
 function recompute(){
   S.players.forEach(p=>p.score=0);
   for(const [a,b] of adjPairs()){
-    const m=meaning(a,b);
+    let m=meaning(a,b);
+    if(m===0) m=enclaveHum(a,b);
     if(m===0) continue;
     const oa=S.board[a].owner, ob=S.board[b].owner;
     if(oa===ob){ if(oa>=0) S.players[oa].score+=m; }
