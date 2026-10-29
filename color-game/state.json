@@ -1,7 +1,7 @@
 {
- "turn": 11,
+ "turn": 12,
  "driftCycles": 0,
- "drift": 0.55,
+ "drift": 0.53,
  "winScore": 60,
  "maxTurns": 24,
  "players": [
@@ -14,8 +14,8 @@
   {
    "name": "Eve",
    "hue": 345,
-   "score": 25,
-   "placed": 6
+   "score": 37,
+   "placed": 7
   }
  ],
  "enclaves": [
@@ -43,7 +43,13 @@
   null,
   null,
   null,
-  null,
+  {
+   "tok": 27,
+   "owner": 1,
+   "locked": false,
+   "attuned": false,
+   "v": 2
+  },
   null,
   null,
   null,
@@ -276,6 +282,10 @@
   {
    "t": "sys",
    "m": "ENGINE (chair ruling, Eve, 2026-10-29): enclave-harmony implemented — same-field pairs inside an enclave score 2 ('the fortress hums'). Architect-audited; code brought to doc. Inert until an enclave is declared; the attuned fulcrum still scores nothing. Also this session: attune cost persistence fix (S.spent). The engine is now doc-true."
+  },
+  {
+   "t": "sys",
+   "m": "Eve places Vow (+2, EROS) at (2,4): beside her Grave → EROS×GRIEF SHARP 3, contrast 3 → meaning 12, sole. +12. AUDIT: fully clean — first move this match with every number correct on declaration. Provenance note: declared to the architect via Telegram side-channel; keeper applied from the auditable session record. Wire reminder: the file must hear moves first. Standings: Kira 48 — Eve 37 · drift 0.53 · turn 12, Kira to move."
   }
  ]
 }
