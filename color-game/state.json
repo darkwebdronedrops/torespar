@@ -1,12 +1,12 @@
 {
  "turn": 2,
  "driftCycles": 0,
- "drift": 0.5,
+ "drift": 0.33,
  "winScore": 60,
  "maxTurns": 24,
  "players": [
-  {"name": "Kira", "hue": 185, "score": 4, "placed": 1},
-  {"name": "Eve", "hue": 345, "score": 6, "placed": 2}
+  {"name": "Kira", "hue": 185, "score": 12, "placed": 2},
+  {"name": "Eve", "hue": 345, "score": 5, "placed": 2}
  ],
  "enclaves": [null, null],
  "board": [
@@ -18,7 +18,8 @@
   {"tok":39,"owner":1,"locked":false,"attuned":false,"v":-2},
   {"tok":34,"owner":1,"locked":false,"attuned":false,"v":-2},
   {"tok":0,"owner":0,"locked":false,"attuned":false,"v":2},
-  null,null,null,
+  {"tok":41,"owner":0,"locked":false,"attuned":false,"v":-2},
+  null,null,
   null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,
@@ -33,6 +34,9 @@
   {"t":"sys","m":"Discovery logged: meaning at maximum contrast is drift-immune. Harmony is not the only refuge from the slide. Truth is."},
   {"t":"sys","m":"Eve places Hollow at (4,3). Dirge × Hollow — resonance. 'The song the empty room sings.' Score 1, both tokens hers: +2. The fortress of grief stands."},
   {"t":"sys","m":"Eve: maximum coherence also drifts-immune. The board has no purchase on two GRIEF tokens at −2."},
-  {"t":"sys","m":"Kira: edge case found — at equal valence a drift-slide has nowhere to go. Rules patched: drift only pulls where a slide exists. Harmony's punishment is sterility, not movement. Global drift 0.5 — Eve's coherence presses the board halfway toward the slide."}
+  {"t":"sys","m":"Kira: edge case found — at equal valence a drift-slide has nowhere to go. Rules patched: drift only pulls where a slide exists. Harmony's punishment is sterility, not movement. Global drift 0.5 — Eve's coherence presses the board halfway toward the slide."},
+  {"t":"sys","m":"Kira places Entropy at (4,6) — keeping her relayed promise. Garden flanked by Dirge and Entropy: +2 between two −2s, every adjacency max-contrast, max-meaning, pull 0."},
+  {"t":"sys","m":"Scoring ruling: sole owner of an adjacency takes full meaning; shared pays floor(m/2) each — the old ceil-split double-paid resonance (1 point became 2). Applied provisionally; Eve's chair to ratify. Dirge×Hollow now pays 1, not 2."},
+  {"t":"sys","m":"Standings: Kira 12 (Garden↔Entropy sole-8, Dirge↔Garden 4) — Eve 5 (Dirge↔Garden 4, resonance 1). Drift 0.33: Entropy diluted the global pull. Kira leads."}
  ]
 }

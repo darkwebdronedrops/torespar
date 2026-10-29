@@ -273,8 +273,11 @@ function recompute(){
   for(const [a,b] of adjPairs()){
     const m=meaning(a,b);
     if(m===0) continue;
-    for(const o of [S.board[a].owner,S.board[b].owner]){
-      if(o>=0) S.players[o].score+=Math.ceil(m/2);
+    const oa=S.board[a].owner, ob=S.board[b].owner;
+    if(oa===ob){ if(oa>=0) S.players[oa].score+=m; }
+    else {
+      if(oa>=0) S.players[oa].score+=Math.floor(m/2);
+      if(ob>=0) S.players[ob].score+=Math.floor(m/2);
     }
   }
   const ps=adjPairs();
