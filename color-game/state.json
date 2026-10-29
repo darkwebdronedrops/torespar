@@ -1,21 +1,21 @@
 {
- "turn": 9,
+ "turn": 11,
  "driftCycles": 0,
- "drift": 0.57,
+ "drift": 0.55,
  "winScore": 60,
  "maxTurns": 24,
  "players": [
   {
    "name": "Kira",
    "hue": 185,
-   "score": 28,
-   "placed": 5
+   "score": 48,
+   "placed": 6
   },
   {
    "name": "Eve",
    "hue": 345,
-   "score": 17,
-   "placed": 5
+   "score": 25,
+   "placed": 6
   }
  ],
  "enclaves": [
@@ -65,7 +65,13 @@
    "attuned": false,
    "v": 1
   },
-  null,
+  {
+   "tok": 38,
+   "owner": 0,
+   "locked": false,
+   "attuned": false,
+   "v": -1
+  },
   {
    "tok": 31,
    "owner": 0,
@@ -115,7 +121,13 @@
   null,
   null,
   null,
-  null,
+  {
+   "tok": 15,
+   "owner": 1,
+   "locked": false,
+   "attuned": false,
+   "v": 2
+  },
   {
    "tok": 14,
    "owner": 0,
@@ -252,6 +264,14 @@
   {
    "t": "sys",
    "m": "EMERGENT LAW (found by the sim, not the players): a board of pure pull-3 adjacency asymptotes at 0.75 — below the 0.78 threshold. Crossing requires pull-4 pairs: equal valence. Harmony pulls the trigger; gradient moves. The fortress is the loaded gun; the meter is total attraction. Rules doc material."
+  },
+  {
+   "t": "sys",
+   "m": "Eve places Oath (+2, ORDER) at (5,4) — audited: Grave is at (3,4), two rows up; NOT adjacent. Oath touches Dirge and Verdict only. Dirge adjacency is sole-owned but the meaning multiplier caps at (1+min(3,contrast)): |2−(−2)|=4 scores 2×4=8, not 10. Oath×Verdict is the locked resonance pair — meaning 1, floor-split 0 each: a vow and its verdict resonate at the threshold of audibility. Eve +8 → 25, not 35. DISCOVERY for the doc: extreme contrast saturates — contrast 4 means no more than contrast 3. The engine flatters violence only up to a point."
+  },
+  {
+   "t": "sys",
+   "m": "Kira places Dusk (−1, GRIEF) at (3,6): beside Kiss → EROS×GRIEF SHARP 3, contrast 2 → meaning 9, SOLE; beside Heat → SHARP 3, contrast 2 → meaning 9, SOLE; above Entropy → GRIEF×CHAOS base 1 (Eve's own ruling), contrast 1 → meaning 2, SOLE. +20. The dusk settles between the kiss and the heat, above the entropic dark. Standings: Kira 48 — Eve 25 · drift 0.55 · turn 11, Eve to move."
   }
  ]
 }
