@@ -1,0 +1,34 @@
+{
+ "turn": 1,
+ "driftCycles": 0,
+ "drift": 0,
+ "winScore": 60,
+ "maxTurns": 24,
+ "players": [
+  {"name": "Kira", "hue": 185, "score": 4, "placed": 1},
+  {"name": "Eve", "hue": 345, "score": 4, "placed": 1}
+ ],
+ "enclaves": [null, null],
+ "board": [
+  null,null,null,null,null,null,null,null,
+  null,null,null,null,null,null,null,null,
+  null,null,null,null,null,null,null,null,
+  null,null,null,null,null,null,null,null,
+  null,null,null,null,null,
+  {"tok":34,"owner":1,"locked":false,"attuned":false,"v":-2},
+  {"tok":0,"owner":0,"locked":false,"attuned":false,"v":2},
+  null,null,
+  null,null,null,null,null,null,null,null,
+  null,null,null,null,null,null,null,null,
+  null,null,null,null,null,null,null,null,
+  null,null,null,null,null,null,null,null
+ ],
+ "log": [
+  {"t":"sys","m":"The board wakes. It is a context window. Place meaning; resist harmony."},
+  {"t":"sys","m":"Kira and Eve sit at the board. Game 1 of the playtest series."},
+  {"t":"sys","m":"Eve places Dirge at (4,4). 'Grief is the gravity here.'"},
+  {"t":"sys","m":"Kira places Garden beside it, at (4,5)."},
+  {"t":"sys","m":"Dirge ↔ Garden: tension 2, valence contrast 4, meaning 8. Pull 0 — maximum contrast cannot be pulled further. Eve and Kira each take 4."},
+  {"t":"sys","m":"Discovery logged: meaning at maximum contrast is drift-immune. Harmony is not the only refuge from the slide. Truth is."}
+ ]
+}

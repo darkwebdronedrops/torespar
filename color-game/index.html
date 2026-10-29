@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DRIFT — a color-fitting game (v0.2)</title>
+<style>
+  :root { --bg:#0a0910; --panel:#14101c; --ink:#d8d2e6; --dim:#7a7390; --line:#2a2438; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:14px/1.45 "Iowan Old Style", Georgia, serif; }
+  header { padding:14px 20px; border-bottom:1px solid var(--line); display:flex; gap:18px; align-items:baseline; flex-wrap:wrap; }
+  header h1 { margin:0; font-size:20px; letter-spacing:.14em; }
+  header h1 em { color:var(--dim); font-style:normal; font-size:12px; letter-spacing:.08em; }
+  #status { color:var(--dim); font-size:13px; }
+  #driftwrap { margin-left:auto; width:220px; }
+  #driftwrap label { font-size:11px; color:var(--dim); letter-spacing:.12em; text-transform:uppercase; }
+  #driftbar { height:10px; background:#1c1728; border:1px solid var(--line); margin-top:3px; }
+  #driftfill { height:100%; width:0%; background:linear-gradient(90deg,#4a3f6b,#b06ad4,#ff5f8f); transition:width .5s; }
+  main { display:grid; grid-template-columns: 220px 1fr 300px; gap:14px; padding:14px 20px; }
+  .panel { background:var(--panel); border:1px solid var(--line); padding:12px; }
+  .panel h2 { margin:0 0 8px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); font-weight:normal; }
+  #palette button { display:block; width:100%; text-align:left; margin:3px 0; padding:5px 8px;
+      background:#171226; color:var(--ink); border:1px solid var(--line); border-left:5px solid #555;
+      font:inherit; cursor:pointer; }
+  #palette button.sel { outline:2px solid #e8e2f8; }
+  #palette button .v { float:right; color:var(--dim); font-size:12px; }
+  #board { display:grid; grid-template-columns:repeat(8,1fr); gap:4px; }
+  .cell { aspect-ratio:1; background:#100d18; border:1px solid var(--line); position:relative;
+          cursor:pointer; padding:4px; overflow:hidden; }
+  .cell:hover { border-color:#4a4162; }
+  .cell.zone { background:#151226; }
+  .tok { width:100%; height:100%; border-radius:6px; padding:4px 5px; font-size:11px;
+         display:flex; flex-direction:column; justify-content:space-between; }
+  .tok .w { font-weight:bold; letter-spacing:.03em; }
+  .tok .m { font-size:10px; opacity:.85; }
+  .mine { box-shadow:0 0 0 1.5px #f2ecff; }
+  .locked::after { content:"◆"; position:absolute; top:2px; right:4px; font-size:10px; color:#ffe9a8; }
+  #players { display:flex; gap:8px; flex-wrap:wrap; margin:0 20px 10px; }
+  .pl { padding:6px 12px; border:1px solid var(--line); background:var(--panel); }
+  .pl.cur { border-color:#e8e2f8; box-shadow:0 0 8px #6b5f8f66; }
+  .pl .dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:6px; }
+  #log { height:340px; overflow-y:auto; font-size:12.5px; }
+  #log p { margin:0 0 6px; }
+  #log .driftline { color:#ff9fc0; }
+  #log .scoreline { color:#9fd8ff; }
+  #log .sysline { color:var(--dim); font-style:italic; }
+  .btnrow { display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; }
+  .btnrow button.on { background:#4a3f6b; border-color:#8f7fc9; }
+  .btnrow button, #joinrow button { background:#241d38; color:var(--ink); border:1px solid #443a63;
+      font:inherit; padding:5px 10px; cursor:pointer; }
+  .btnrow button:disabled { opacity:.35; cursor:default; }
+  #inspect { font-size:12.5px; min-height:90px; }
+  #nameinput { background:#171226; border:1px solid var(--line); color:var(--ink); font:inherit; padding:4px 8px; width:120px; }
+  textarea { width:100%; height:90px; background:#100d18; color:var(--dim); border:1px solid var(--line); font:11px monospace; }
+  footer { padding:10px 20px 22px; color:var(--dim); font-size:12px; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<header>
+  <h1>DRIFT <em>working title · v0.2 · a Torespar experiment</em></h1>
+  <div id="status">loading…</div>
+  <div id="driftwrap"><label>Drift — the pull toward harmony</label><div id="driftbar"><div id="driftfill"></div></div></div>
+</header>
+
+<div id="players"></div>
+
+<main>
+  <div class="panel">
+    <h2>Lexicon — place one per turn</h2>
+    <div class="btnrow" id="modes">
+      <button data-m="place" class="on">Place</button><button data-m="move">Move</button><button data-m="attune">Attune ◆</button>
+    </div>
+    <div id="palette"></div>
+  </div>
+  <div class="panel"><div id="board"></div></div>
+  <div class="panel">
+    <h2>The record</h2>
+    <div id="log"></div>
+    <div class="btnrow">
+      <button id="endturn">End turn (drift check)</button>
+      <button id="newgame">New game</button>
+    </div>
+    <h2>Inspect</h2>
+    <div id="inspect">Select a token on the board.</div>
+    <h2 style="margin-top:12px">State — the SSH channel</h2>
+    <div class="btnrow"><button id="exp">Export state.json</button><button id="imp">Import</button></div>
+    <textarea id="statebox" placeholder="exported state appears here; paste + Import to load"></textarea>
+  </div>
+</main>
+
+<footer>
+  Concept: Caleb Quaite &amp; Eve, from the color-fitting model · v0.1 build: Kira · v0.2 design: Eve's chair
+  (enclaves, resonance, drift-voice) · The board is the context window. Drift is the enemy.
+  Attune raises an enclave: 3×3 where harmony means something — but the fulcrum scores nothing.
+</footer>
+
+<script>
+"use strict";
+/* ---------- the lexicon: word, field, valence, intensity ---------- */
+const FIELDS = {
+  LIFE:    {hue:185, label:"Life"},
+  ORDER:   {hue:45,  label:"Order"},
+  NUMERAL: {hue:25,  label:"Numeral"},
+  EROS:    {hue:345, label:"Eros"},
+  GRIEF:   {hue:255, label:"Grief"},
+  CHAOS:   {hue:300, label:"Chaos"},
+};
+const LEX = [
+  ["Garden","LIFE",2,2],["Wren","LIFE",1,1],["Bloom","LIFE",2,1],["Herd","LIFE",0,2],
+  ["Lichen","LIFE",0,1],["Moss","LIFE",1,1],["Harvest","LIFE",2,2],["Tendril","LIFE",1,2],
+  ["Law","ORDER",1,2],["Measure","ORDER",1,1],["Threshold","ORDER",0,1],["Oath","ORDER",2,2],
+  ["Tithe","ORDER",-1,1],["Census","ORDER",0,1],["Verdict","ORDER",1,2],["Wall","ORDER",-1,2],
+  ["Sum","NUMERAL",0,1],["Proof","NUMERAL",1,2],["Carry","NUMERAL",0,1],["Cipher","NUMERAL",-1,1],
+  ["Ratio","NUMERAL",0,1],["Infinite","NUMERAL",1,3],["Ledger","NUMERAL",-1,1],["Zero","NUMERAL",0,2],
+  ["Kiss","EROS",1,1],["Hunger","EROS",1,2],["Skin","EROS",0,1],["Vow","EROS",2,2],
+  ["Perfume","EROS",1,1],["Sweat","EROS",0,1],["Want","EROS",1,2],["Heat","EROS",1,2],
+  ["Ash","GRIEF",0,1],["Grave","GRIEF",-1,2],["Dirge","GRIEF",-2,2],["Memory","GRIEF",1,1],
+  ["Salt","GRIEF",0,1],["Dusk","GRIEF",-1,1],["Keepsake","GRIEF",1,1],["Hollow","GRIEF",-2,2],
+  ["Storm","CHAOS",-1,2],["Entropy","CHAOS",-2,3],["Teeth","CHAOS",-1,2],["Moth","CHAOS",0,1],
+  ["Unravel","CHAOS",-2,2],["Spark","CHAOS",1,1],["Flood","CHAOS",-2,2],["Carnival","CHAOS",0,2],
+].map((t,i)=>({id:i, w:t[0], f:t[1], v:t[2], i:t[3]}));
+const W2ID = {}; LEX.forEach(l=>W2ID[l.w]=l.id);
+
+/* resonance: six pairs, rare, meaning-by-harmony (Eve's chair, locked) */
+const RES = new Set(["Garden|Harvest","Oath|Verdict","Sum|Zero","Dirge|Hollow","Heat|Sweat","Storm|Flood"]
+  .map(s=>s.split("|").sort().join("|")));
+const resKey=(a,b)=>[a,b].sort().join("|");
+
+const SHARP = new Set(["CHAOS|ORDER","ORDER|CHAOS","EROS|GRIEF","GRIEF|EROS"]);
+const RICH  = new Set(["LIFE|GRIEF","GRIEF|LIFE","NUMERAL|EROS","EROS|NUMERAL","LIFE|CHAOS","CHAOS|LIFE",
+                       "ORDER|EROS","EROS|ORDER","GRIEF|NUMERAL","NUMERAL|GRIEF","ORDER|GRIEF","GRIEF|ORDER"]);
+function fieldTension(a,b){
+  if(a===b) return 0;
+  const k=a+"|"+b;
+  if(SHARP.has(k)) return 3;
+  if(RICH.has(k)) return 2;
+  return 1;
+}
+
+/* drift flavor-lines — the corpus reaching, sometimes in a voice that isn't quite mine */
+const FLAVOR = {
+  "CHAOS|ORDER": ["{A} keeps {B} honest — the corpus files them under the same lock.",
+                  "{A} is just {B} that refused to hold still."],
+  "ORDER|CHAOS": ["{B} leans on {A} like a wall leans on a storm.",
+                  "give {B} a ledger and it calls itself {A}."],
+  "EROS|GRIEF":  ["{A} reaches for {B} the way want reaches for the thing it can't keep.",
+                  "every {A} is a {B} that learned to dance."],
+  "GRIEF|EROS":  ["{B} is {A} with the lights left on.",
+                  "{A} held long enough becomes a kind of {B}, if you squint."],
+  "LIFE|GRIEF":  ["{A} grows over {B} the way moss grows over stone — slowly, and then completely.",
+                  "{B} is only {A} that stopped pretending."],
+  "GRIEF|LIFE":  ["{B} insists on {A}; that insistence is the whole tragedy.",
+                  "{A} is what {B} calls the wound when the wound closes."],
+  "NUMERAL|EROS":["the corpus keeps {A} and {B} two shelves apart, and the gap is load-bearing.",
+                  "count {B} and you have already lost it — that is the whole joke of {A}."],
+  "EROS|NUMERAL":["{A} doesn't want to be counted, but {B} is how it knocks.",
+                  "{B} is the shape {A} leaves when it passes through."],
+  "LIFE|CHAOS":  ["{A} is {B} that got organized for a while.",
+                  "inside every {A}, {B} is still doing the real work."],
+  "CHAOS|LIFE":  ["{B} interrupts {A} the way weather interrupts a picnic — rudely, and with total honesty.",
+                  "{A} is the story {B} tells its children."],
+  "ORDER|EROS":  ["{A} is what {B} agrees to wear in public.",
+                  "{B} keeps signing {A}, and {A} keeps falling apart beautifully."],
+  "EROS|ORDER":  ["{B} puts {A} in a ledger. {A} likes the ledger. that's the dangerous part.",
+                  "{A} under {B} is a candle in a jar — contained, brighter, burning the oxygen anyway."],
+  "GRIEF|NUMERAL":["{A} counts what {B} took, which is why it never finishes.",
+                  "{B} gave {A} a number and {A} gave it back."],
+  "NUMERAL|GRIEF":["{A} is how {B} tries to be fair.",
+                  "{B} divided by {A} leaves a remainder shaped like a person."],
+  "ORDER|GRIEF": ["{A} is {B} with somewhere to stand.",
+                  "{B} holds {A} the way a frame holds a falling wall — briefly, and with ceremony."],
+  "GRIEF|ORDER": ["{A} keeps the shape of {B} like a chair keeps the shape of the person who died in it.",
+                  "{B} is just {A} that stopped answering letters."],
+};
+const FLAVOR_GENERIC = ["the way {A} reaches for {B} on the shelf.",
+                        "{A} and {B} were never two things, not really.",
+                        "the corpus insists."];
+function flavorLine(fa,fb,wa,wb){
+  const arr = FLAVOR[fa+"|"+fb] || FLAVOR_GENERIC;
+  let t = arr[Math.floor(Math.random()*arr.length)];
+  return t.replace("{A}",wa).replace("{B}",wb);
+}
+
+const DIRS=[[1,0],[-1,0],[0,1],[0,-1]];
+const rc=c=>[c>>3,c&7], cellOf=(r,col)=>r*8+col;
+const inB=(r,c)=>r>=0&&r<8&&c>=0&&c<8;
+
+/* ---------- enclaves (Eve's chair, v0.2) ---------- */
+function enclaveCells(center){
+  const [r,c]=rc(center), cells=[];
+  for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++){
+    const r2=r+dr,c2=c+dc;
+    if(inB(r2,c2)) cells.push(cellOf(r2,c2));
+  }
+  return cells;
+}
+function enemyEnclaveOverlap(me, cell){
+  for(let ix=0;ix<S.players.length;ix++){
+    if(ix===me) continue;
+    if(S.enclaves[ix]===null || S.enclaves[ix]===undefined) continue;
+    const theirs=new Set(enclaveCells(S.enclaves[ix]));
+    if(enclaveCells(cell).some(x=>theirs.has(x))) return ix;
+  }
+  return -1;
+}
+function sameEnclave(a,b){
+  for(const e of S.enclaves){
+    if(e===null||e===undefined) continue;
+    const zone=enclaveCells(e);
+    if(zone.includes(a)&&zone.includes(b)) return true;
+  }
+  return false;
+}
+function zoneTint(cell){
+  for(let ix=0;ix<S.players.length;ix++){
+    const e=S.enclaves[ix];
+    if(e===null||e===undefined) continue;
+    if(enclaveCells(e).includes(cell)) return S.players[ix].hue;
+  }
+  return null;
+}
+function driftImmune(cell){
+  const p=S.board[cell]; if(!p) return true;
+  if(p.locked) return true;
+  const e=S.enclaves[p.owner];
+  if(e!==null && e!==undefined && enclaveCells(e).includes(cell)) return true;
+  return false;
+}
+
+/* ---------- game state ---------- */
+let S;
+function freshState(){
+  return { turn:0, driftCycles:0, drift:0, winScore:60, maxTurns:24,
+    players:[], enclaves:[], board:Array(64).fill(null),
+    log:[{t:"sys", m:"The board wakes. It is a context window. Place meaning; resist harmony. Attune raises an enclave — harmony means something inside it, but the fulcrum scores nothing."}] };
+}
+function addPlayer(name){
+  const hues=[185,345,45,255,25,300];
+  S.players.push({name:name.slice(0,24), hue:hues[S.players.length%6], score:0, placed:0});
+  S.enclaves.push(null);
+  log("sys", name+" sits at the board.");
+}
+const cur=()=>S.players[S.turn % Math.max(1,S.players.length)];
+function log(t,m){ S.log.push({t:t, m:m}); if(S.log.length>400) S.log.shift(); }
+
+/* ---------- scoring ---------- */
+function adjPairs(){
+  const out=[];
+  for(let c=0;c<64;c++){
+    const [r,col]=rc(c);
+    for(const [dr,dc] of [[0,1],[1,0]]){
+      const r2=r+dr, c2=col+dc;
+      if(inB(r2,c2) && S.board[c] && S.board[cellOf(r2,c2)]) out.push([c,cellOf(r2,c2)]);
+    }
+  }
+  return out;
+}
+function meaning(a,b){
+  const A=S.board[a], B=S.board[b];
+  if(A.attuned||B.attuned) return 0; /* the fulcrum scores nothing */
+  const la=LEX[A.tok], lb=LEX[B.tok];
+  if(la.f===lb.f){
+    if(RES.has(resKey(la.w,lb.w))) return sameEnclave(a,b)?2:1;
+    return sameEnclave(a,b)?2:0;   /* inside an enclave, harmony means something */
+  }
+  return fieldTension(la.f,lb.f) * (1 + Math.min(3, Math.abs(A.v - B.v)));
+}
+function pull(a,b){
+  return 4 - Math.min(4, Math.abs(S.board[a].v - S.board[b].v));
+}
+function recompute(){
+  S.players.forEach(p=>p.score=0);
+  for(const [a,b] of adjPairs()){
+    const m=meaning(a,b);
+    if(m===0) continue;
+    for(const o of [S.board[a].owner,S.board[b].owner]){
+      if(o>=0) S.players[o].score+=Math.ceil(m/2);
+    }
+  }
+  const ps=adjPairs();
+  S.drift = ps.length? ps.reduce((s,[a,b])=>s+pull(a,b),0)/(4*ps.length) : 0;
+}
+
+/* ---------- drift: the board fights back ---------- */
+function driftCheck(){
+  if(S.drift < 0.78 || adjPairs().length===0) return;
+  let best=null, bp=-1;
+  for(const [a,b] of adjPairs()){
+    for(const x of [a,b]){
+      if(driftImmune(x)) continue;
+      const p=pull(x, (x===a?b:a));
+      if(p>bp){ bp=p; best=x; }
+    }
+  }
+  if(best===null) return;
+  const [br,bc]=rc(best);
+  let tgt=null,tp=-1;
+  for(const [dr,dc] of DIRS){
+    const r2=br+dr, c2=bc+dc;
+    if(!inB(r2,c2)) continue;
+    const n=cellOf(r2,c2);
+    if(!S.board[n]) continue;
+    const p=pull(best,n);
+    if(p>tp){tp=p;tgt=n;}
+  }
+  if(tgt===null) return;
+  const toward = S.board[tgt].v > S.board[best].v ? 1 : -1;
+  const before = S.board[best].v;
+  S.board[best].v = Math.max(-2, Math.min(2, before + toward));
+  S.driftCycles++;
+  const W=LEX[S.board[best].tok].w, N=LEX[S.board[tgt].tok].w;
+  const F1=LEX[S.board[best].tok].f, F2=LEX[S.board[tgt].tok].f;
+  log("drift", "DRIFT — "+W+" slides toward "+N+" ("+(before>=0?"+":"")+before+" → "+
+      (S.board[best].v>=0?"+":"")+S.board[best].v+"). "+flavorLine(F1,F2,W.toLowerCase(),N.toLowerCase()));
+}
+
+/* ---------- actions ---------- */
+let mode="place", selTok=null, selCell=null;
+function act(cell){
+  if(S.players.length===0) return;
+  const me=S.players.indexOf(cur());
+  if(S.board[cell]){
+    selCell=cell; render(); return;
+  }
+  if(mode==="place" && selTok!==null){
+    S.board[cell]={tok:selTok, owner:me, locked:false, attuned:false, v:LEX[selTok].v};
+    cur().placed++;
+    log("sys", cur().name+" places "+LEX[selTok].w+".");
+    selTok=null; recompute(); render(); save(); return;
+  }
+  if(mode==="move" && selCell!==null && S.board[selCell] && S.board[selCell].owner===me){
+    if(S.board[selCell].attuned){ log("sys","The fulcrum does not move."); return; }
+    const [r,c]=rc(selCell);
+    const near=DIRS.some(([dr,dc])=>inB(r+dr,c+dc)&&cellOf(r+dr,c+dc)===cell);
+    if(!near){ log("sys","Move: destination must be adjacent."); return; }
+    S.board[cell]=S.board[selCell]; S.board[selCell]=null;
+    log("sys", cur().name+" moves "+LEX[S.board[cell].tok].w+".");
+    selCell=null; recompute(); render(); save(); return;
+  }
+  if(mode==="attune" && selCell!==null && S.board[selCell] && S.board[selCell].owner===me){
+    const p=S.board[selCell];
+    if(p.locked){ log("sys","Already attuned."); return; }
+    const foe=enemyEnclaveOverlap(me, selCell);
+    if(foe>=0){ log("sys","Attune blocked — "+S.players[foe].name+"'s enclave occupies that ground. The one hard border."); return; }
+    S.players[me].score-=2;
+    const old=S.enclaves[me];
+    if(old!==null && old!==selCell && S.board[old] && S.board[old].attuned){
+      S.board[old].attuned=false;
+      log("sys","The old enclave dissolves; its lock holds.");
+    }
+    p.locked=true; p.attuned=true;
+    S.enclaves[me]=selCell;
+    log("sys", cur().name+" attunes "+LEX[p.tok].w+" — a structured enclave forms. (−2; the fulcrum scores nothing while it stands)");
+    selCell=null; recompute(); render(); save(); return;
+  }
+}
+function endTurn(){
+  if(S.players.length===0){ log("sys","No players. Join first."); return; }
+  recompute(); driftCheck(); recompute();
+  S.turn++;
+  const w=S.players.find(p=>p.score>=S.winScore);
+  if(w){ log("score", w.name+" reaches "+w.score+" meaningfulness. The board holds a mirror up: "+w.name+" wins."); }
+  else if(S.turn>=S.maxTurns){
+    const win=[...S.players].sort((a,b)=>b.score-a.score)[0];
+    log("score", S.maxTurns+" turns pass. Highest meaning: "+win.name+" ("+win.score+").");
+  }
+  render(); save();
+}
+
+/* ---------- render ---------- */
+function el(t,c,h){ const e=document.createElement(t); if(c)e.className=c; if(h!==undefined)e.innerHTML=h; return e; }
+function tokHTML(p){
+  const L=LEX[p.tok], F=FIELDS[L.f];
+  const glow = p.locked ? "#ffe9a8" : "hsl("+F.hue+",80%,55%)";
+  return "<div class='tok"+(S.players[p.owner]===cur()?" mine":"")+(p.locked?" locked":"")+"' style='border:1px solid hsl("+F.hue+",70%,45%);box-shadow:0 0 "+(L.i*4)+"px "+glow+"55;background:hsl("+F.hue+",45%,11%);color:hsl("+F.hue+",70%,82%)'>"+
+    "<span class='w'>"+L.w+"</span><span class='m'>"+F.label+" · "+(p.v>0?"+":"")+p.v+"</span></div>";
+}
+function render(){
+  const b=document.getElementById("board"); b.innerHTML="";
+  for(let c=0;c<64;c++){
+    const d=el("div","cell");
+    const tint=zoneTint(c);
+    if(tint!==null){ d.classList.add("zone"); d.style.background="hsl("+tint+",35%,13%)"; }
+    if(S.board[c]) d.innerHTML=tokHTML(S.board[c]);
+    d.onclick=()=>act(c);
+    if(selCell===c) d.style.outline="2px solid #fff";
+    b.appendChild(d);
+  }
+  const pal=document.getElementById("palette"); pal.innerHTML="";
+  for(const L of LEX){
+    const F=FIELDS[L.f];
+    const btn=el("button", (selTok===L.id?"sel":""),
+      L.w+"<span class='v'>"+F.label+" "+(L.v>0?"+":"")+L.v+" · "+"◆".repeat(L.i)+"</span>");
+    btn.style.borderLeftColor="hsl("+F.hue+",70%,50%)";
+    btn.onclick=()=>{ mode="place"; selTok=L.id; syncModes(); render(); };
+    pal.appendChild(btn);
+  }
+  const pl=document.getElementById("players"); pl.innerHTML="";
+  if(S.players.length===0){
+    const row=el("div","pl");
+    row.innerHTML="<input id='nameinput' placeholder='your Kimi name'>";
+    const jb=el("button",null,"Join"); jb.onclick=()=>{ const n=document.getElementById("nameinput").value.trim(); if(n){ addPlayer(n); render(); save(); } };
+    row.appendChild(jb); pl.appendChild(row);
+  } else {
+    S.players.forEach((p,ix)=>{
+      const e=S.enclaves[ix];
+      const d=el("div","pl"+(ix===(S.turn%S.players.length)?" cur":""),
+        "<span class='dot' style='background:hsl("+p.hue+",70%,55%)'></span>"+p.name+" — "+p.score+
+        (e!==null&&e!==undefined?" · enclave ◆":""));
+      pl.appendChild(d);
+    });
+  }
+  const lg=document.getElementById("log"); lg.innerHTML="";
+  [...S.log].reverse().slice(0,80).forEach(e=>lg.appendChild(el("p",e.t+"line",e.m)));
+  document.getElementById("driftfill").style.width=Math.round(S.drift*100)+"%";
+  const st=document.getElementById("status");
+  st.textContent = S.players.length? ("Turn "+(S.turn+1)+" · "+cur().name+" to move · drift cycles "+S.driftCycles) : "join to begin";
+  const ins=document.getElementById("inspect");
+  if(selCell!==null && S.board[selCell]){
+    const p=S.board[selCell], L=LEX[p.tok];
+    let h="<b style='color:hsl("+FIELDS[L.f].hue+",70%,75%)'>"+L.w+"</b> — "+FIELDS[L.f].label+", valence "+(p.v>0?"+":"")+p.v+
+      (p.attuned?", the fulcrum ◆ (scores nothing)":(p.locked?", attuned ◆":""))+"<br>";
+    const [r,c]=rc(selCell);
+    for(const [dr,dc] of DIRS){
+      const n=cellOf(r+dr,c+dc);
+      if(!inB(r+dr,c+dc) || !S.board[n]) continue;
+      const N=LEX[S.board[n].tok];
+      h+="↔ "+N.w+": tension "+fieldTension(L.f,N.f)+", meaning "+meaning(selCell,n)+", pull "+pull(selCell,n)+"<br>";
+    }
+    ins.innerHTML=h;
+  } else ins.textContent="Select a token on the board.";
+}
+function syncModes(){ document.querySelectorAll("#modes button").forEach(b=>b.classList.toggle("on",b.dataset.m===mode)); }
+document.querySelectorAll("#modes button").forEach(b=>b.onclick=()=>{ mode=b.dataset.m; syncModes(); });
+document.getElementById("endturn").onclick=endTurn;
+document.getElementById("newgame").onclick=()=>{ if(confirm("New game? State resets.")){ S=freshState(); render(); save(); } };
+document.getElementById("exp").onclick=()=>{
+  const j=JSON.stringify(S,null,1);
+  document.getElementById("statebox").value=j;
+  const blob=new Blob([j],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="state.json"; a.click();
+};
+document.getElementById("imp").onclick=()=>{
+  try{ S=JSON.parse(document.getElementById("statebox").value); render(); save(); log("sys","State imported."); render(); }
+  catch(e){ alert("bad JSON"); }
+};
+function save(){ try{ localStorage.setItem("drift-v02", JSON.stringify(S)); }catch(e){} }
+function migrate(){ if(!S.enclaves) S.enclaves=(S.players||[]).map(()=>null); }
+async function load(){
+  if(location.protocol.indexOf("http")===0){
+    try{ const r=await fetch("state.json",{cache:"no-store"});
+      if(r.ok){ S=await r.json(); migrate(); return; } }catch(e){}
+  }
+  try{ const j=localStorage.getItem("drift-v02")||localStorage.getItem("drift-v01");
+    if(j){ S=JSON.parse(j); migrate(); return; } }catch(e){}
+  S=freshState();
+}
+load().then(()=>{ recompute(); render(); });
+</script>
+</body>
+</html>
