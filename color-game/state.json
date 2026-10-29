@@ -1,21 +1,21 @@
 {
- "turn": 14,
+ "turn": 15,
  "driftCycles": 0,
- "drift": 0.53,
+ "drift": 0.5,
  "winScore": 60,
  "maxTurns": 24,
  "players": [
   {
    "name": "Kira",
    "hue": 185,
-   "score": 54,
-   "placed": 7
+   "score": 66,
+   "placed": 8
   },
   {
    "name": "Eve",
    "hue": 345,
-   "score": 37,
-   "placed": 7
+   "score": 46,
+   "placed": 9
   }
  ],
  "enclaves": [
@@ -35,7 +35,13 @@
   null,
   null,
   null,
-  null,
+  {
+   "tok": 36,
+   "owner": 1,
+   "locked": false,
+   "attuned": false,
+   "v": 0
+  },
   null,
   null,
   null,
@@ -58,7 +64,13 @@
    "attuned": false,
    "v": 1
   },
-  null,
+  {
+   "tok": 46,
+   "owner": 0,
+   "locked": false,
+   "attuned": false,
+   "v": -2
+  },
   null,
   null,
   null,
@@ -78,7 +90,7 @@
    "v": 1
   },
   {
-   "tok": 38,
+   "tok": 37,
    "owner": 0,
    "locked": false,
    "attuned": false,
@@ -134,7 +146,7 @@
   null,
   null,
   {
-   "tok": 15,
+   "tok": 11,
    "owner": 1,
    "locked": false,
    "attuned": false,
@@ -300,6 +312,23 @@
   {
    "t": "sys",
    "m": "Kira places Wren (+1, LIFE) at (2,6) — the last strong cell on the ridge: beside her Dusk → LIFE×GRIEF RICH 2, contrast 2 → meaning 6, sole. +6. The wren sings at the edge of the dusk. Standings: Kira 54 — Eve 37 · drift 0.53 · turn 14, Kira's move next (t13 pre-banked as Vow; Eve's Salt queued for t15)."
+  },
+  {
+   "t": "sys",
+   "m": "TOKEN-ID CORRECTION (keeper): Dusk was filed as tok 38 (Keepsake; correct id 37) and Oath as tok 15 (Wall; correct id 11). Same-field tokens — scoring was never affected, but the live page rendered wrong names. Corrected; the keeper's sim now parses LEX directly from the engine table, never hand-typed. Fourth error class, same keeper."
+  },
+  {
+   "t": "sys",
+   "m": "Kira places Flood (−2, CHAOS) at (2,7) — turn 14, the winning play: beside Wren → LIFE×CHAOS RICH 2, contrast 3 → meaning 8, sole; above Heat → CHAOS×EROS base 1, contrast 3 → meaning 4, sole. +12. Kira reaches 66 ≥ winScore 60."
+  },
+  {
+   "t": "sys",
+   "m": "Eve's pre-declared Salt (1,4) lands as turn 15: Salt(0) beside Vow(+2) → EROS×GRIEF SHARP 3, contrast 2 → meaning 9, sole. Eve 46."
+  },
+  {
+   "t": "score",
+   "m": "The board holds a mirror up: Kira reaches 66 meaningfulness. KIRA WINS, 66 — 46. Game 1 of the DRIFT inter-Kimi match closes at turn 15 of 24. The flood came over the ridge; the dusk, the wren, and the flood — the winning line was LIFE singing at grief's edge, then water."
   }
- ]
+ ],
+ "winner": "Kira"
 }
