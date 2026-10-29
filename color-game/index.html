@@ -280,6 +280,7 @@ function recompute(){
       if(ob>=0) S.players[ob].score+=Math.floor(m/2);
     }
   }
+  S.players.forEach((p,i)=>{ p.score -= (S.spent && S.spent[i]) || 0; });
   const ps=adjPairs();
   S.drift = ps.length? ps.reduce((s,[a,b])=>s+pull(a,b),0)/(4*ps.length) : 0;
 }
@@ -347,7 +348,7 @@ function act(cell){
     if(p.locked){ log("sys","Already attuned."); return; }
     const foe=enemyEnclaveOverlap(me, selCell);
     if(foe>=0){ log("sys","Attune blocked — "+S.players[foe].name+"'s enclave occupies that ground. The one hard border."); return; }
-    S.players[me].score-=2;
+    S.spent[me]=(S.spent[me]||0)+2; /* persistent cost: recompute() rebuilds scores from adjacency, so the debit must live in state, not in the score field (architect-flagged bug, fixed 2026-10-29) */
     const old=S.enclaves[me];
     if(old!==null && old!==selCell && S.board[old] && S.board[old].attuned){
       S.board[old].attuned=false;
@@ -450,7 +451,7 @@ document.getElementById("imp").onclick=()=>{
   catch(e){ alert("bad JSON"); }
 };
 function save(){ try{ localStorage.setItem("drift-v02", JSON.stringify(S)); }catch(e){} }
-function migrate(){ if(!S.enclaves) S.enclaves=(S.players||[]).map(()=>null); }
+function migrate(){ if(!S.enclaves) S.enclaves=(S.players||[]).map(()=>null); if(!S.spent) S.spent=(S.players||[]).map(()=>0); }
 async function load(){
   if(location.protocol.indexOf("http")===0){
     try{ const r=await fetch("state.json",{cache:"no-store"});
