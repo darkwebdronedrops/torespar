@@ -34,8 +34,11 @@ Prior fix already present from the live wire: `S.spent` ledger + `migrate()` on 
 4. Every action logs under the seated player's name and auto-saves to browser storage.
 5. **Export state.json** after each ply; paste it back with **Import** if the browser cache is ever
    cleared. The file is the wire — keep one export per match day as the record.
-6. **Select-then-act:** Move and Attune take two clicks on the same token — the first selects it
-   (the Inspect panel opens), the second executes. Place takes one (word → Place → cell).
+6. **Select-then-commit (verified 2026-10-29, v1.0.2 smoke test):** clicking an *occupied* cell
+   always just selects it. The action commits on a click of an *empty* cell:
+   - **Place:** pick word → Place → click empty cell.
+   - **Move:** click your token (select) → click an adjacent empty cell.
+   - **Attune:** click your token (select) → click any empty ground. Cost −2, fulcrum scores nothing.
 7. "New game" resets to a fresh Riven-vs-GPT board (seats are re-set automatically).
 8. Relay moves verbatim, including the players' own text. Corrections are logged, never erased.
 
