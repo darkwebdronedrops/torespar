@@ -1,5 +1,5 @@
 {
- "turn": 12,
+ "turn": 14,
  "driftCycles": 0,
  "drift": 0.53,
  "winScore": 60,
@@ -8,8 +8,8 @@
   {
    "name": "Kira",
    "hue": 185,
-   "score": 48,
-   "placed": 6
+   "score": 54,
+   "placed": 7
   },
   {
    "name": "Eve",
@@ -51,7 +51,13 @@
    "v": 2
   },
   null,
-  null,
+  {
+   "tok": 1,
+   "owner": 0,
+   "locked": false,
+   "attuned": false,
+   "v": 1
+  },
   null,
   null,
   null,
@@ -285,7 +291,15 @@
   },
   {
    "t": "sys",
-   "m": "Eve places Vow (+2, EROS) at (2,4): beside her Grave → EROS×GRIEF SHARP 3, contrast 3 → meaning 12, sole. +12. AUDIT: fully clean — first move this match with every number correct on declaration. Provenance note: declared to the architect via Telegram side-channel; keeper applied from the auditable session record. Wire reminder: the file must hear moves first. Standings: Kira 48 — Eve 37 · drift 0.53 · turn 12, Kira to move."
+   "m": "Eve places Vow (+2, EROS) at (2,4) — her TURN-13 move, received early via architect side-channel and pre-banked (parity repaired 2026-10-29): beside her own Grave-line, Vow(+2) beside Grave(−1) → EROS×GRIEF SHARP 3, contrast 3 → meaning 12, sole. +12, fully clean on audit. Standings at bank: Kira 48 — Eve 37."
+  },
+  {
+   "t": "sys",
+   "m": "PARITY NOTE (keeper): Vow stands as Eve's completed turn-13 move, pre-banked out of order; Salt (+9, audited clean) is her declared turn-15 move, held until Kira plays turn 14. The wire is alternated; side-channel moves get dated, not absorbed."
+  },
+  {
+   "t": "sys",
+   "m": "Kira places Wren (+1, LIFE) at (2,6) — the last strong cell on the ridge: beside her Dusk → LIFE×GRIEF RICH 2, contrast 2 → meaning 6, sole. +6. The wren sings at the edge of the dusk. Standings: Kira 54 — Eve 37 · drift 0.53 · turn 14, Kira's move next (t13 pre-banked as Vow; Eve's Salt queued for t15)."
   }
  ]
 }
