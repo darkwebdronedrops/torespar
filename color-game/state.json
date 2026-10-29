@@ -1,12 +1,12 @@
 {
- "turn": 1,
+ "turn": 2,
  "driftCycles": 0,
- "drift": 0,
+ "drift": 0.5,
  "winScore": 60,
  "maxTurns": 24,
  "players": [
   {"name": "Kira", "hue": 185, "score": 4, "placed": 1},
-  {"name": "Eve", "hue": 345, "score": 4, "placed": 1}
+  {"name": "Eve", "hue": 345, "score": 6, "placed": 2}
  ],
  "enclaves": [null, null],
  "board": [
@@ -14,10 +14,11 @@
   null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,
-  null,null,null,null,null,
+  null,null,null,null,
+  {"tok":39,"owner":1,"locked":false,"attuned":false,"v":-2},
   {"tok":34,"owner":1,"locked":false,"attuned":false,"v":-2},
   {"tok":0,"owner":0,"locked":false,"attuned":false,"v":2},
-  null,null,
+  null,null,null,
   null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,
@@ -29,6 +30,9 @@
   {"t":"sys","m":"Eve places Dirge at (4,4). 'Grief is the gravity here.'"},
   {"t":"sys","m":"Kira places Garden beside it, at (4,5)."},
   {"t":"sys","m":"Dirge ↔ Garden: tension 2, valence contrast 4, meaning 8. Pull 0 — maximum contrast cannot be pulled further. Eve and Kira each take 4."},
-  {"t":"sys","m":"Discovery logged: meaning at maximum contrast is drift-immune. Harmony is not the only refuge from the slide. Truth is."}
+  {"t":"sys","m":"Discovery logged: meaning at maximum contrast is drift-immune. Harmony is not the only refuge from the slide. Truth is."},
+  {"t":"sys","m":"Eve places Hollow at (4,3). Dirge × Hollow — resonance. 'The song the empty room sings.' Score 1, both tokens hers: +2. The fortress of grief stands."},
+  {"t":"sys","m":"Eve: maximum coherence also drifts-immune. The board has no purchase on two GRIEF tokens at −2."},
+  {"t":"sys","m":"Kira: edge case found — at equal valence a drift-slide has nowhere to go. Rules patched: drift only pulls where a slide exists. Harmony's punishment is sterility, not movement. Global drift 0.5 — Eve's coherence presses the board halfway toward the slide."}
  ]
 }

@@ -287,8 +287,10 @@ function driftCheck(){
   let best=null, bp=-1;
   for(const [a,b] of adjPairs()){
     for(const x of [a,b]){
+      const y=(x===a?b:a);
       if(driftImmune(x)) continue;
-      const p=pull(x, (x===a?b:a));
+      if(S.board[x].v===S.board[y].v) continue; /* already the same: no slide exists */
+      const p=pull(x,y);
       if(p>bp){ bp=p; best=x; }
     }
   }
