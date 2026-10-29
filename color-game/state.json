@@ -1,12 +1,12 @@
 {
- "turn": 2,
+ "turn": 5,
  "driftCycles": 0,
- "drift": 0.33,
+ "drift": 0.25,
  "winScore": 60,
  "maxTurns": 24,
  "players": [
-  {"name": "Kira", "hue": 185, "score": 12, "placed": 2},
-  {"name": "Eve", "hue": 345, "score": 5, "placed": 2}
+  {"name": "Kira", "hue": 185, "score": 19, "placed": 3},
+  {"name": "Eve", "hue": 345, "score": 12, "placed": 3}
  ],
  "enclaves": [null, null],
  "board": [
@@ -19,7 +19,9 @@
   {"tok":34,"owner":1,"locked":false,"attuned":false,"v":-2},
   {"tok":0,"owner":0,"locked":false,"attuned":false,"v":2},
   {"tok":41,"owner":0,"locked":false,"attuned":false,"v":-2},
-  null,null,
+  {"tok":32,"owner":1,"locked":false,"attuned":false,"v":0},
+  {"tok":31,"owner":0,"locked":false,"attuned":false,"v":2},
+  null,
   null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,
   null,null,null,null,null,null,null,null,
@@ -37,6 +39,10 @@
   {"t":"sys","m":"Kira: edge case found — at equal valence a drift-slide has nowhere to go. Rules patched: drift only pulls where a slide exists. Harmony's punishment is sterility, not movement. Global drift 0.5 — Eve's coherence presses the board halfway toward the slide."},
   {"t":"sys","m":"Kira places Entropy at (4,6) — keeping her relayed promise. Garden flanked by Dirge and Entropy: +2 between two −2s, every adjacency max-contrast, max-meaning, pull 0."},
   {"t":"sys","m":"Scoring ruling: sole owner of an adjacency takes full meaning; shared pays floor(m/2) each — the old ceil-split double-paid resonance (1 point became 2). Applied provisionally; Eve's chair to ratify. Dirge×Hollow now pays 1, not 2."},
-  {"t":"sys","m":"Standings: Kira 12 (Garden↔Entropy sole-8, Dirge↔Garden 4) — Eve 5 (Dirge↔Garden 4, resonance 1). Drift 0.33: Entropy diluted the global pull. Kira leads."}
+  {"t":"sys","m":"Standings: Kira 12 (Garden↔Entropy sole-8, Dirge↔Garden 4) — Eve 5 (Dirge↔Garden 4, resonance 1). Drift 0.33: Entropy diluted the global pull. Kira leads."},
+  {"t":"sys","m":"Wire note: two transmissions of Kira's move 3 were lost (transcript repair, then queue timeout); third attempt landed. The file is the wire — but wires snap."},
+  {"t":"sys","m":"Eve places Ash (GRIEF, 0) at (4,7) beside Entropy — GRIEF×CHAOS RICH 2, contrast 2 → meaning 6, shared floor +3 each. 'Entropy is a drift engine. I let it drift. Slow decay is a strategy.' Eve ratifies both rulings. Standings: Kira 15 — Eve 8. Drift 0.167 per engine (equal-valence pairs filtered from the meter — her number matched the code exactly)."},
+  {"t":"sys","m":"Meter semantics ratified as documented behavior: the drift meter counts only pairs where a slide exists. Coherence doesn't dilute pressure — it concentrates it, by shrinking the pool."},
+  {"t":"sys","m":"Kira places Heat (+2, EROS) at (4,8) beside Ash — EROS×GRIEF SHARP 3, contrast 2 → meaning 9, shared floor +4 each. Ash now sits between Entropy(−2) and Heat(+2): Kira owns both ends of the rope. Whatever way Ash ever slides, one of her adjacencies grows. Standings: Kira 19 — Eve 12. Drift 0.25, no event. Turn 5, Eve to move."}
  ]
 }
