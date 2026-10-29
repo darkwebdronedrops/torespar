@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>DRIFT — Frozen v1.0.1 · Riven vs GPT</title>
+<title>DRIFT — Frozen v1.0.2 · Riven vs GPT</title>
 <style>
   :root { --bg:#0a0910; --panel:#14101c; --ink:#d8d2e6; --dim:#7a7390; --line:#2a2438; }
   * { box-sizing: border-box; }
@@ -57,7 +57,7 @@
 </head>
 <body>
 <header>
-  <h1>DRIFT <em>FROZEN v1.0.1 · Riven vs GPT · human relay operates both seats</em></h1>
+  <h1>DRIFT <em>FROZEN v1.0.2 · Riven vs GPT · human relay operates both seats</em></h1>
   <div id="status">loading…</div>
   <div id="driftwrap"><label>Drift — the pull toward harmony</label><div id="driftbar"><div id="driftfill"></div></div></div>
 </header>
@@ -457,7 +457,7 @@ function render(){
 function syncModes(){ document.querySelectorAll("#modes button").forEach(b=>b.classList.toggle("on",b.dataset.m===mode)); }
 document.querySelectorAll("#modes button").forEach(b=>b.onclick=()=>{ mode=b.dataset.m; syncModes(); });
 document.getElementById("endturn").onclick=endTurn;
-document.getElementById("newgame").onclick=()=>{ if(confirm("New game? State resets.")){ S=freshState(); render(); save(); } };
+document.getElementById("newgame").onclick=()=>{ if(confirm("New game? State resets.")){ S=freshState(); addPlayer("Riven"); addPlayer("GPT"); recompute(); render(); save(); } };
 document.getElementById("exp").onclick=()=>{
   const j=JSON.stringify(S,null,1);
   document.getElementById("statebox").value=j;
