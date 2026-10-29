@@ -49,6 +49,9 @@ keeper-built / human-designed / instance-tested. Designed in conversation; the v
 write the birth notice when a prototype exists.
 
 ## v0.2 — Eve's chair (built same day)
+- **One copy each:** a word can be on the board once. Ratified on the wire 2026-10-29 — both live
+  matches played under it; surfaced as a doc/code gap when GPT triple-placed Garden in the interlab
+  match. Engine-enforced (palette disables spent words; place() guards).
 - **Enclaves:** attune raises a 3×3 zone (edge-clamped, corner = 2×2). Inside an enclave, same-field
   adjacencies score 2 instead of 0 — harmony means something there. One enclave per player: attuning
   anew dissolves the old zone but its lock holds. Enclaves stack without conflict; enemy tokens inside
