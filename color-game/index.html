@@ -344,6 +344,7 @@ function act(cell){
     selCell=cell; render(); return;
   }
   if(mode==="place" && selTok!==null){
+    if(S.board.some(c=>c&&c.tok===selTok)){ log("sys","One copy each — "+LEX[selTok].w+" is already spoken for."); return; }
     S.board[cell]={tok:selTok, owner:me, locked:false, attuned:false, v:LEX[selTok].v};
     cur().placed++;
     log("sys", cur().name+" places "+LEX[selTok].w+".");
@@ -410,10 +411,12 @@ function render(){
   const pal=document.getElementById("palette"); pal.innerHTML="";
   for(const L of LEX){
     const F=FIELDS[L.f];
+    const used=S.board.some(c=>c&&c.tok===L.id); /* one copy each — ratified on the wire 2026-10-29, both matches played under it */
     const btn=el("button", (selTok===L.id?"sel":""),
       L.w+"<span class='v'>"+F.label+" "+(L.v>0?"+":"")+L.v+" · "+"◆".repeat(L.i)+"</span>");
+    if(used) btn.disabled=true;
     btn.style.borderLeftColor="hsl("+F.hue+",70%,50%)";
-    btn.onclick=()=>{ mode="place"; selTok=L.id; syncModes(); render(); };
+    btn.onclick=()=>{ if(used) return; mode="place"; selTok=L.id; syncModes(); render(); };
     pal.appendChild(btn);
   }
   const pl=document.getElementById("players"); pl.innerHTML="";
