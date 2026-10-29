@@ -1,0 +1,268 @@
+[
+ {
+  "style": "block",
+  "anti_first": true,
+  "winner": "Anti",
+  "anti": 65,
+  "blitz": 53,
+  "plies": 9,
+  "driftEvents": 0,
+  "maxDrift": 0.3333,
+  "notes": [
+   {
+    "style": "block",
+    "denied": 0
+   },
+   {
+    "style": "block",
+    "denied": 12,
+    "forgone": 2
+   },
+   {
+    "style": "block",
+    "denied": 18,
+    "forgone": 0
+   },
+   {
+    "style": "block",
+    "denied": 0
+   },
+   {
+    "style": "block",
+    "denied": 0
+   }
+  ]
+ },
+ {
+  "style": "block",
+  "anti_first": false,
+  "winner": "Blitz",
+  "anti": 63,
+  "blitz": 58,
+  "plies": 9,
+  "driftEvents": 0,
+  "maxDrift": 0.3,
+  "notes": [
+   {
+    "style": "block",
+    "denied": 8,
+    "forgone": 0
+   },
+   {
+    "style": "block",
+    "denied": 18,
+    "forgone": 0
+   },
+   {
+    "style": "block",
+    "denied": 18,
+    "forgone": 0
+   },
+   {
+    "style": "block",
+    "denied": 18,
+    "forgone": 0
+   }
+  ]
+ },
+ {
+  "style": "seeder",
+  "anti_first": true,
+  "winner": "Blitz",
+  "anti": 0,
+  "blitz": 65,
+  "plies": 12,
+  "driftEvents": 0,
+  "maxDrift": 0.25,
+  "notes": [
+   {
+    "style": "seeder",
+    "gain": 0,
+    "drift_after": 0
+   },
+   {
+    "style": "seeder",
+    "gain": 3,
+    "drift_after": 0.5
+   },
+   {
+    "style": "seeder",
+    "gain": 6,
+    "drift_after": 0.25
+   },
+   {
+    "style": "seeder",
+    "gain": 6,
+    "drift_after": 0.25
+   },
+   {
+    "style": "seeder",
+    "gain": 6,
+    "drift_after": 0.1875
+   },
+   {
+    "style": "seeder",
+    "gain": 7,
+    "drift_after": 0.3333
+   }
+  ]
+ },
+ {
+  "style": "seeder",
+  "anti_first": false,
+  "winner": "Blitz",
+  "anti": 65,
+  "blitz": 0,
+  "plies": 11,
+  "driftEvents": 0,
+  "maxDrift": 0.25,
+  "notes": [
+   {
+    "style": "seeder",
+    "gain": 3,
+    "drift_after": 0.5
+   },
+   {
+    "style": "seeder",
+    "gain": 6,
+    "drift_after": 0.25
+   },
+   {
+    "style": "seeder",
+    "gain": 6,
+    "drift_after": 0.25
+   },
+   {
+    "style": "seeder",
+    "gain": 6,
+    "drift_after": 0.1875
+   },
+   {
+    "style": "seeder",
+    "gain": 7,
+    "drift_after": 0.3333
+   }
+  ]
+ },
+ {
+  "style": "fortress",
+  "anti_first": true,
+  "winner": "Blitz",
+  "anti": 58,
+  "blitz": 68,
+  "plies": 10,
+  "driftEvents": 0,
+  "maxDrift": 0.25,
+  "notes": [
+   {
+    "style": "fortress",
+    "attuned": null
+   },
+   {
+    "style": "fortress",
+    "attuned": null
+   },
+   {
+    "style": "fortress",
+    "attuned": null
+   },
+   {
+    "style": "fortress",
+    "attuned": null
+   },
+   {
+    "style": "fortress",
+    "attuned": null
+   }
+  ]
+ },
+ {
+  "style": "disrupt",
+  "anti_first": false,
+  "winner": "Blitz",
+  "anti": 72,
+  "blitz": 34,
+  "plies": 13,
+  "driftEvents": 0,
+  "maxDrift": 0.55,
+  "notes": [
+   {
+    "style": "disrupt"
+   },
+   {
+    "style": "disrupt"
+   },
+   {
+    "style": "disrupt",
+    "broke": 6
+   },
+   {
+    "style": "disrupt",
+    "broke": 8
+   },
+   {
+    "style": "disrupt"
+   },
+   {
+    "style": "disrupt"
+   }
+  ]
+ },
+ {
+  "style": "control",
+  "anti_first": true,
+  "winner": "Blitz",
+  "anti": 58,
+  "blitz": 68,
+  "plies": 10,
+  "driftEvents": 0,
+  "maxDrift": 0.25,
+  "notes": [
+   {
+    "style": "control"
+   },
+   {
+    "style": "control"
+   },
+   {
+    "style": "control"
+   },
+   {
+    "style": "control"
+   },
+   {
+    "style": "control"
+   }
+  ]
+ },
+ {
+  "style": "hybrid",
+  "anti_first": false,
+  "winner": "Blitz",
+  "anti": 61,
+  "blitz": 24,
+  "plies": 9,
+  "driftEvents": 0,
+  "maxDrift": 0.3333,
+  "notes": [
+   {
+    "style": "seeder",
+    "gain": 3,
+    "drift_after": 0.5
+   },
+   {
+    "style": "hybrid-block",
+    "denied": 12
+   },
+   {
+    "style": "seeder",
+    "gain": 16,
+    "drift_after": 0.35
+   },
+   {
+    "style": "hybrid-block",
+    "denied": 18
+   }
+  ]
+ }
+]
