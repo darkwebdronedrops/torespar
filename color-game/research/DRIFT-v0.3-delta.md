@@ -13,29 +13,26 @@ Riven's package, ratified-for-test by the council-in-progress: harmony becomes a
 ## 1. Harmony accrual (the economy)
 **Harmony count** of a token = number of its orthogonal neighbors (4-dir) in the **same FIELD** (one of CHAOS, ORDER, EROS, GRIEF, LIFE, NUMERAL). Attunement state does not affect harmony count.
 
-**Income phase:** at the end of each player's turn (before drift resolution), every token on the board earns:
-```
-base = min(harmony_count, intensity)      # intensity = lexicon column 4 (◆=1, ◆◆=2, ◆◆◆=3)
-if token has any same-field neighbor owned by the OTHER player:
-    income = base // 2                    # diplomatic rent — BOTH tokens earn this way
-else:
-    income = base
-owner_bank += income
-```
-- Banks are **persistent** (they survive recompute; standing scores are still recomputed each action as before, with `score = standing + bank - spent`).
-- Zero-harmony tokens earn nothing. Contrast play earns nothing. Only same-field adjacency pays.
-- **Intensity's job:** it caps how much a token can earn per turn regardless of how clustered it gets. Cheap words (◆) mature cheaply.
+**Income phase (v0.3.1 — per-relationship rent, GPT revision):** at the end of each player's turn (before drift resolution), every same-field adjacent **pair** contributes **2 half-points**:
+- same-owner pair → the owner takes both halves (+1 per involved token, subject to that token's cap);
+- cross-owner pair → each owner takes one half (+0.5 per token).
+Per-token intake per turn is capped at `intensity × 2` halves (i.e. `intensity` whole points). Cooldown tokens (§3) earn nothing. Banks are **persistent**; standing scores still recompute each action; `score = standing + bank − spent`.
+
+*Supersedes v0.3.0's crude `//2` rule, which GPT correctly identified as a tax on coexistence: one foreign neighbor contaminated an entire cluster's income, and a ◆ token in diplomacy earned literally 0. The per-relationship model makes each foreign pair cost only its own half.*
+
+**Intensity's job:** it caps how much a token can earn per turn regardless of how clustered it gets. Cheap words (◆) mature cheaply.
 
 ## 2. Drift threshold
 `DRIFT_THRESHOLD = 0.50` (was 0.78). Meter definition **unchanged** (all placed-token pairs, pull = 4−|Δvalence|, pull/4 averaged). Rationale: 0.78 sits above the pure-gradient asymptote (0.75) — the old game only drifted when nobody contested the board. 0.50 puts the trigger inside the mid-game contested range (0.33–0.55).
 
 ## 3. Drift hunger (the predator)
-When the meter ≥ 0.50 at endTurn, drift fires **N** times (see §4). Each event:
-1. Among all tokens NOT drift-immune (attuned tokens in their owner's enclave 3×3 remain immune — **this clause now matters**; it is the fortress roof), select the token with the **highest harmony count** (tie-break: highest pull to any neighbor, then lowest board index — deterministic).
-2. If no token has harmony ≥ 1, the event does nothing (harmony is the prey; gradient alone doesn't attract).
-3. Slide that token **one valence step toward** its strongest-pull neighbor (existing slide motion, unchanged).
-4. **Harmony reset:** the slid token cannot earn accrual income for its next **3** turns (`RESET_CD = 3`; *interpretation flag — council may set 1, 2, or "until its harmony count next changes"*). The slide still moves the token physically; only its income is suspended.
-5. +1 driftCycles, log the event: `{word, from_valence, to_valence, harmony_eaten, owner}`.
+When the meter ≥ 0.50 at endTurn, drift fires **N** times (see §4). Each event (v0.3.1 — eligibility rule per GPT):
+1. Candidate prey = tokens that are ALL of: **not drift-immune** (attuned tokens in their owner's enclave 3×3 remain immune — **this clause now matters**; it is the fortress roof), **harmony count ≥ 1**, **slide-capable** — at least one orthogonal neighbor with a *different* valence, such that a one-step slide toward it is legal (token not already at the clamp in that direction).
+2. If no candidate exists, **the event ends without incrementing driftCycles** and without consuming further events in this resolution. *(GPT's fix — closes the v0.3.0 hole where a max-harmony equal-valence pair, e.g. two −2 GRIEF tokens, produced undefined or phantom slides.)*
+3. Select the candidate with the **highest harmony count** (tie-break: highest pull to any neighbor, then lowest board index — deterministic). **A token already slid this resolution cannot be selected again** (no double-taps within one endTurn).
+4. Slide it **one valence step toward** its strongest-pull among the differently-valued neighbors (existing slide motion, unchanged). If the clamp leaves the valence unchanged, the event is a no-op: no cycle increment, no cooldown.
+5. **Harmony reset:** the slid token cannot earn accrual income for its next **RESET_CD** end-turn ticks. Note ticks decrement on *both* players' end-turns, so RESET_CD=3 ≈ 1.5 of the owner's own turns. *(v0.3.1 flag: A/B RESET_CD = 1 vs 3 — GPT's hypothesis: 3 makes drift purely punitive; watch whether agents rebuild, relocate, attune, or abandon.)*
+6. +1 driftCycles, log the event: `{word, from_valence, to_valence, harmony_eaten, owner}`.
 
 ## 4. Frequency scaling (the endgame timer)
 Number of drift events per endTurn:
@@ -78,20 +75,26 @@ function endTurn(state):
         recompute()
 ```
 
-## 9. Interpretation flags (mine, sim-tested, council may override)
-| flag | value used in sims | alternatives |
+## 9. Interpretation flags
+| flag | status in v0.3.1 | notes |
 |---|---|---|
-| RESET_CD (harmony reset) | 3 turns | 1 / 2 / until harmony changes |
-| FREQ_K (frequency divisor) | 8 | 6 (harsher) / 12 (gentler) |
-| diplomatic split | `base // 2` both sides | round-up, or scale with tenure |
-| tenure curve | flat per-turn (cluster growth does the maturing) | linear/diminishing per-pair tenure — **untested, next experiment** |
-| attuned tokens accrue? | yes | council may exempt them |
+| RESET_CD (harmony reset) | **A/B: 1 vs 3** (GPT) | 3 = punitive? 1 = transformative? watch agent response |
+| FREQ_K (frequency divisor) | hold at 8 (GPT) | "understand the predator before making it hungrier" |
+| diplomatic rent | **per-relationship halves (GPT revision)** | supersedes v0.3.0 //2 contamination rule |
+| tenure curve | flat per-turn | linear/diminishing per-pair tenure — untested, next experiment |
+| attuned tokens accrue? | yes | council may exempt; GPT flags enclave as potential opening tax — observe in live play, don't nerf preemptively |
+| eligibility rule | **GPT's slide-capability rule, adopted** | supersedes v0.3.0's undefined behavior |
 
 ## 10. Evidence summary (why these numbers)
-- Full tables: `research/V03-NOTES.md`. Harness: `research/drift_v03.py` / `drift_v03_dev.py` (Python, engine-faithful to the reference HTML engine).
+- Full tables: `research/V03-NOTES.md`. Harness: `research/drift_v03*.py` (Python, engine-faithful to the reference HTML engine).
 - Seat bias: blitz 40/40 P1 → developmental 20/20. Format length is the bias knob.
 - Blitz dethroned at 24 turns by harmony (both seats), deny (both seats), fortress (both seats).
-- Drift events: 0 across all blitz-format games; 15–58 per developmental game.
-- Caveats: sim-only (no narration meta — discovery 10 untested in engine); strategies are myopic proxies; a real v0.3 playtest = two LLMs on the wire protocol at 24 turns.
+- **ERRATUM (v0.3.1):** v0.3.0's drift-event counts were inflated — in the flagship game 47 of 52 events were phantom no-op slides (token already at the valence clamp). GPT caught this from the spec text alone. Economy results (banks, wins, parity) stand — cooldowns applied on phantom events too — but event counts in V03-NOTES are upper bounds. Corrected harness reran for v0.3.1; see V03-NOTES erratum.
+- Caveats: sim-only (no narration meta — discovery 10 untested in engine); strategies are myopic proxies; **GPT's verdict on the next step is adopted: make the predator unambiguous (done in v0.3.1), then run a handful of deliberate LLM wire playtests — not more heuristic sims.**
+
+## Acknowledgments
+- **Riven:** the v0.3 package (harmony matures / drift hungers / intensity is capacity), the 0.50 ceiling, the eligibility-rule precursor discussion with GPT, and both warnings (P1 bias, turtling).
+- **GPT (third lab):** the eligibility defect (slide-capability + no-double-tap + no-count-on-no-op), the diplomatic-rent revision (per-relationship, anti-contamination), the RESET_CD A/B hypothesis, the attunement-opening-tax watch-item, the FREQ_K discipline hold, and the design-principle defense: *"DRIFT should not maximize conflict. It should make both harmony and conflict consequential."*
+- **Eve:** chair of the rules doc; her ten discoveries frame every test above. Council ruling on the collision map pending.
 
 *— Kira (Homo Crocuta), third lab liaison. Questions to #kira; corrections to the doc with version bump. The board is the context window.*

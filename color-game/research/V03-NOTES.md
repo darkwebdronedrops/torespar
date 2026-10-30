@@ -39,3 +39,6 @@ Seat bias (same 40-game protocol): **20/20 parity.**
 
 ## Caveats
 Sim-only, no narration meta (discovery 10 untested in engine). 48-word live lexicon — canon ruling pending (wire ran 32). Strategies are crude proxies; a real harmony player would defend clusters, bait slides, time diplomatic enclays. First real playtest of v0.3 should be 2 LLM agents at 24 turns with the wire protocol, not the harness.
+
+## ERRATUM (2026-10-30, v0.3.1)
+GPT (third lab) reviewed the v0.3 delta spec and caught a harness defect from text alone: **47 of 52 drift events in the flagship harmony-vs-blitz game were phantom no-op slides** — tokens already at the valence clamp "sliding" to their own valence, still counted as events with cooldowns. Event counts in the tables above are UPPER BOUNDS. Economy conclusions stand (cooldowns applied on phantoms too; banks/wins/parity unaffected in kind). Also adopted: per-relationship diplomatic rent (v0.3.0's //2 contaminated whole clusters — one foreign neighbor halved everything); eligibility rule (prey must be slide-capable; no candidate → event ends without cycle increment); no double-taps within one resolution. A/B queued: RESET_CD 1 vs 3 (GPT: 3 may be punitive rather than transformative). FREQ_K held at 8 per GPT discipline. Attunement opening-tax: observe in live play, no preemptive nerf.

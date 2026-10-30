@@ -69,21 +69,34 @@ def harmony_of(b,c):
 def total_harmony(b): return sum(harmony_of(b,c) for c in range(64) if b[c])
 
 def accrue(S):
-    """per-token harmony income, intensity-capped, cross-owner half-rent, cooldown-aware.
-    Interpretation: income = sum over own tokens of min(harmony, intensity); a token with
-    any same-field cross-owner neighbor earns half (diplomatic rent, both sides)."""
-    b=S['board']; inc=[0,0]
-    for c in range(64):
-        if not b[c]: continue
-        own=b[c]['owner']
-        if S['cool'][c]>0: continue
-        h=harmony_of(b,c); cap=LEX[b[c]['tok']]['i']
-        base=min(h,cap)
-        if base==0: continue
-        cross=any(LEX[b[n]['tok']]['f']==LEX[b[c]['tok']]['f'] and b[n]['owner']!=own
-                  for n in (c-8,c+8,c-1,c+1) if 0<=n<64 and b[n])
-        inc[own]+= base//2 if cross else base
-    for i in (0,1): S['bank'][i]+=inc[i]
+    """Per-relationship harmony rent (GPT revision v0.3.1): every same-field adjacent PAIR
+    contributes 2 half-points. Same-owner pair: owner takes both halves. Cross-owner pair:
+    each owner takes one half. Per-token intake capped at intensity*2 halves per turn.
+    Cooldown tokens earn nothing."""
+    b=S['board']; halves={}
+    for a,bb in adj(b):
+        A,B=b[a],b[bb]
+        if LEX[A['tok']]['f']!=LEX[B['tok']]['f']: continue
+        if S['cool'][a]==0:
+            halves.setdefault(a,{}).setdefault(B['owner'] if A['owner']!=B['owner'] else A['owner'],0)
+        if S['cool'][bb]==0:
+            halves.setdefault(bb,{}).setdefault(A['owner'] if A['owner']!=B['owner'] else B['owner'],0)
+    # award halves per pair (do it per-pair, not per-token-summary, to honor relationships)
+    inc={0:0,1:0}
+    for a,bb in adj(b):
+        A,B=b[a],b[bb]
+        if LEX[A['tok']]['f']!=LEX[B['tok']]['f']: continue
+        if A['owner']==B['owner']:
+            for c in (a,bb):
+                if S['cool'][c]>0: continue
+                cap=LEX[b[c]['tok']]['i']*2
+                inc[A['owner']]+= min(2,cap)
+        else:
+            for c,o in ((a,B['owner']),(bb,A['owner'])):
+                if S['cool'][c]>0: continue
+                cap=LEX[b[c]['tok']]['i']*2
+                inc[o]+= min(1,cap)
+    for i in (0,1): S['bank'][i]+= inc[i]/2
 
 def enclave_cells(center):
     r,c=divmod(center,8); out=[]
@@ -98,30 +111,44 @@ def drift_immune(S,cell):
     e=S['enclaves'][p['owner']]
     return e is not None and cell in enclave_cells(e)
 
-def hunger_drift(S):
-    """one drift event: slide the most HARMONIOUS eligible token; reset its harmony (cooldown)."""
+def slide_capable(b,c):
+    """GPT eligibility rule: token can legally slide iff some orthogonal neighbor
+    has a different valence (and token not already clamped that way)."""
+    if not b[c]: return False
+    r,co=divmod(c,8); v=b[c]['v']
+    for dr,dc in ((0,1),(0,-1),(1,0),(-1,0)):
+        r2,c2=r+dr,co+dc
+        if 0<=r2<8 and 0<=c2<8 and b[r2*8+c2] and b[r2*8+c2]['v']!=v: return True
+    return False
+
+def hunger_drift(S, tried):
+    """Most-harmonious token that is unprotected, slide-capable, untried this resolution.
+    No eligible prey -> None (event ends without cycle increment)."""
     b=S['board']; best=None; bh=-1
     for c in range(64):
-        if not b[c] or drift_immune(S,c): continue
+        if not b[c] or drift_immune(S,c) or c in tried: continue
         h=harmony_of(b,c)
-        if h>bh or (h==bh and best is not None and pull(b,c,c+1 if c+1<64 and b[c+1] else c)>0):
+        if h>=1 and h>bh and slide_capable(b,c):
             bh=h; best=c
-    if best is None or bh==0: return None
+    if best is None: return None
     r,co=divmod(best,8); tgt=None; tp=-1
     for dr,dc in ((0,1),(0,-1),(1,0),(-1,0)):
         r2,c2=r+dr,co+dc
         if 0<=r2<8 and 0<=c2<8:
             n=r2*8+c2
-            if b[n]:
+            if b[n] and b[n]['v']!=b[best]['v']:
                 p=pull(b,best,n)
                 if p>tp: tp=p; tgt=n
     if tgt is None: return None
     toward = 1 if b[tgt]['v']>b[best]['v'] else -1
     before=b[best]['v']
-    b[best]['v']=max(-2,min(2,before+toward))
-    S['cool'][best]=RESET_CD   # harmony reset
+    after=max(-2,min(2,before+toward))
+    if after==before: return None
+    b[best]['v']=after
+    S['cool'][best]=RESET_CD
     S['driftCycles']+=1
-    return (LEX[b[best]['tok']]['w'], before, b[best]['v'], bh, b[best]['owner'])
+    tried.add(best)
+    return (LEX[b[best]['tok']]['w'], before, after, bh, b[best]['owner'])
 
 def used(S): return {c['tok'] for c in S['board'] if c}
 
@@ -193,9 +220,11 @@ def end_turn(S):
     evs=[]
     if S['drift']>=THRESH:
         n=1+total_harmony(S['board'])//FREQ_K
+        tried=set()
         for _ in range(n):
-            e=hunger_drift(S)
+            e=hunger_drift(S,tried)
             if e: evs.append(e)
+            else: break
     if evs: recompute(S)
     return evs
 
