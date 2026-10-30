@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""DRIFT v0.3 prototype sim — Riven's package: harmony accrual (intensity-capped),
+"""[DEVELOPMENTAL FORMAT: no winScore, 24 turns — blitz variant is drift_v03.py] DRIFT v0.3.2 sim — Riven's package: harmony accrual (intensity-capped),
 drift hungers harmony (slide resets harmony), frequency scales with board harmony,
 diplomatic half-rent, finish-the-round. Interpretations logged in-output."""
 import json, re, random
@@ -13,7 +13,7 @@ RICH = {frozenset(['LIFE','GRIEF']), frozenset(['NUMERAL','EROS']), frozenset(['
          frozenset(['ORDER','EROS']), frozenset(['GRIEF','NUMERAL']), frozenset(['ORDER','GRIEF'])}
 RES = {frozenset(['Garden','Harvest']), frozenset(['Oath','Verdict']), frozenset(['Sum','Zero']),
         frozenset(['Dirge','Hollow']), frozenset(['Heat','Sweat']), frozenset(['Storm','Flood'])}
-WIN, MAXT = 10**9, 24
+WIN, MAXT = 10**9, 24   # DEVELOPMENTAL: no threshold, 24 turns
 THRESH = 0.50          # Riven ceiling
 RESET_CD = 3           # interpretation: harmony reset = post-slide accrual cooldown (turns)
 FREQ_K = 8             # interpretation: extra drift events per endTurn = totalBoardHarmony // FREQ_K
@@ -82,20 +82,21 @@ def accrue(S):
         if S['cool'][bb]==0:
             halves.setdefault(bb,{}).setdefault(A['owner'] if A['owner']!=B['owner'] else B['owner'],0)
     # award halves per pair (do it per-pair, not per-token-summary, to honor relationships)
-    inc={0:0,1:0}
+    halves=[0]*64
     for a,bb in adj(b):
         A,B=b[a],b[bb]
         if LEX[A['tok']]['f']!=LEX[B['tok']]['f']: continue
         if A['owner']==B['owner']:
-            for c in (a,bb):
-                if S['cool'][c]>0: continue
-                cap=LEX[b[c]['tok']]['i']*2
-                inc[A['owner']]+= min(2,cap)
+            if S['cool'][a]==0: halves[a]+=2
+            if S['cool'][bb]==0: halves[bb]+=2
         else:
-            for c,o in ((a,B['owner']),(bb,A['owner'])):
-                if S['cool'][c]>0: continue
-                cap=LEX[b[c]['tok']]['i']*2
-                inc[o]+= min(1,cap)
+            if S['cool'][a]==0: halves[a]+=1   # own token earns its half (flag 2 fix)
+            if S['cool'][bb]==0: halves[bb]+=1
+    inc={0:0,1:0}
+    for c in range(64):
+        if halves[c]==0 or not b[c]: continue
+        cap=LEX[b[c]['tok']]['i']*2
+        inc[b[c]['owner']]+= min(halves[c],cap)   # cumulative per-token cap (flag 1 fix)
     for i in (0,1): S['bank'][i]+= inc[i]/2
 
 def enclave_cells(center):
@@ -124,12 +125,18 @@ def slide_capable(b,c):
 def hunger_drift(S, tried):
     """Most-harmonious token that is unprotected, slide-capable, untried this resolution.
     No eligible prey -> None (event ends without cycle increment)."""
-    b=S['board']; best=None; bh=-1
+    b=S['board']; best=None; bkey=None
     for c in range(64):
         if not b[c] or drift_immune(S,c) or c in tried: continue
         h=harmony_of(b,c)
-        if h>=1 and h>bh and slide_capable(b,c):
-            bh=h; best=c
+        if h<1 or not slide_capable(b,c): continue
+        r,co=divmod(c,8); mp=0
+        for dr,dc in ((0,1),(0,-1),(1,0),(-1,0)):
+            r2,c2=r+dr,co+dc
+            if 0<=r2<8 and 0<=c2<8 and b[r2*8+c2] and b[r2*8+c2]['v']!=b[c]['v']:
+                mp=max(mp,pull(b,c,r2*8+c2))
+        key=(h,mp,-c)
+        if bkey is None or key>bkey: bkey=key; best=c
     if best is None: return None
     r,co=divmod(best,8); tgt=None; tp=-1
     for dr,dc in ((0,1),(0,-1),(1,0),(-1,0)):
@@ -148,7 +155,7 @@ def hunger_drift(S, tried):
     S['cool'][best]=RESET_CD
     S['driftCycles']+=1
     tried.add(best)
-    return (LEX[b[best]['tok']]['w'], before, after, bh, b[best]['owner'])
+    return (LEX[b[best]['tok']]['w'], before, after, harmony_of(b,best), b[best]['owner'])
 
 def used(S): return {c['tok'] for c in S['board'] if c}
 

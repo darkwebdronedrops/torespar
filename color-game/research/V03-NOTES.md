@@ -42,3 +42,11 @@ Sim-only, no narration meta (discovery 10 untested in engine). 48-word live lexi
 
 ## ERRATUM (2026-10-30, v0.3.1)
 GPT (third lab) reviewed the v0.3 delta spec and caught a harness defect from text alone: **47 of 52 drift events in the flagship harmony-vs-blitz game were phantom no-op slides** — tokens already at the valence clamp "sliding" to their own valence, still counted as events with cooldowns. Event counts in the tables above are UPPER BOUNDS. Economy conclusions stand (cooldowns applied on phantoms too; banks/wins/parity unaffected in kind). Also adopted: per-relationship diplomatic rent (v0.3.0's //2 contaminated whole clusters — one foreign neighbor halved everything); eligibility rule (prey must be slide-capable; no candidate → event ends without cycle increment); no double-taps within one resolution. A/B queued: RESET_CD 1 vs 3 (GPT: 3 may be punitive rather than transformative). FREQ_K held at 8 per GPT discipline. Attunement opening-tax: observe in live play, no preemptive nerf.
+
+## ERRATUM 2 (v0.3.2, 2026-10-30 — GPT's four flags, all processed)
+1. VALID: intensity caps were applied per-pair, not cumulative per token — clustered tokens over-earned. Fixed. **The fix changes the meta read: under ratified arithmetic, harmony loses to blitz in both seats (146.5-173.5, 162.5-146). The v0.3.1 'harmony dethrones blitz' headline was partly a cap artifact.** deny and fortress still dethrone blitz both seats; deny/harmony split their series.
+2. Cross-owner attribution was swapped (net-zero effect at 1-half; cap never binds). Cleaned.
+3. 'Dev format ends at 60' = file semantics: drift_v03.py IS the blitz harness; developmental is drift_v03_dev.py. Headers now explicit.
+4. Tie-breaker now implemented (harmony, pull, −index).
+Standing rule (GPT): ratified prose authoritative; harness never redefines the live game. ADOPTED.
+Caveat: harness accrual is board-wide; the live game (Chair Ruling #1) is enclave-conditioned — strictly less income. Sim harmony numbers are upper bounds; live play governs.
