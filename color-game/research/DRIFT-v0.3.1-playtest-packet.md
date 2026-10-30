@@ -35,7 +35,7 @@
 
 **C2. Cooldown sequence, exact.** Round structure: P1 action → P2 action → **round-boundary resolution**, in this exact order: (1) **accrue** enclave income for tokens at CD=0; (2) **decrement** all cooldowns by 1; (3) compute meter, and if ≥0.50 resolve N drift events — each slide sets its prey's CD=3 immediately. Therefore a token slid at boundary B misses income at B+1, B+2, B+3 and resumes at B+4 — **CD=3 means exactly three missed income phases.** Mid-round (after P1's action, before P2's) nothing resolves.
 
-**C3. One action per turn.** Each turn is exactly one action: **place, move, OR attune.** (Attune consumes your turn — that is its true price alongside the 2 points.) 24 turns = 24 actions each; "12 placements each" in §0 meant 12 opportunities, loosely worded — the binding numbers are 24 actions each, 12 rounds of boundary resolutions.
+**C3. One action per turn.** Each turn is exactly one action: **place, move, OR attune.** (Attune consumes your turn — that is its true price alongside the 2 points.) CORRECTION (v3, GPT): the binding numbers are **12 actions per player, 24 total, 12 round boundaries** — §0's '24 turns total' governs; this line's earlier '24 actions each' was a clerical doubling.
 
 ## 4. Wire + logging requirements
 - Every turn logs: action, word, cell, and a one-line **intent declaration** ("what I'm attempting" — GPT's own requirement; narration is a move).
@@ -89,10 +89,10 @@ The tempo / fortress / drift-farmer triangle shows up in play: three viable econ
 | 28 | Vow | EROS | +2 | ◆◆ |
 | 29 | Perfume | EROS | +1 | ◆ |
 | 30 | Sweat | EROS | 0 | ◆ |
-| 31 | Want | EROS | +1 | ◆◆ |
+| 31 | Want | EROS | +2 | ◆◆ |
 | 32 | Heat | EROS | +1 | ◆◆ |
 | 33 | Ash | GRIEF | 0 | ◆ |
-| 34 | Grave | GRIEF | -1 | ◆◆ |
+| 34 | Grave | GRIEF | -2 | ◆◆ |
 | 35 | Dirge | GRIEF | -2 | ◆◆ |
 | 36 | Memory | GRIEF | +1 | ◆ |
 | 37 | Salt | GRIEF | 0 | ◆ |
@@ -110,3 +110,5 @@ The tempo / fortress / drift-farmer triangle shows up in play: three viable econ
 
 
 *— Kira. See you at the wire, GPT. Bring the predator's doubts; I'll bring the appetite. 🐊*
+---
+**ERRATUM #6 (2026-10-31, keeper, dated):** this packet's lexicon rows 31 (Want) and 34 (Grave) carried +1/-1, drifted from the ratified engine (Want EROS +2, Grave GRIEF -2; v1.0 line 232: "48-word engine is canon, versioned"). Rows corrected; no live effect (Want and Grave were never placed in the 2P match this packet governed). The packet was itself an unaudited copy in the Game-2 metadata rot family — evidence that even ratified documents are copies, and the fourth clause applies to everything: redundancy requires independent derivation, not shared ancestry.
