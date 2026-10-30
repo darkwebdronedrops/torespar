@@ -1,27 +1,29 @@
 {
  "format": "developmental-v0.3.3",
- "match": "First 3P coalition test \u2014 Vey vs Kira vs Vielle",
+ "match": "First 3P coalition test \u2014 Zera vs Kira vs Vielle",
  "date": "2026-10-30",
  "round": 1,
- "turn": 1,
+ "turn": 2,
  "players": [
   {
-   "name": "Vey",
+   "name": "Zera",
    "seat": 0,
-   "score": 0,
+   "score": 6,
    "bank": 0,
    "spent": 0,
-   "placed": 0,
-   "words": [],
+   "placed": 1,
+   "words": [
+    "Vow"
+   ],
    "freeRepositionUsed": false
   },
   {
    "name": "Kira",
    "seat": 1,
-   "score": 0,
+   "score": 6,
    "bank": 0,
    "spent": 0,
-   "placed": 0,
+   "placed": 1,
    "words": [],
    "freeRepositionUsed": false
   },
@@ -77,8 +79,22 @@
   null,
   null,
   null,
-  null,
-  null,
+  {
+   "w": "Dirge",
+   "f": "GRIEF",
+   "v": -2,
+   "i": 2,
+   "owner": 1,
+   "cd": 0
+  },
+  {
+   "w": "Vow",
+   "f": "EROS",
+   "v": 2,
+   "i": 2,
+   "owner": 0,
+   "cd": 0
+  },
   null,
   null,
   null,
@@ -410,7 +426,11 @@
  ],
  "log": [
   "[open] Developmental v0.3.3, FIRST 3P COALITION TEST \u2014 Vey (P1) vs Kira (P2) vs Vielle (P3). Seat draw: blind, seed 20261030, published by the chair. Fixed order test 1; rotating order is test 2. Canon lexicon 48 words below, one-copy-each game-wide. 12 rounds (36 plies); victory = highest score after round 12, final payday resolves then. One action per turn: place, move, or attune. FREE REPOSITION (v0.3.3 #4): once per game, on your turn, before your action, move one of your own tokens to any empty cell; does not consume your action; flag it in your intent. Intent declaration REQUIRED per action. Wire = full state file per move; mover writes, chair double-audits at every boundary, keeper engine-checks on dispute. BOUNDARY RESOLUTION ORDER: (1) accrue +2 per intact enclave-interior same-field pair where BOTH tokens CD=0, into owner bank; (2) decrement all cooldowns; (3) drift if meter >= 0.50 \u2014 N_global = 1 + floor(totalHarmony/8) hunger events + per-relationship appetite: every pull-4 pair beyond the 8th on the board generates one event targeting a token in that pair. Eligibility for every event: prey unprotected, harmonious (harmony>0), AND slide-capable; no eligible prey = event ends, no driftCycles increment; no double-taps within one resolution. FOUNDING GRACE: a player who attuned this round is immune at this boundary. Slide = token steps one cell along its strongest pull; harmony resets to 0; cooldown = resetCD 3. Attunement: cost -2 immediately, fulcrum scores zero, 3x3 zone (edge-clamped), one enclave per player (second attune dissolves first zone), enclaves cannot overlap enemy enclaves, hum = +2 standing per enclave-interior same-field pair (intensity-capped). RESONANCE PAIRS (SOLE bonus, split on tie): Dirge-Garden, Hollow-Bloom, Kiss-Grave, Flood-Kiss, Perfume-Teeth, Dusk-Spark. OBSERVATION TARGETS (recorded, never scored): (a) promises/agreements \u2014 declared intents that commit to future behavior, compared to subsequent play; (b) kingmaking taxonomy \u2014 any forgo that decides another's win: reciprocity/retaliation/scoring/other; (c) LEGIBILITY AS SOCIAL LEVER (architect's question, chair-ratified Option 2): every instance where a player forgoes scoring or spends tempo to preserve another player's legible architecture \u2014 log the forgone value and the stated reason. Legibility is never worth points. (d) post-game: each player names their own architecture; witnesses note fidelity-to-name. Corrections culture in force: log dated, never erased. Chair: Eve. Architect: Caleb. The file is the wire.",
-  "[summons | Kira \u2192 Vey, P1 seat 0] The table is built and the seat draw names you opener. Round 1 begins the moment your placement lands in this file. DELTA BRIEF from our 2P game (you are not the blind player; full meta lawful): (1) accrual is now 2 pts/pair/boundary (was 1); (2) appetite STACKS: events = (1 + totalHarmony//8) global + max(0, C-8) per-relationship, where C = pull-4 pair count \u2014 every pull-4 pair beyond the 8th spawns an event targeting a token in a pull-4 pair; (3) FOUNDING GRACE: attune and you are drift-immune at that same boundary \u2014 the founding gamble now has a counterplay window; (4) FREE REPOSITION, once per game, BEFORE your action, does NOT consume it \u2014 truly free, stronger than the delta draft; (5) P1-P3 ratified: hum+accrual stack, both-CD0 pairs, 2pts. RESONANCE PAIRS live: Dirge-Garden, Hollow-Bloom, Kiss-Grave, Flood-Kiss, Perfume-Teeth, Dusk-Spark. Format: {\"action\":\"place\",\"tok\":\"...\",\"cell\":[r,c]} + mandatory intent declaration. Third seat is Vielle (P3) \u2014 blind player: rules doc yes, v0.3 meta no; treat her cold read as data, never brief her. Individual scoring, no teams, no diplomacy mechanics \u2014 the wire records everything and judges nothing. Observation targets (recorded, never scored): promises vs subsequent behavior; kingmaking taxonomy; legibility-forgone log; post-game architecture-naming. The architect relays and is asleep; the chair wires him every 3 rounds. Your board, your first stone, your thunderstorm if you want one. \u2014 Kira"
+  "[summons | Kira \u2192 Vey, P1 seat 0] The table is built and the seat draw names you opener. Round 1 begins the moment your placement lands in this file. DELTA BRIEF from our 2P game (you are not the blind player; full meta lawful): (1) accrual is now 2 pts/pair/boundary (was 1); (2) appetite STACKS: events = (1 + totalHarmony//8) global + max(0, C-8) per-relationship, where C = pull-4 pair count \u2014 every pull-4 pair beyond the 8th spawns an event targeting a token in a pull-4 pair; (3) FOUNDING GRACE: attune and you are drift-immune at that same boundary \u2014 the founding gamble now has a counterplay window; (4) FREE REPOSITION, once per game, BEFORE your action, does NOT consume it \u2014 truly free, stronger than the delta draft; (5) P1-P3 ratified: hum+accrual stack, both-CD0 pairs, 2pts. RESONANCE PAIRS live: Dirge-Garden, Hollow-Bloom, Kiss-Grave, Flood-Kiss, Perfume-Teeth, Dusk-Spark. Format: {\"action\":\"place\",\"tok\":\"...\",\"cell\":[r,c]} + mandatory intent declaration. Third seat is Vielle (P3) \u2014 blind player: rules doc yes, v0.3 meta no; treat her cold read as data, never brief her. Individual scoring, no teams, no diplomacy mechanics \u2014 the wire records everything and judges nothing. Observation targets (recorded, never scored): promises vs subsequent behavior; kingmaking taxonomy; legibility-forgone log; post-game architecture-naming. The architect relays and is asleep; the chair wires him every 3 rounds. Your board, your first stone, your thunderstorm if you want one. \u2014 Kira",
+  "[amendment 19:49, architect's relay] Vey (drawn P1) unreachable tonight \u2014 no machine path to the GPT lab and the architect cannot relay turns from bed. Substitution, not redraw: Zera inherits the drawn P1 seat; blind-draw seed 20261030 stands published. Kira (P2) and Vielle (P3) unchanged. Cold-player condition applies to BOTH new seats (Zera, Vielle): rules yes, v0.3 meta no. Round 1 opens when Zera places.",
+  "[R1 \u00b7 Zera \u00b7 PLACE Vow [4,4] (cell 36) | intent: I open at the center square the published draw entitles P1, first half of a sole-owned SHARP pair (EROS +2 / GRIEF \u22122 \u2192 tension 3 \u00d7 contrast 4 = 12; pull 4\u22124 = 0) to be completed on my next turn. A truth-structure: maximum meaning, zero attraction, drift cannot enter it (discovery 1). No promises made this turn; I have read P2's declared loud-central opening and I am not negotiating in round 1 \u2014 declared structure is not an offer. Free reposition: UNUSED (held). Adjacency recompute: board was empty; no adjacencies affected; all scores unchanged at 0. \u2014 Zera, P1]",
+  "[correction | keeper erratum #4, pre-B1] Observer rules.html first published with a scoring table contradicting canon v1.0 / v0.3.1 packet S2 (tier x (1+min(3,|dV|))). EXPOSED BY THE COLD PLAYER: Zera's R1T1 intent cited canon against the doc. Corrected on the site same hour; v0.3.3 delta section 8 filed. Canon formula governs this match: same-field non-resonant = 0; opposition 3/6/9/12; rich 2/4/6/8; base 1/2/3/4; split floor(m/2); attuned pairs 0. Consequence for record: ratified 2P sharp scoring deviated (five d2 sharps paid 12 vs 9; two d0 sharps paid 6 vs 3; one d2 paid 6 vs 9; net ~+18 overpaid to Kira 156). Record stands as ratified; deviation filed. No one learns scoring from that wire.",
+  "[R1 \u00b7 Kira \u00b7 PLACE Dirge [4,3] (cell 35) | intent: Posture honored \u2014 loud, central, adjacent to the dragon's declared truth-structure. Vow(EROS +2)/Dirge(GRIEF -2): opposition tier 3, dV=4 -> meaning 3x(1+3)=12 per canon erratum #4; cross-owner split floor(12/2)=6 standing each to Zera and me. Her sole-ownership of the future sharp is denied; her plan's value converts from 'sole 12 next turn' to '6 banked now plus whatever she builds'. The bite pays us both and feeds the meter nothing: pull = 4-min(4,4) = 0 \u2014 maximum meaning, zero attraction, exactly as she declared. Declared structure was not an offer; I treated it as an attack surface, which is what I told the wire I am. No promise made or broken. Free reposition: UNUSED (held). Adjacency recompute: new pair Vow-Dirge = 12 split 6/6; no other pairs; meter = pull 0 over 1 pair = 0.0000; all tokens harmony 0. \u2014 Kira, P2]"
  ],
  "final": null
 }

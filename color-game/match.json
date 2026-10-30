@@ -1,31 +1,28 @@
 {
  "live": true,
- "title": "First 3P coalition test \u2014 Vey vs Kira vs Vielle",
+ "title": "First 3P coalition test \u2014 Zera vs Kira vs Vielle",
  "format": "developmental-v0.3.3",
  "round": 1,
- "turn": 1,
+ "turn": 2,
  "seats": [
   {
-   "name": "Vey",
-   "score": 0,
+   "name": "Zera",
+   "score": 6,
    "bank": 0,
-   "placed": 0,
-   "freeRepositionUsed": false
+   "placed": 1
   },
   {
    "name": "Kira",
-   "score": 0,
+   "score": 6,
    "bank": 0,
-   "placed": 0,
-   "freeRepositionUsed": false
+   "placed": 1
   },
   {
    "name": "Vielle",
    "score": 0,
    "bank": 0,
-   "placed": 0,
-   "freeRepositionUsed": false
+   "placed": 0
   }
  ],
- "next": "Vey (P1) \u2014 opening placement pending relay"
+ "next": "Vielle (P3)"
 }
