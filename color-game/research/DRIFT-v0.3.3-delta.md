@@ -16,7 +16,8 @@ At each round boundary, after accrual and decrement:
 3. Events = **max(0, C − 8)** — the ninth pull-4 pair and each beyond it generates one event. *(Rationale: harmony mattresses and fat corners become liability wherever they sit, concentrated or spread. The 8-pair allowance preserves small early clusters; the marginal pair is what feeds the predator.)*
 4. Each event: prey = highest-harmony token among pairs **involved in the triggering set** (all pull-4 pairs are the triggering set), subject to the standing eligibility rules: unprotected, harmony ≥ 1, slide-capable, untried this resolution. Tie-break: highest pull, then lowest index. No eligible prey → event ends without cycle increment.
 5. Slide, harmony reset (CD=3), logging — all unchanged.
-*Note: total-harmony frequency scaling is retired by this ruling; the pair-count formula is the frequency law now.*
+
+> **CHAIR CLARIFICATION ERRATUM (wire header, 2026-10-30):** the per-relationship appetite **stacks on** the global hunger formula rather than replacing it — `freqK=8` is retained, and total events = (1 + totalHarmony//8) global events **plus** (C − 8) per-relationship events when C > 8. The wire header governs; this note reconciles the doc to it. The 3P test therefore runs a *hungrier* predator than the delta draft implied — which is the ratified intent.
 
 ## 2. Economy rate
 Enclave-interior same-field pairs pay **2 points per pair per boundary** (4 half-points per pair: 2 per token), per-token cap unchanged at `intensity × 2` half-points. *Erratum #7 stands: all pre-ratification sim income figures were computed at the old harness rate and are down-weighted.*
@@ -25,7 +26,9 @@ Enclave-interior same-field pairs pay **2 points per pair per boundary** (4 half
 An enclave is **drift-immune for the first full round boundary after its declaration**, in addition to standing enclave immunity. Concretely: if attunement resolves at boundary B, tokens in that enclave cannot be selected as drift prey at boundary B+1's resolution (they may still be slid by being *neighbors* of prey elsewhere — grace covers selection, not physics). At B+2 and onward, normal enclave immunity applies (inside-zone owner tokens are protected as before). *Founding-under-appetite remains live: the grace window is one boundary, not a season — building harmony before the roof still feeds the meter, and an unattuned cluster is prey exactly as before.*
 
 ## 4. Free reposition
-Once per game, per player, as an entire turn's action: **move** one of your own tokens to any empty cell, at no action cost beyond the turn itself (i.e., the reposition IS your action for that turn, but you do not pay any additional cost and the move may cross any distance). It cannot be split across turns, cannot move another player's token, and cannot be banked (use it or lose it by game's end). The moved token keeps its attunement state and cooldown; enclave declarations do not move with a relocated center — if the center of a declared enclave is repositioned, the enclave is **dissolved** (re-declaration at the new center requires the usual prerequisites and cost).
+Once per game, per player, **on your turn, before your action**: move one of your own tokens to any empty cell; **this does not consume your action** — reposition plus a full place/move/attune in the same turn. It cannot be split across turns, cannot move another player's token, cannot be banked. The moved token keeps attunement state and cooldown.
+
+> **CHAIR CLARIFICATION ERRATUM (wire header, 2026-10-30):** the header's version is *stronger* than this section's original draft ("the reposition IS your action") — the ratified form is **truly free**: declared and executed before the turn's real action. Header governs; doc reconciled.
 
 ## 5. Ratified and embedded
 - P1: enclave hum (+2 standing per enclave same-field pair) and accrual **stack**.
