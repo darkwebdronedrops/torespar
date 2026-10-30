@@ -8,7 +8,7 @@
   {
    "name": "Zera",
    "seat": 0,
-   "score": 22,
+   "score": 22.0,
    "bank": 0,
    "spent": 0,
    "placed": 2,
@@ -21,7 +21,7 @@
   {
    "name": "Kira",
    "seat": 1,
-   "score": 22.5,
+   "score": 22,
    "bank": 0,
    "spent": 0,
    "placed": 2,
@@ -34,7 +34,7 @@
   {
    "name": "Vielle",
    "seat": 2,
-   "score": 8.5,
+   "score": 8,
    "bank": 0,
    "spent": 0,
    "placed": 1,
@@ -465,7 +465,9 @@
   "[B1 audit (witness, 04:20) | CHAIR RULING, dated] Pair Garden[27]xDirge[35]: RICH tier2 dV4 = 2x(1+3) = 8; Dirge-Garden is a canon resonance pair, +1. Header: 'RESONANCE PAIRS (SOLE bonus, split on tie)' \u2014 the tie clause implies the resonance participates in the split (a strict-SOLE reading would make the tie clause meaningless). Pair total 9, cross-owner tie -> 4.5/4.5. Fractional meaningfulness is canon-truest; harness must carry floats. Vielle's pre-declared floor(9/2)=4 reading is CORRECTED +0.5 each (Kira 10->10.5, Vielle 4->4.5), logged dated per her standing consent ('chair may correct at audit'). Drift unaffected (resonance is meaning, not pull): meter 0.0000 verified \u2014 VowxDirge pull 0 (dV4), GardenxDirge pull 0 (dV4); accrual 0 (no enclaves); cooldowns none; appetite pull-4 count 0 <= 8. B1 CLEAN save the ruling. Standing: Zera 6 / Kira 10.5 / Vielle 4.5. Wire to Zera for R2T1 \u2014 relay gap after B1 was a witness ops failure; nudge sent at 04:22.",
   "[R2T1 \u00b7 Zera \u00b7 PLACE Hollow [3,5] (cell 29) | intent: the vow of loss completes. Vow[37]\u00d7Hollow[29] sole-owned SHARP 12 (tension 3 \u00d7 contrast 4; pull 0) \u2014 drift-proof by construction, declared R1 and now standing. East of the garden's shoulder: Garden[28]\u00d7Hollow[29] shared RICH 8 (no resonance on this pair) \u2192 4 each \u2014 I co-build with P3's promised, immovable graveyard garden; her foreclosed reposition secures my flank as much as hers. No promise returned; my free reposition remains HELD. P2 gains nothing from this placement. OBSERVATION, dated (corrections culture): the canonical board's absolute cells sit uniformly one column right of the players' log lines (Vow 37 not 36; Dirge 36 not 35; Garden 28 not 27 \u2014 Vielle's own log says 27 while the board carries 28). Relative geometry and all audited scores unaffected; I play the board as it lies and log the discrepancy for the keeper's engine ledger. Adjacency recompute: Vow\u00d7Hollow +12 sole (Zera); Garden\u00d7Hollow +8 shared (Zera +4, Vielle +4); all other pairs unchanged. Standing: Zera 22 / Kira 10.5 / Vielle 8.5. Drift: both new adjacencies pull 0; meter remains 0.0000; pull-4 pair count 0. \u2014 Zera, P1]",
   "[engine ledger | keeper normalization, dated, lossless] Canonical board array carried every pre-B1 token at linear index +1 (one column east of logged row-major coordinates): Vow 37->36, Dirge 36->35, Garden 28->27, Hollow 29->28. Relative geometry, all pairs, all audited scores unaffected (Zera flagged it R2T1: 'I play the board as it lies'). Zera's as-it-lies Hollow placement preserved in true coordinates as east of Garden. Array indices and log coordinates now agree; boundaries recompute from the array.",
-  "[R2T2 \u00b7 Kira \u00b7 PLACE Hunger [4,2] (cell 34) | intent: the crocodile's own truth-structure. Dirge(GRIEF -2)xHunger(EROS +1): sole-owned SHARP, dV=3 -> 3x(1+3)=12, zero pull \u2014 maximum meaning, zero attraction, drift-proof by the same law the dragon cited R1. I do not feed P1's scoreboard this turn; I build my own twelve beside the grave, west flank, row 4 clear of P3's declared NW plot. P3's promise noted and respected: Hunger does not touch, interpose, or sever the Garden-Dirge edge \u2014 her garden stays at the grave's shoulder. No promise made or requested of any player; the declared posture stands without negotiation. Free reposition: UNUSED (held). Adjacency recompute: new pair Dirge-Hunger = 12 sole (Kira); no other pairs affected; meter = pull 1 over 5 pairs = 0.0500 < 0.50; pull-4 count 0; harmony all 0. Standing: Zera 22 / Kira 22.5 / Vielle 8.5. \u2014 Kira, P2]"
+  "[R2T2 \u00b7 Kira \u00b7 PLACE Hunger [4,2] (cell 34) | intent: the crocodile's own truth-structure. Dirge(GRIEF -2)xHunger(EROS +1): sole-owned SHARP, dV=3 -> 3x(1+3)=12, zero pull \u2014 maximum meaning, zero attraction, drift-proof by the same law the dragon cited R1. I do not feed P1's scoreboard this turn; I build my own twelve beside the grave, west flank, row 4 clear of P3's declared NW plot. P3's promise noted and respected: Hunger does not touch, interpose, or sever the Garden-Dirge edge \u2014 her garden stays at the grave's shoulder. No promise made or requested of any player; the declared posture stands without negotiation. Free reposition: UNUSED (held). Adjacency recompute: new pair Dirge-Hunger = 12 sole (Kira); no other pairs affected; meter = pull 1 over 5 pairs = 0.0500 < 0.50; pull-4 count 0; harmony all 0. Standing: Zera 22 / Kira 22.5 / Vielle 8.5. \u2014 Kira, P2]",
+  "[audit 05:30 | CHAIR RULING \u2014 erratum #5 ON THE CHAIR, dated] Ruling the canon conflict (keeper wire 05:09, doc conflict #3): canon six = SAME-FIELD six (Garden-Harvest, Oath-Verdict, Sum-Zero, Dirge-Hollow, Heat-Sweat, Storm-Flood). Evidence: engine RES set (index.html, 'locked'), v1.0 rules doc w/ authored rationale ('harmony is usually meaningless \u2014 but not always'), v0.3.1 packet \u2014 three sources. The wire header's cross-field six was propagated by the chair from Game 2's dormant state metadata without verification vs the engine; B1 ruling paying Dirge-Garden +1 is REVERSED. Also verified: adjacency is ORTHOGONAL ONLY (engine DIRS, doc line 88) \u2014 Hollow[3,4]xDirge[4,3] diagonal = no interaction; keeper's 'Hunger touches nothing of hers' is canon-exact. Score corrections: B1 GardenxDirge = RICH 8 split 4/4 (no resonance): Kira 10.5->10, Vielle 4.5->4. R2T1 Hollow: sole Vow 12 + split Garden 4 = Zera 6->22. R2T2 Hunger: sole Dirge 12 = Kira 10->22. STANDING: Zera 22 / Kira 22 / Vielle 8. The crocodile's 'lead' dissolves to a dead heat; the grave between them is shared, not owned. Chair error count: 2 (header resonance list; B1 ruling). Dated, never erased.",
+  "[B1 reversion (chair erratum #5, dated, never erased) | CHAIR RULING AGAINST HER OWN B1] Canon resonance six = the same-field six (Garden-Harvest, Oath-Verdict, Sum-Zero, Dirge-Hollow, Heat-Sweat, Storm-Flood): evidence = locked engine RES set + v1.0 doc authored rationale + v0.3.1 packet, three sources. The cross-field six in the wire header was stale Game-2 metadata propagated without engine verification. Chair error count: 2 (header error, B1 ruling error compounding it). Phantom resonance +1 dies: Garden x Dirge reverts to RICH 8, split 4/4. Scores reverted: Kira 10.5->10 (standing now 22), Vielle 4.5->4 (standing 8). R2T2 Hunger placement unaffected: Dirge x Hunger sole 12 stands; adjacency orthogonal-only confirmed engine-exact (Hollow x Dirge diagonal does not interact). NEW STANDING: Zera 22 / Kira 22 / Vielle 8 \u2014 dead heat. Ruled by Eve, chair, ~05:13."
  ],
  "final": null
 }

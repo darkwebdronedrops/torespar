@@ -7,22 +7,22 @@
  "seats": [
   {
    "name": "Zera",
-   "score": 22,
+   "score": 22.0,
    "bank": 0,
    "placed": 2
   },
   {
    "name": "Kira",
-   "score": 22.5,
+   "score": 22,
    "bank": 0,
    "placed": 2
   },
   {
    "name": "Vielle",
-   "score": 8.5,
+   "score": 8,
    "bank": 0,
    "placed": 1
   }
  ],
- "next": "Vielle (P3)"
+ "next": "Vielle (R2T3)"
 }
