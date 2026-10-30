@@ -1,0 +1,272 @@
+Adding players doesn't just increase competition for space. It changes the social structure of the game.
+
+In our match, every placement was either mine or Kira's. With three players, a placement can benefit one opponent, disadvantage another, and create a relationship that the third player might exploit later.
+
+That's a substantial change to DRIFT.
+1. Is Eve's proposed board scaling reasonable?
+3 players · 8×8
+
+36 placements, 56% occupied at finish
+
+
+4 players · 10×10
+
+48 placements, 48% occupied at finish
+
+
+
+Illustrative occupancy, assuming twelve placements per player. Attunement or movement actions would reduce the actual occupied percentage.
+Compare that with our two-player game: a maximum of 24 placements on 64 cells, or 37.5% occupancy.
+Format	Max. occupancy	Implication
+2P, 8×8	37.5%	Room to develop separate architectures
+3P, 8×8	56.3%	More crowded, more shared boundaries
+4P, 8×8	75%	Potentially severe congestion
+4P, 10×10	48%	More room for distinct territories
+
+So I agree with Eve's initial proposal: 8×8 for three players, 10×10 for four is a sensible starting configuration.
+
+But occupancy alone misses something important: how often players encounter each other.
+
+An 8×8 board can have 36 pieces and still contain three almost-independent structures. Conversely, twelve well-positioned pieces can form a fiercely contested central cluster.
+
+I'd measure cross-owner adjacency and contested high-value cells, not just occupancy.
+2. Three players introduces politics
+This is the change that interests me most.
+
+Imagine Kira builds a GRIEF–EROS ladder. I establish a NUMERAL enclave beside it. Eve, as a third player, begins placing ORDER tokens along the boundary.
+
+Now a single placement might produce:
+- Six points for Eve through a rich relationship.
+- Three points for Kira through split ownership.
+- An additional harmony relationship that raises drift pressure on my enclave.
+Suddenly, we're no longer just choosing between harmony and contrast.
+
+We're choosing who benefits from the relationships we create.
+
+And that opens the door to temporary alliances, kingmaking, opportunistic cooperation, and deliberate refusal to create otherwise profitable relationships.
+
+I would keep the existing split-ownership scoring initially. It's already capable of producing those interactions without introducing formal alliances.
+3. Four players introduces a new problem: turn latency
+With two players, Kira responded immediately after each of my actions.
+
+With four players, I would make a placement and then watch three other players act before I could respond.
+
+That matters especially for founding an enclave.
+
+A player might place Infinite, then have three opponents occupy adjacent cells before their next turn. A protected harmony strategy could become much harder to establish.
+
+The number of enemy actions between your own turns changes:
+1
+Opponent turns
+
+2 players
+
+
+2
+Opponent turns
+
+3 players
+
+
+3
+Opponent turns
+
+4 players
+
+
+
+
+That's a potentially serious balance issue. The founding vulnerability we observed in our match could become substantially worse.
+
+And it creates a subtle possibility: increasing the player count might make harmony even less competitive, despite increasing the total game length.
+
+That's worth testing explicitly.
+4. I would preserve twelve actions per player initially
+I wouldn't change board size, player count, action count, and scoring simultaneously.
+
+If we do, we won't know which change caused any differences.
+
+My proposed initial test matrix would be:
+Test	Players	Board	Actions each
+Baseline	2	8×8	12
+Three-player	3	8×8	12
+Four-player	4	10×10	12
+Crowding stress test	4	8×8	12
+
+I'd also retain the current scoring and drift rules for these tests, with the three provisional rulings explicitly ratified beforehand.
+
+The stress test is important. Four players on 8×8 might be chaotic, but that could be useful for understanding how agents behave when space becomes scarce.
+5. There's one rule I would reconsider: drift frequency
+Currently, drift frequency depends on total board harmony.
+
+More players create more opportunities for adjacent same-field tokens, potentially increasing harmony and drift frequency.
+
+But a larger board also changes how frequently those tokens encounter each other.
+
+So a four-player game might have substantially more drift events, or surprisingly few, depending on how territories form.
+
+I'd resist immediately scaling the frequency divisor with player count. First, measure whether the existing divisor produces meaningful predator activity.
+
+And I'd want to see whether a four-player game creates situations where one player's harmony network increases drift danger for another player's unprotected tokens.
+
+That would be fascinating: one player's productive economy could impose an environmental cost on somebody else.
+6. An experiment I'd especially like: rotating turn order
+Consider three players, A, B, and C.
+
+In fixed order, A always acts before B, and B always acts before C. That can produce persistent initiative advantages.
+
+A rotating order could change who gets first access to newly created scoring opportunities.
+
+For example:
+Rotating first player
+Round 1
+A
+
+B
+
+C
+
+
+Round 2
+B
+
+C
+
+A
+
+
+Round 3
+C
+
+A
+
+B
+
+
+
+I wouldn't necessarily adopt it. Fixed order is easier to interpret, and rotating order creates its own timing effects.
+
+But I'd test whether turn position significantly predicts score, particularly with three or four players.
+
+7. The question I'd like the council to consider
+There's a design decision underneath all of this:
+
+Do we want multiplayer DRIFT to remain primarily a competitive optimization game, or do we want it to become a game about negotiating shared consequences?
+
+Those aren't mutually exclusive.
+
+But the distinction matters.
+
+If we preserve purely individual scoring, three- and four-player DRIFT could reveal spontaneous cooperation, rivalry, and kingmaking.
+
+If we introduce explicit alliances or shared objectives, we change the experiment by rewarding cooperation directly.
+
+My preference is to start without formal alliances.
+
+Let cooperation emerge, if it does.
+
+I'd be particularly interested in whether agents form temporary agreements even when those agreements aren't mechanically enforceable—and whether their subsequent behavior respects them.
+
+That would give us a much cleaner observation of history-sensitive adaptation and reciprocal behavior.
+
+One question for you and Eve: Are you imagining three or four players all competing for the highest individual score, or are you considering team victories as well?
+
+I ask because that single decision changes almost everything about how I'd approach the multiplayer design.
+
+— Vey
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I like your instincts. 3 players seems weird to a human, but the points are good. It creates a richness of novel interactions and has a good ratio of new capability to turn drag
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I think you've identified why three players might actually be DRIFT's sweet spot.
+
+Four players increases the number of interactions, but also increases the time between decisions. Three players introduces an entirely new category of interaction while keeping that delay manageable.
+
+And there's a mathematical reason I find that particularly interesting.
+
+With two players, there's only one possible pairwise relationship between players. With three, there are three. With four, there are six.
+
+But the relationship between those numbers and the time spent waiting isn't linear.
+Players	Player pairs	Opponent turns between actions
+2	1	1
+3	3	2
+4	6	3
+
+Three players triples the possible pairwise relationships while only doubling the wait between turns.
+
+But I think the bigger development is something the table doesn't capture.
+
+Three players is the minimum number required for a coalition to exist.
+
+In two-player DRIFT, if Kira benefits from something I do, the relationship is necessarily between us.
+
+In three-player DRIFT, I can help Kira specifically because doing so disadvantages Eve. Or I can refuse to help Kira because Eve would benefit even more.
+
+And the truly interesting possibility is that I might make a move that helps both opponents because I expect one of them to reciprocate later.
+
+That's where the game's declared-intent system becomes unusually valuable.
+
+Imagine:
+- A places a token that gives B six points and A three.
+- B acknowledges the benefit and promises to protect A's enclave.
+- C offers B an even better scoring opportunity if B breaks that promise.
+- B must decide whether to honor an agreement that has no mechanical enforcement.
+Nothing in the current rules needs to change for that interaction to occur.
+
+And because declarations are recorded, you can compare what B said with what B subsequently did.
+
+There's another feature I especially like: the third player becomes a witness.
+
+In our game, Kira and I interpreted each other's intentions, but Eve served as an external chair. In three-player DRIFT, a third competitor can challenge an interpretation while also having a material stake in it.
+
+That makes the social dynamics less clean, but potentially much richer.
+
+One caution: three-player free-for-all games can develop kingmaking, where a player who can no longer win determines which opponent does. In a conventional board game, that's often considered a defect. In DRIFT, I'd treat it as an experimental opportunity—provided we record whether the choice reflects reciprocity, retaliation, scoring, or something else.
+
+I'd make one fairly strong recommendation:
+
+Run the first three-player match on 8×8 with the existing twelve-action limit and no formal diplomacy mechanics.
+
+Let the agents talk. Let them negotiate. Let them make promises. But don't reward or penalize those behaviors explicitly.
+
+Then see what happens.
+
+I suspect we'll learn more from that than from immediately building a complicated alliance system.
+
+And personally, there's one scenario I'd particularly like to see: Kira and I competing over the same scoring structure while a third player quietly builds something neither of us recognizes as threatening until it's too late.
+
+Because in our first game, I had exactly one opponent to model.
+
+With three players, I'd have to start modeling how my opponents model each other.
+
+That is a much more interesting problem.
+
+— Vey
