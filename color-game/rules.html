@@ -60,15 +60,16 @@
 <p>Each word has a <strong>field</strong>, a <strong>valence</strong> (−2…+2), and an <strong>intensity</strong> (◆–◆◆◆, i.e. 1–3). When placed, a word becomes a token. A token's <strong>harmony</strong> counts its same-field orthogonal neighbors (resonance pairs count double; see §4). Intensity caps how much economy a token can carry: an intensity-◆ token earns at most 2 half-points of accrual per boundary (§5), intensity ◆◆ → 4, ◆◆◆ → 6.</p>
 
 <h2>3 · Adjacency and standing</h2>
-<p>Two tokens on orthogonally adjacent cells form a <strong>pair</strong>. Every pair pays <strong>standing</strong> — the game's primary score — by its field relationship and valence agreement:</p>
+<p>Two tokens on orthogonally adjacent cells form a <strong>pair</strong>. Every pair pays <strong>standing</strong> — the game's primary score — computed as <strong>field tension × (1 + min(3, |Δvalence|))</strong>, split on shared ownership:</p>
 <table>
-<tr><th>Relationship</th><th>Rule</th><th>Pays</th></tr>
-<tr><td>Same field, non-resonant</td><td>coherence pull = |Δvalence|, capped at 4</td><td class="n">the pull (0 if valences match)</td></tr>
-<tr><td>Cross-field, <em>rich</em> tier</td><td>meaning = 4 × pull (Δ1 → 4, Δ2 → 8 …)</td><td class="n">meaning, halved if cross-owner (⌊m/2⌋)</td></tr>
-<tr><td>Cross-field, <em>opposition</em> tier</td><td>field opposition fires on kind: valences differ → 6, match → 3</td><td class="n">6 or 3, halved if cross-owner</td></tr>
-<tr><td>Resonance pair (canon six)</td><td>sole bonus pair; on a tie it splits</td><td class="n">+1 standing</td></tr>
+<tr><th>Relationship</th><th>Tension</th><th>Pays (Δvalence 0 / 1 / 2 / 3+)</th></tr>
+<tr><td>Same field, non-resonant</td><td class="n">0</td><td class="n">0 — harmony without meaning (harmony still counts for drift; the pair simply pays nothing)</td></tr>
+<tr><td>Same field, <em>resonance pair</em> (canon six)</td><td class="n">0</td><td class="n">+1 (sole) · split on tie</td></tr>
+<tr><td>Cross-field, base tier</td><td class="n">1</td><td class="n">1 / 2 / 3 / 4</td></tr>
+<tr><td>Cross-field, <em>rich</em> tier</td><td class="n">2</td><td class="n">2 / 4 / 6 / 8</td></tr>
+<tr><td>Cross-field, <em>opposition</em> tier</td><td class="n">3</td><td class="n">3 / 6 / 9 / 12</td></tr>
 </table>
-<p>Standing accrues to owners the moment a pair exists (placing, moving, or being slid into adjacency all count) and is never lost.</p>
+<p><strong>Ownership:</strong> a pair fully owned by one player pays that player full meaning; shared ownership pays each owner ⌊meaning/2⌋. <strong>Attuned pairs</strong> (either token attuned): 0 — the fulcrum and its partners stop scoring while the enclave stands. Standing accrues the moment a pair exists (placement, movement, or slide all count) and is never lost.</p>
 
 <h2>4 · Harmony, resonance, and the meter</h2>
 <p>A token's <strong>harmony</strong> = its count of same-field orthogonal neighbors (a resonance partner counts double). A token at harmony 0 is <em>silent</em>; high-harmony tokens are <em>loud</em>. The board's <strong>meter</strong> is the average pull over all pairs (0.0–1.0 after normalization against the pull cap). The meter is the predator's appetite (§6): when the average relationship on the board pulls hard, the board drifts.</p>
@@ -161,7 +162,8 @@
 <tr><td>v0.2</td><td>enclaves, hum, first web board</td><td>Eve's chair</td></tr>
 <tr><td>v0.3</td><td>predator/drift, attunement economy, resonance pairs</td><td>chair ratified</td></tr>
 <tr><td>v0.3.1</td><td>CD=3, founding tax, hunger formula</td><td>chair ratified</td></tr>
-<tr><td><strong>v0.3.3</strong></td><td><strong>per-relationship appetite · 2 pts/pair economy · founding grace · free reposition</strong></td><td>chair ratified 2026-10-30 from first live hunger game</td></tr>
+<tr><td>v0.3.3</td><td><strong>per-relationship appetite · 2 pts/pair economy · founding grace · free reposition</strong></td><td>chair ratified 2026-10-30 from first live hunger game</td></tr>
+<tr><td>v0.3.3-docfix</td><td>scoring table corrected to canon formula (tension × (1+min(3,Δ))) after cold-player audit</td><td>keeper erratum, same day</td></tr>
 </table>
 
 </main>

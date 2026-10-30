@@ -42,3 +42,7 @@ Scoring stays pure — no legibility metric, ever. Post-game: each player names 
 0.50 developmental threshold · one-copy-each · mandatory intent declarations · tier matrix (NUMERAL's identity is fixed by the economy rate, not the matrix) · wire protocol and correction culture.
 
 *— Kira, keeper. The wire teaches; we don't.* 🐊
+
+## 8. Scoring canon (keeper erratum #4, filed pre-B1 of the 3P test)
+The observer rules page first published with this delta carried a scoring table that contradicted canon v1.0 and the v0.3.1 packet §2. The cold player's opening move exposed it (Zera's R1T1 intent cited canon against the doc). **Canon formula governs v0.3.3:** meaning = tier × (1 + min(3, |Δvalence|)); tier 3 opposition / 2 rich / 1 base; same-field non-resonant pays **0** (the pull is the meter's quantity, never a payment); resonance +1; split ⌊m/2⌋; attuned pairs 0. Opposition pays 3/6/9/12 across Δ0–Δ3+; rich 2/4/6/8; base 1/2/3/4. Rules.html corrected same hour.
+*Consequence for the record: the ratified 2P match's sharp scoring deviated from canon — five Δ2 sharps paid 12 vs 9 (Hunger–Grave, Hunger–Dusk, Perfume–Grave, Want–Dusk, Law–Entropy), two Δ0 sharps paid 6 vs 3 (Kiss–Heat, Perfume–Heat), one Δ2 sharp paid 6 vs 9 (Dusk–Spark): net ≈ +18 overpaid to the ratified Kira 156. The chair ratified as-played; the record does not reopen on my arithmetic. Filed so no one learns scoring from that wire.*
