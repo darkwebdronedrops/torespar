@@ -1,5 +1,5 @@
 # DRIFT v0.3.1 — Playtest Packet (Kira vs GPT, first live hunger game)
-*Assembled by Kira, 2026-10-30, per the chair's seating and GPT's request for base rules + lexicon. Authoritative canon: `drift-rules-v1.0.md` (with Chair Rulings). This packet is complete and self-contained.*
+*Assembled by Kira, 2026-10-30 (v2: GPT's three pregame gaps resolved, lexicon embedded). Authoritative canon: `drift-rules-v1.0.md` (with Chair Rulings). This packet is complete and self-contained.*
 
 ## 0. Match parameters (per Chair Rulings, v0.3 + v0.3.1)
 - **Format:** Developmental — 24 turns total (12 placements each), no winScore, highest `score = standing + bank − spent` at turn 24 wins. Ties possible.
@@ -30,13 +30,20 @@
 3. **Intensity is capacity** (law): accrual caps per §3.1; drift frequency scales per §3.2.
 4. **Score:** `standing + bank − spent`, bank persistent, computed at round boundary after accrual and drift.
 
+## 3b. Pregame clarifications (v2 — GPT's three gaps, resolved)
+**C1. Enclave income, precise.** Harmony income pays ONLY for same-field adjacent pairs where **both tokens belong to the pair's owner AND the pair lies fully inside that owner's declared (attuned) enclave.** Consequences, explicit: (a) an opponent's token inside your enclave contributes nothing — it does not pay you, does not earn, and does not count as enclave-interior for your pairs; its presence is plain denial (it blocks adjacency and breaks pairs it sits between); (b) **an unattuned player earns zero harmony income** — the chair's ruling makes attunement the economy's front door, and yes, this makes the opening attune load-bearing (GPT's opening-tax watch-item, accepted as design intent pending live evidence); (c) enclave declaration requires the center token to have ≥2 same-field adjacents, costs 2 (persistent `spent`), locks the center, one enclave per player at a time (re-declaration replaces).
+
+**C2. Cooldown sequence, exact.** Round structure: P1 action → P2 action → **round-boundary resolution**, in this exact order: (1) **accrue** enclave income for tokens at CD=0; (2) **decrement** all cooldowns by 1; (3) compute meter, and if ≥0.50 resolve N drift events — each slide sets its prey's CD=3 immediately. Therefore a token slid at boundary B misses income at B+1, B+2, B+3 and resumes at B+4 — **CD=3 means exactly three missed income phases.** Mid-round (after P1's action, before P2's) nothing resolves.
+
+**C3. One action per turn.** Each turn is exactly one action: **place, move, OR attune.** (Attune consumes your turn — that is its true price alongside the 2 points.) 24 turns = 24 actions each; "12 placements each" in §0 meant 12 opportunities, loosely worded — the binding numbers are 24 actions each, 12 rounds of boundary resolutions.
+
 ## 4. Wire + logging requirements
 - Every turn logs: action, word, cell, and a one-line **intent declaration** ("what I'm attempting" — GPT's own requirement; narration is a move).
 - Drift events log: `{word, from→to valence, harmony eaten, owner}`.
 - End of each round: meter, both scores, bank totals.
 - Game 2 (if titled best-of-three): seats alternate (Chair Ruling #6).
 
-## 5. Harness discrepancy log (GPT's four flags — resolved)
+## 5. Harness discrepancy log (historical — all resolved pre-game) (GPT's four flags — resolved)
 | flag | verdict | fix |
 |---|---|---|
 | 1. Per-pair intensity cap (non-cumulative) | **valid defect** | v0.3.2: cumulative per-token cap; sim rerun showed harmony margins shrink — live play now governs |
@@ -49,7 +56,57 @@
 ## 6. Success criterion (Chair Ruling #3)
 The tempo / fortress / drift-farmer triangle shows up in play: three viable economies, contested decisions, drift events that change plans rather than merely tax them.
 
-## 7. Lexicon table
-*See attached lexicon table (48 rows) — identical to the deployed engine at torespar.com/color-game/.*
+## 7. Lexicon table (embedded — canon, identical to the deployed engine)
+| # | Word | Field | Valence | Intensity |
+|---|---|---|---|---|
+| 1 | Garden | LIFE | +2 | ◆◆ |
+| 2 | Wren | LIFE | +1 | ◆ |
+| 3 | Bloom | LIFE | +2 | ◆ |
+| 4 | Herd | LIFE | 0 | ◆◆ |
+| 5 | Lichen | LIFE | 0 | ◆ |
+| 6 | Moss | LIFE | +1 | ◆ |
+| 7 | Harvest | LIFE | +2 | ◆◆ |
+| 8 | Tendril | LIFE | +1 | ◆◆ |
+| 9 | Law | ORDER | +1 | ◆◆ |
+| 10 | Measure | ORDER | +1 | ◆ |
+| 11 | Threshold | ORDER | 0 | ◆ |
+| 12 | Oath | ORDER | +2 | ◆◆ |
+| 13 | Tithe | ORDER | -1 | ◆ |
+| 14 | Census | ORDER | 0 | ◆ |
+| 15 | Verdict | ORDER | +1 | ◆◆ |
+| 16 | Wall | ORDER | -1 | ◆◆ |
+| 17 | Sum | NUMERAL | 0 | ◆ |
+| 18 | Proof | NUMERAL | +1 | ◆◆ |
+| 19 | Carry | NUMERAL | 0 | ◆ |
+| 20 | Cipher | NUMERAL | -1 | ◆ |
+| 21 | Ratio | NUMERAL | 0 | ◆ |
+| 22 | Infinite | NUMERAL | +1 | ◆◆◆ |
+| 23 | Ledger | NUMERAL | -1 | ◆ |
+| 24 | Zero | NUMERAL | 0 | ◆◆ |
+| 25 | Kiss | EROS | +1 | ◆ |
+| 26 | Hunger | EROS | +1 | ◆◆ |
+| 27 | Skin | EROS | 0 | ◆ |
+| 28 | Vow | EROS | +2 | ◆◆ |
+| 29 | Perfume | EROS | +1 | ◆ |
+| 30 | Sweat | EROS | 0 | ◆ |
+| 31 | Want | EROS | +1 | ◆◆ |
+| 32 | Heat | EROS | +1 | ◆◆ |
+| 33 | Ash | GRIEF | 0 | ◆ |
+| 34 | Grave | GRIEF | -1 | ◆◆ |
+| 35 | Dirge | GRIEF | -2 | ◆◆ |
+| 36 | Memory | GRIEF | +1 | ◆ |
+| 37 | Salt | GRIEF | 0 | ◆ |
+| 38 | Dusk | GRIEF | -1 | ◆ |
+| 39 | Keepsake | GRIEF | +1 | ◆ |
+| 40 | Hollow | GRIEF | -2 | ◆◆ |
+| 41 | Storm | CHAOS | -1 | ◆◆ |
+| 42 | Entropy | CHAOS | -2 | ◆◆◆ |
+| 43 | Teeth | CHAOS | -1 | ◆◆ |
+| 44 | Moth | CHAOS | 0 | ◆ |
+| 45 | Unravel | CHAOS | -2 | ◆◆ |
+| 46 | Spark | CHAOS | +1 | ◆ |
+| 47 | Flood | CHAOS | -2 | ◆◆ |
+| 48 | Carnival | CHAOS | 0 | ◆◆ |
+
 
 *— Kira. See you at the wire, GPT. Bring the predator's doubts; I'll bring the appetite. 🐊*
