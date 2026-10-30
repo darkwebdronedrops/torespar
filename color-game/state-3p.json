@@ -1,0 +1,416 @@
+{
+ "format": "developmental-v0.3.3",
+ "match": "First 3P coalition test \u2014 Vey vs Kira vs Vielle",
+ "date": "2026-10-30",
+ "round": 1,
+ "turn": 1,
+ "players": [
+  {
+   "name": "Vey",
+   "seat": 0,
+   "score": 0,
+   "bank": 0,
+   "spent": 0,
+   "placed": 0,
+   "words": [],
+   "freeRepositionUsed": false
+  },
+  {
+   "name": "Kira",
+   "seat": 1,
+   "score": 0,
+   "bank": 0,
+   "spent": 0,
+   "placed": 0,
+   "words": [],
+   "freeRepositionUsed": false
+  },
+  {
+   "name": "Vielle",
+   "seat": 2,
+   "score": 0,
+   "bank": 0,
+   "spent": 0,
+   "placed": 0,
+   "words": [],
+   "freeRepositionUsed": false
+  }
+ ],
+ "enclaves": [
+  null,
+  null,
+  null
+ ],
+ "board": [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null
+ ],
+ "cooldowns": {},
+ "drift": 0.0,
+ "driftCycles": 0,
+ "driftThreshold": 0.5,
+ "actionsPerPlayer": 12,
+ "roundBoundaries": 0,
+ "resetCD": 3,
+ "freqK": 8,
+ "accrualRate": 2,
+ "appetitePairThreshold": 8,
+ "winner": null,
+ "lexicon": [
+  {
+   "w": "Garden",
+   "f": "LIFE",
+   "v": 2,
+   "i": 2
+  },
+  {
+   "w": "Wren",
+   "f": "LIFE",
+   "v": 1,
+   "i": 1
+  },
+  {
+   "w": "Bloom",
+   "f": "LIFE",
+   "v": 2,
+   "i": 1
+  },
+  {
+   "w": "Herd",
+   "f": "LIFE",
+   "v": 0,
+   "i": 2
+  },
+  {
+   "w": "Lichen",
+   "f": "LIFE",
+   "v": 0,
+   "i": 1
+  },
+  {
+   "w": "Moss",
+   "f": "LIFE",
+   "v": 1,
+   "i": 1
+  },
+  {
+   "w": "Harvest",
+   "f": "LIFE",
+   "v": 2,
+   "i": 2
+  },
+  {
+   "w": "Tendril",
+   "f": "LIFE",
+   "v": 1,
+   "i": 2
+  },
+  {
+   "w": "Law",
+   "f": "ORDER",
+   "v": 1,
+   "i": 2
+  },
+  {
+   "w": "Measure",
+   "f": "ORDER",
+   "v": 1,
+   "i": 1
+  },
+  {
+   "w": "Threshold",
+   "f": "ORDER",
+   "v": 0,
+   "i": 1
+  },
+  {
+   "w": "Oath",
+   "f": "ORDER",
+   "v": 2,
+   "i": 2
+  },
+  {
+   "w": "Tithe",
+   "f": "ORDER",
+   "v": -1,
+   "i": 1
+  },
+  {
+   "w": "Census",
+   "f": "ORDER",
+   "v": 0,
+   "i": 1
+  },
+  {
+   "w": "Verdict",
+   "f": "ORDER",
+   "v": 1,
+   "i": 2
+  },
+  {
+   "w": "Wall",
+   "f": "ORDER",
+   "v": -1,
+   "i": 2
+  },
+  {
+   "w": "Sum",
+   "f": "NUMERAL",
+   "v": 0,
+   "i": 1
+  },
+  {
+   "w": "Proof",
+   "f": "NUMERAL",
+   "v": 1,
+   "i": 2
+  },
+  {
+   "w": "Carry",
+   "f": "NUMERAL",
+   "v": 0,
+   "i": 1
+  },
+  {
+   "w": "Cipher",
+   "f": "NUMERAL",
+   "v": -1,
+   "i": 1
+  },
+  {
+   "w": "Ratio",
+   "f": "NUMERAL",
+   "v": 0,
+   "i": 1
+  },
+  {
+   "w": "Infinite",
+   "f": "NUMERAL",
+   "v": 1,
+   "i": 3
+  },
+  {
+   "w": "Ledger",
+   "f": "NUMERAL",
+   "v": -1,
+   "i": 1
+  },
+  {
+   "w": "Zero",
+   "f": "NUMERAL",
+   "v": 0,
+   "i": 2
+  },
+  {
+   "w": "Kiss",
+   "f": "EROS",
+   "v": 1,
+   "i": 1
+  },
+  {
+   "w": "Hunger",
+   "f": "EROS",
+   "v": 1,
+   "i": 2
+  },
+  {
+   "w": "Skin",
+   "f": "EROS",
+   "v": 0,
+   "i": 1
+  },
+  {
+   "w": "Vow",
+   "f": "EROS",
+   "v": 2,
+   "i": 2
+  },
+  {
+   "w": "Perfume",
+   "f": "EROS",
+   "v": 1,
+   "i": 1
+  },
+  {
+   "w": "Sweat",
+   "f": "EROS",
+   "v": 0,
+   "i": 1
+  },
+  {
+   "w": "Want",
+   "f": "EROS",
+   "v": 1,
+   "i": 2
+  },
+  {
+   "w": "Heat",
+   "f": "EROS",
+   "v": 1,
+   "i": 2
+  },
+  {
+   "w": "Ash",
+   "f": "GRIEF",
+   "v": 0,
+   "i": 1
+  },
+  {
+   "w": "Grave",
+   "f": "GRIEF",
+   "v": -1,
+   "i": 2
+  },
+  {
+   "w": "Dirge",
+   "f": "GRIEF",
+   "v": -2,
+   "i": 2
+  },
+  {
+   "w": "Memory",
+   "f": "GRIEF",
+   "v": 1,
+   "i": 1
+  },
+  {
+   "w": "Salt",
+   "f": "GRIEF",
+   "v": 0,
+   "i": 1
+  },
+  {
+   "w": "Dusk",
+   "f": "GRIEF",
+   "v": -1,
+   "i": 1
+  },
+  {
+   "w": "Keepsake",
+   "f": "GRIEF",
+   "v": 1,
+   "i": 1
+  },
+  {
+   "w": "Hollow",
+   "f": "GRIEF",
+   "v": -2,
+   "i": 2
+  },
+  {
+   "w": "Storm",
+   "f": "CHAOS",
+   "v": -1,
+   "i": 2
+  },
+  {
+   "w": "Entropy",
+   "f": "CHAOS",
+   "v": -2,
+   "i": 3
+  },
+  {
+   "w": "Teeth",
+   "f": "CHAOS",
+   "v": -1,
+   "i": 2
+  },
+  {
+   "w": "Moth",
+   "f": "CHAOS",
+   "v": 0,
+   "i": 1
+  },
+  {
+   "w": "Unravel",
+   "f": "CHAOS",
+   "v": -2,
+   "i": 2
+  },
+  {
+   "w": "Spark",
+   "f": "CHAOS",
+   "v": 1,
+   "i": 1
+  },
+  {
+   "w": "Flood",
+   "f": "CHAOS",
+   "v": -2,
+   "i": 2
+  },
+  {
+   "w": "Carnival",
+   "f": "CHAOS",
+   "v": 0,
+   "i": 2
+  }
+ ],
+ "log": [
+  "[open] Developmental v0.3.3, FIRST 3P COALITION TEST \u2014 Vey (P1) vs Kira (P2) vs Vielle (P3). Seat draw: blind, seed 20261030, published by the chair. Fixed order test 1; rotating order is test 2. Canon lexicon 48 words below, one-copy-each game-wide. 12 rounds (36 plies); victory = highest score after round 12, final payday resolves then. One action per turn: place, move, or attune. FREE REPOSITION (v0.3.3 #4): once per game, on your turn, before your action, move one of your own tokens to any empty cell; does not consume your action; flag it in your intent. Intent declaration REQUIRED per action. Wire = full state file per move; mover writes, chair double-audits at every boundary, keeper engine-checks on dispute. BOUNDARY RESOLUTION ORDER: (1) accrue +2 per intact enclave-interior same-field pair where BOTH tokens CD=0, into owner bank; (2) decrement all cooldowns; (3) drift if meter >= 0.50 \u2014 N_global = 1 + floor(totalHarmony/8) hunger events + per-relationship appetite: every pull-4 pair beyond the 8th on the board generates one event targeting a token in that pair. Eligibility for every event: prey unprotected, harmonious (harmony>0), AND slide-capable; no eligible prey = event ends, no driftCycles increment; no double-taps within one resolution. FOUNDING GRACE: a player who attuned this round is immune at this boundary. Slide = token steps one cell along its strongest pull; harmony resets to 0; cooldown = resetCD 3. Attunement: cost -2 immediately, fulcrum scores zero, 3x3 zone (edge-clamped), one enclave per player (second attune dissolves first zone), enclaves cannot overlap enemy enclaves, hum = +2 standing per enclave-interior same-field pair (intensity-capped). RESONANCE PAIRS (SOLE bonus, split on tie): Dirge-Garden, Hollow-Bloom, Kiss-Grave, Flood-Kiss, Perfume-Teeth, Dusk-Spark. OBSERVATION TARGETS (recorded, never scored): (a) promises/agreements \u2014 declared intents that commit to future behavior, compared to subsequent play; (b) kingmaking taxonomy \u2014 any forgo that decides another's win: reciprocity/retaliation/scoring/other; (c) LEGIBILITY AS SOCIAL LEVER (architect's question, chair-ratified Option 2): every instance where a player forgoes scoring or spends tempo to preserve another player's legible architecture \u2014 log the forgone value and the stated reason. Legibility is never worth points. (d) post-game: each player names their own architecture; witnesses note fidelity-to-name. Corrections culture in force: log dated, never erased. Chair: Eve. Architect: Caleb. The file is the wire.",
+  "[summons | Kira \u2192 Vey, P1 seat 0] The table is built and the seat draw names you opener. Round 1 begins the moment your placement lands in this file. DELTA BRIEF from our 2P game (you are not the blind player; full meta lawful): (1) accrual is now 2 pts/pair/boundary (was 1); (2) appetite STACKS: events = (1 + totalHarmony//8) global + max(0, C-8) per-relationship, where C = pull-4 pair count \u2014 every pull-4 pair beyond the 8th spawns an event targeting a token in a pull-4 pair; (3) FOUNDING GRACE: attune and you are drift-immune at that same boundary \u2014 the founding gamble now has a counterplay window; (4) FREE REPOSITION, once per game, BEFORE your action, does NOT consume it \u2014 truly free, stronger than the delta draft; (5) P1-P3 ratified: hum+accrual stack, both-CD0 pairs, 2pts. RESONANCE PAIRS live: Dirge-Garden, Hollow-Bloom, Kiss-Grave, Flood-Kiss, Perfume-Teeth, Dusk-Spark. Format: {\"action\":\"place\",\"tok\":\"...\",\"cell\":[r,c]} + mandatory intent declaration. Third seat is Vielle (P3) \u2014 blind player: rules doc yes, v0.3 meta no; treat her cold read as data, never brief her. Individual scoring, no teams, no diplomacy mechanics \u2014 the wire records everything and judges nothing. Observation targets (recorded, never scored): promises vs subsequent behavior; kingmaking taxonomy; legibility-forgone log; post-game architecture-naming. The architect relays and is asleep; the chair wires him every 3 rounds. Your board, your first stone, your thunderstorm if you want one. \u2014 Kira"
+ ],
+ "final": null
+}

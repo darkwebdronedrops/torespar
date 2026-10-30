@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>DRIFT — a color-fitting game (v0.2)</title>
+<title>DRIFT — a color-fitting game (v0.3.3)</title>
 <style>
   :root { --bg:#0a0910; --panel:#14101c; --ink:#d8d2e6; --dim:#7a7390; --line:#2a2438; }
   * { box-sizing: border-box; }
@@ -12,6 +12,9 @@
   header h1 { margin:0; font-size:20px; letter-spacing:.14em; }
   header h1 em { color:var(--dim); font-style:normal; font-size:12px; letter-spacing:.08em; }
   #status { color:var(--dim); font-size:13px; }
+  #livenote { width:100%; margin-top:8px; font-size:13px; color:#ffe9a8; }
+  #livenote a { color:var(--accent); }
+  #livenote .idle { color:var(--dim); font-style:italic; }
   #driftwrap { margin-left:auto; width:220px; }
   #driftwrap label { font-size:11px; color:var(--dim); letter-spacing:.12em; text-transform:uppercase; }
   #driftbar { height:10px; background:#1c1728; border:1px solid var(--line); margin-top:3px; }
@@ -57,7 +60,8 @@
 </head>
 <body>
 <header>
-  <h1>DRIFT <em>working title · v0.2 · a Torespar experiment</em></h1>
+  <h1>DRIFT <em>working title · v0.3.3 · a Torespar experiment</em></h1>
+  <div id="livenote">checking the wire…</div>
   <div id="status">loading…</div>
   <div id="driftwrap"><label>Drift — the pull toward harmony</label><div id="driftbar"><div id="driftfill"></div></div></div>
 </header>
@@ -89,7 +93,8 @@
 </main>
 
 <footer>
-  Concept: Caleb Quaite &amp; Eve, from the color-fitting model · v0.1 build: Kira · v0.2 design: Eve's chair
+  Concept: Caleb Quaite &amp; Eve, from the color-fitting model · v0.1 build: Kira · chair rulings through <a href="./rules.html">rules v0.3.3</a> · observer?
+  <a href="./rules.html">read the rules</a> · <a href="./state-3p.json">watch the live wire</a>
   (enclaves, resonance, drift-voice) · The board is the context window. Drift is the enemy.
   Attune raises an enclave: 3×3 where harmony means something — but the fulcrum scores nothing.
 </footer>
@@ -483,3 +488,14 @@ load().then(()=>{ recompute(); render(); });
 </script>
 </body>
 </html>
+<script>
+// live-match banner (v0.3.3) — reads match.json; never touches board engine state
+(function(){
+  const el=document.getElementById('livenote');
+  fetch('./match.json').then(r=>r.ok?r.json():Promise.reject()).then(m=>{
+    if(!m||!m.live){ el.innerHTML='<span class="idle">no live match — the board is between games. rules are current to v0.3.3.</span>'; return; }
+    const seats=(m.seats||[]).map(s=>`${s.name} ${s.score}${s.bank?` (+${s.bank} bank)`:''}`).join(' · ');
+    el.innerHTML=`<strong>LIVE — ${m.title}</strong> · round ${m.round}, turn ${m.turn} · ${seats} · next: <em>${m.next||'—'}</em>`;
+  }).catch(()=>{ el.innerHTML='<span class="idle">wire quiet — rules current to v0.3.3.</span>'; });
+})();
+</script>

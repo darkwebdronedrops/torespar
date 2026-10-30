@@ -62,3 +62,9 @@ write the birth notice when a prototype exists.
   Dirge×Hollow · Heat×Sweat · Storm×Flood.
 - **Drift flavor-lines:** 16 field-pair templates + generic fallbacks; drift events name the pull in
   corpus-language. (Occasionally broken grammar is spec'd for a later pass.)
+
+## v0.3.3 site update (2026-10-30, keeper)
+- `rules.html` — observer edition of the full rules: canon core + chair-ratified v0.3.3 mechanics + complete 48-word lexicon. Mechanics only; no strategy content (blind-player safe).
+- `match.json` + live banner on index.html — current match status for observers (3P coalition test: Vey / Kira / Vielle).
+- `state-3p.json` — the live wire state, mirrored from the workspace wire file on every keeper sync.
+- Engine logic untouched (this board page remains a v0.2 hotseat relay viewer; canonical play state lives in the wire files).
