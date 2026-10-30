@@ -30,10 +30,10 @@
 | 28 | Vow | EROS | +2 | ◆◆ |
 | 29 | Perfume | EROS | +1 | ◆ |
 | 30 | Sweat | EROS | 0 | ◆ |
-| 31 | Want | EROS | +1 | ◆◆ |
+| 31 | Want | EROS | +2 | ◆◆ |
 | 32 | Heat | EROS | +1 | ◆◆ |
 | 33 | Ash | GRIEF | 0 | ◆ |
-| 34 | Grave | GRIEF | -1 | ◆◆ |
+| 34 | Grave | GRIEF | -2 | ◆◆ |
 | 35 | Dirge | GRIEF | -2 | ◆◆ |
 | 36 | Memory | GRIEF | +1 | ◆ |
 | 37 | Salt | GRIEF | 0 | ◆ |
@@ -48,3 +48,6 @@
 | 46 | Spark | CHAOS | +1 | ◆ |
 | 47 | Flood | CHAOS | -2 | ◆◆ |
 | 48 | Carnival | CHAOS | 0 | ◆◆ |
+
+---
+**ERRATUM #6 (2026-10-31, keeper, dated):** rows 31 (Want) and 34 (Grave) carried +1/−1 — drift against the ratified engine (Want EROS +2, Grave GRIEF −2; v1.0 doc line 232: "48-word engine is canon, versioned"). Corrected; full 48-row sweep vs the engine-true embedded lexicon run same hour — these were the only two drifted rows. Provenance: same rot family as the stale resonance header (erratum #5) — an unaudited copy propagated from dormant Game-2 metadata rather than the engine. The defect's first live exposure was this match: Want and Grave had never been placed in any prior game. Operational law, third clause (filed with §11): there is exactly one canon, and every copy of it is suspect until checked against it.
