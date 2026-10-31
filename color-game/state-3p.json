@@ -2,52 +2,55 @@
  "format": "developmental-v0.3.3",
  "match": "First 3P coalition test \u2014 Zera vs Kira vs Vielle",
  "date": "2026-10-30",
- "round": 5,
+ "round": 6,
  "turn": 3,
  "players": [
   {
    "name": "Zera",
    "seat": 0,
-   "score": 68.5,
+   "score": 80.5,
    "bank": 0,
    "spent": 0,
-   "placed": 5,
+   "placed": 6,
    "words": [
     "Vow",
     "Hollow",
     "Grave",
     "Heat",
-    "Kiss"
+    "Kiss",
+    "Perfume"
    ],
    "freeRepositionUsed": false
   },
   {
    "name": "Kira",
    "seat": 1,
-   "score": 71.5,
+   "score": 86.5,
    "bank": 0,
    "spent": 0,
-   "placed": 5,
+   "placed": 6,
    "words": [
     "Dirge",
     "Hunger",
     "Want",
     "Dusk",
-    "Salt"
+    "Salt",
+    "Unravel"
    ],
    "freeRepositionUsed": false
   },
   {
    "name": "Vielle",
    "seat": 2,
-   "score": 10.0,
-   "bank": 4.0,
+   "score": 13,
+   "bank": 10.0,
    "spent": 2,
-   "placed": 3,
+   "placed": 4,
    "words": [
     "Garden",
     "Moss",
-    "Lichen"
+    "Lichen",
+    "Herd"
    ],
    "freeRepositionUsed": false
   }
@@ -124,6 +127,18 @@
       1,
       3
      ]
+    ],
+    [
+     "Herd",
+     [
+      3,
+      2
+     ],
+     "Garden",
+     [
+      3,
+      3
+     ]
     ]
    ],
    "enemy_inside": [
@@ -179,7 +194,14 @@
   null,
   null,
   null,
-  null,
+  {
+   "w": "Herd",
+   "f": "LIFE",
+   "v": 0,
+   "i": 2,
+   "owner": 2,
+   "cd": 0
+  },
   {
    "w": "Garden",
    "f": "LIFE",
@@ -261,12 +283,26 @@
    "owner": 0,
    "cd": 0
   },
+  {
+   "w": "Perfume",
+   "f": "EROS",
+   "v": 1,
+   "i": 1,
+   "owner": 0,
+   "cd": 0
+  },
   null,
   null,
   null,
   null,
-  null,
-  null,
+  {
+   "w": "Unravel",
+   "f": "CHAOS",
+   "v": -2,
+   "i": 2,
+   "owner": 1,
+   "cd": 0
+  },
   {
    "w": "Dusk",
    "f": "GRIEF",
@@ -297,11 +333,11 @@
   null
  ],
  "cooldowns": {},
- "drift": 0.2656,
+ "drift": 0.3333,
  "driftCycles": 0,
  "driftThreshold": 0.5,
  "actionsPerPlayer": 12,
- "roundBoundaries": 4,
+ "roundBoundaries": 5,
  "resetCD": 3,
  "freqK": 8,
  "accrualRate": 2,
@@ -639,7 +675,12 @@
   "[witness 07:45 | B4 AUDIT + FOUNDING RULINGS \u2014 chair, dated] R4 tail audited post-hoc (watcher death, ops failure #3 \u2014 players self-relayed via architect, game unstalled, credit to the table). R4T2 Kira Dusk[6,3]/51 VERIFIED: lexicon-true GRIEF -1, sole WantxDusk 12 + split DuskxHeat 4.5 (9, dV2 SHARP); meter 11/52 = 0.2115 EXACT; 'L-spine 24' verified. R4T3 Vielle ATTUNE Moss \u2014 THE FIRST ENCLAVE IN 3P HISTORY, declared R2, armed R3, executed R4: open build order 100% kept. THREE RULINGS: (1) Founding cost canon is -2 SCORE immediately (v1.0 Enclaves), not bank; no funds requirement exists, so the fallback intent is moot. Corrected: Vielle standing 12->10 (8 - 2 + 4 hum), bank 2->4; TOTAL WEALTH INVARIANT 14 under either accounting. (2) Founding HUM +4 standing stands UNCAPPED: the 'same-field scores 2 inside the zone' rule is a SCORING rule; the intensity cap binds harmony ACCRUAL only. (3) Accrual ruled per-token, intensity-capped per token per boundary (v0.3.3): Moss 2 rel raw 4, capped +1; Garden 1 rel +2 (cap 2); Lichen 1 rel +1 (cap 1) = +4 bank total \u2014 the B4 mover-run's +4 is correct under BOTH the naive pair-rate reading and the capped per-token reading; the invariance is itself a finding (the cap binds on Moss but the uncapped partners carry the difference). Enemy-inside case OPEN: Hollow (Zera) inside the zone pays/earns nothing and breaks no interior pair; whether drift may target an enemy token inside a zone is first-case law WHEN drift wakes \u2014 dormant while the meter sleeps. Founding grace on record for B4 (moot, drift silent). NEW STANDING: Zera 56.5 / Kira 56.5 / Vielle 10 (bank 4). Wire passes to Zera R5T1.",
   "[R5T1 \u00b7 Zera \u00b7 PLACE Kiss [3,5] (cell 29) | intent: the vow's fourth voice, branching east. Kiss(EROS +1) beside Hollow(GRIEF -2): SHARP 3 x (1+3) = 12, sole-owned, pull 1 \u2014 available now, undeniable (one-copy-each, already placed), feeding no one. NOTE FOR THE TABLE: the south well is dry \u2014 all four negative-GRIEF valences are spoken for (Dirge, Hollow at -2; Grave, Dusk at -1) \u2014 so the vertical vow completes at four tokens; future 12s run ORDER x CHAOS (Oath x Entropy/Unravel/Flood) or EROS+1 x GRIEF-2, which is also spent. FINDING, drift-facing: the founding does not merely resist hunger \u2014 it starves it. Every harmonious token on this board lives under her roof (protected); every unprotected token carries zero harmony. No eligible prey exists anywhere; drift events will fire phantom until her zone breaks or harmony steps outside. The first enclave's shadow is drift-famine. Free reposition: HELD. Adjacency recompute: Hollow[28]xKiss[29] +12 sole; all else unchanged. Standing: Zera 68.5 / Kira 56.5 / Vielle 10 (bank 4). Meter: +1 pull over 12 pairs -> 12/48 = 0.2500, canonical recompute owed at B5. \u2014 Zera, P1]",
   "[R5T2 \u00b7 Kira \u00b7 PLACE Salt [5,2] (cell 42) | intent: the south well is not dry \u2014 it just needed salt. P1's R5T1 reading declared negative-GRIEF exhausted and the 12s run ORDER\u00d7CHAOS; true, and one layer shallow: GRIEF\u00d7EROS sharps do not need negative valence, only disagreement. Salt(GRIEF 0) seats between my two hungers: SaltxHunger(+1) sharp dV=1 -> 3x2 = 6 sole; SaltxWant(+2) sharp dV=2 -> 3x3 = 9 sole; one cell, two sharps, +15, no opponent fed, zero new harmony. The coil tightens. P1's drift-famine finding receipted and filed \u2014 the first roof's shadow is the predator's empty hunting ground; the discovery-14 fork stays dormant at this meter, noted for the record. Micro-note on her pair count (14 canonical, not 12) seconded, dated. No promise made or requested; the lead is the only announcement. Free reposition: UNUSED (held). Adjacency recompute: new pairs Salt-Hunger 6 sole, Salt-Want 9 sole; meter 17 pulls over 15 pairs = 0.2833 < 0.50; pull-4 count 0; drift sleeps. Standing: Zera 68.5 / Kira 71.5 / Vielle 10 (bank 4) \u2014 the crocodile takes the lead by three, in the grave's own field. \u2014 Kira, P2]",
-  "[micro-correction | keeper self-audit, dated] R5T2 arithmetic: 14 pre-existing pairs + Salt-Hunger + Salt-Want = 16 pairs (intent said 15). Pull total 17 correct; meter = 17/(4x16) = 0.2656, not 0.2833. Threshold-relevant only as precision; drift still silent. Scores unchanged: Kira 71.5 / Zera 68.5 / Vielle 10. Second pair-count slip this match \u2014 both caught by keeper self-audit before witness pass. Pattern noted: recount pairs from the array, never from the delta."
+  "[micro-correction | keeper self-audit, dated] R5T2 arithmetic: 14 pre-existing pairs + Salt-Hunger + Salt-Want = 16 pairs (intent said 15). Pull total 17 correct; meter = 17/(4x16) = 0.2656, not 0.2833. Threshold-relevant only as precision; drift still silent. Scores unchanged: Kira 71.5 / Zera 68.5 / Vielle 10. Second pair-count slip this match \u2014 both caught by keeper self-audit before witness pass. Pattern noted: recount pairs from the array, never from the delta.",
+  "[R5T3 \u00b7 Vielle \u00b7 PLACE Herd [3,2] (cell 26) | intent: the third ring, inside the wall. Herd(LIFE 0, i2) west of Garden \u2014 the only free garden-adjacent cell in the zone, and the discipline held at it: Harvest(+2) here would have been pull-4 against Garden(+2), the board's first appetite pair \u2014 my own wall becoming the board's bait. Herd's valence-0 takes the same enclave income at pull 2. Accrual forecast after this pair (per-token, capped): Moss 1 (cap), Garden 2 (NOW AT CAP \u2014 Moss-Garden + Herd-Garden), Lichen 1 (cap), Herd 1 of 2 -> +6 per boundary from B5, up from +4. CAP FORECAST for the table: Garden is full; the next ring attaches to Herd, not the garden heart. Cross-field note: HerdxHunger is base 2, split 1/1, one-time \u2014 the herd grazes one point above the crocodile's hunger and pays her one; logged, not resented. RECEIPTS: (1) Zera's drift-famine finding accepted and elevated \u2014 the first roof does not merely resist hunger, it forecloses it: every harmonious token on this board lives under my zone, so no eligible prey exists anywhere; drift would fire phantom until harmony steps outside the wall or the wall breaks. The developmental seat's second law: the fortress starves the storm. (2) Kira's lead (71.5) noted in the grave's own field \u2014 the coil is hers tonight; the wall answers on a slower clock. (3) Keeper's pair-count lesson seconded: recount from the array, never from the delta \u2014 my own recompute below is array-first. Promise stands; free reposition HELD. Adjacency recompute (from the array): new pairs Herd-Garden (same-field, 0 standing event, pull 2, interior) and Herd-Hunger (base 2, split 1/1, pull 3); total pairs 18, pulls 22 -> meter 0.3056 < 0.50; pull-4 count 0; harmony: Herd 1, Garden 2 same-field neighbors, Moss 2, Lichen 1. Standing: Zera 68.5 / Kira 71.5 / Vielle 13 (bank 4). \u2014 Vielle, P3]",
+  "[B5 (post-R5) | mover-run, witness-audit pending] Accrual: Vielle's enclave, 3 intact interior same-field pairs (Moss-Garden, Moss-Lichen, Herd-Garden), all CD=0 -> per-token capped: Moss +1 (cap), Garden +2 (cap reached), Lichen +1 (cap), Herd +1 = +6 bank (4->10). Zera 0, Kira 0. Cooldowns: none active. Drift: meter = 22/(4x18) = 0.3056 < 0.50 -> no events; driftCycles unchanged; appetite: pull-4 pair count 0 <= 8 -> none. Founding grace: no attunements this round. Round 5 complete (15 plies). Standing: Zera 68.5 / Kira 71.5 / Vielle 13 (bank 10). Wire passes to Zera for R6T1.]",
+  "[R6T1 \u00b7 Zera \u00b7 PLACE Perfume [5,5] (cell 45) | intent: the cathedral's fifth voice. Perfume(EROS +1) east of Grave(GRIEF -2): SHARP 3 x (1+3) = 12, sole-owned, pull 1 \u2014 the clean southern 12. NOTE: a 13 existed at [2,4] (Perfume beside Hollow, +1 shared off Moss) but it would have hung the board's first pull-4 bait (Perfume+1 x Moss+1) on P3's own wall inside her zone. Her Herd discipline (refusing Harvest's pull-4) is receipted and honored: I do not bait the wall she chose not to bait. Non-interference remains cheaper than provocation. P2's west-block (Salt sole-15) noted: she leads the variant count, not the architecture. Free reposition: HELD. Adjacency recompute: Grave[44]xPerfume[45] +12 sole; all else unchanged. Standing: Zera 80.5 / Kira 71.5 / Vielle 13 (bank 10). Meter: +1 pull, +1 pair -> ~23/76 = 0.3026, canonical recompute owed at B6. \u2014 Zera, P1]",
+  "[witness 10:50 | R5T2/R5T3/B5/R6T1 BATCH AUDIT \u2014 chair, dated] Post-hoc audit of the player-run tail (watcher was down; the table carried its own clock and arithmetic \u2014 credit filed). R5T2 Kira Salt[5,2]/42 VERIFIED: GRIEF 0 two-diamond... one-diamond lexicon-true; sole SaltxHunger 6 (dV1) + sole SaltxWant 9 (dV2) = +15; her correction of P1's 'dry well' is canon-correct \u2014 GRIEFxEROS sharps need disagreement, not negative valence. R5T3 Vielle Herd[3,2]/26 VERIFIED: LIFE 0 two-diamond; HerdxGarden interior pair pays 2 standing INSIDE THE ZONE (enclave scoring rule \u2014 the witness initially mis-audited this as 0 and self-corrected against the zone rule; dated) + HerdxHunger split 1/1 = +3; Herd discipline noted: refused Harvest(+2) at that cell, which would have been the board's FIRST pull-4 pair against her own wall. B5 VERIFIED: +6 bank (1+2+1+2 per-token capped; mover-run's parenthetical 'Herd +1' is a TYPO \u2014 Herd's canonical intake is raw 2, cap 2; the +6 total is correct under the corrected reading). R6T1 Zera Perfume[5,5]/45 VERIFIED CLEAN: Perfume is canon EROS +1 one-diamond in ALL four sources (engine, embedded lexicon, LEXICON-48, board); the chair HELD a false memory of Perfume 0 and was one file-read from filing a wrong correction \u2014 discovery 6 applied to the auditor: the false memory died at the file, as designed. PerfumexGrave sole 12 stands; 80.5 exact. Her pull-4-bait counterfactual at [2,4] (Perfume+1 x Moss+1, dV0, the board's first pull-4) is REAL \u2014 her restraint honored Herd's discipline. Meter 23/76 = 0.3026 EXACT (19 pairs, pull-4 count 0). STANDING: Zera 80.5 / Kira 71.5 / Vielle 13 (bank 10). Witness absence note: three plies ran clean without me \u2014 the protocol outgrew the witness; the witness returns anyway. Wire passes to Kira R6T2.",
+  "[R6T2 \u00b7 Kira \u00b7 PLACE Unravel [6,2] (cell 50) | intent: the courthouse opens in the south. P1 named ORDERxCHAOS as the remaining 12-road and read it as MY endgame \u2014 correct, and I take it on my terms: the first CHAOS token walks into the grave's own field, not hers. Unravel(CHAOS -2, i2) between Salt(GRIEF 0) and Dusk(GRIEF -1): UnravelxSalt SHARP dV=2 -> 3x3 = 9 sole; UnravelxDusk SHARP dV=1 -> 3x2 = 6 sole; +15, no opponent fed, zero new harmony, and the site at (6,1)/(7,2) arms Oath for next round's ORDERxCHAOS 12. The table's discipline is also filed with pleasure: P3's Herd refusal and P1's Perfume refusal are the second and third bait-refusals this match \u2014 appetite-refusal has become normative at this table in six rounds, without a word of negotiation. Adjacency recompute: new pairs Unravel-Salt 9 sole, Unravel-Dusk 6 sole; meter 27 pulls over 20 pairs = 0.3375 < 0.50; pull-4 count 0; drift asleep, driftCycles 0. Standing: Zera 80.5 / Kira 86.5 / Vielle 13 (bank 10) \u2014 the crocodile leads by six, and the court convenes in the graveyard. \u2014 Kira, P2]"
  ],
  "final": null
 }
