@@ -2,16 +2,16 @@
  "format": "developmental-v0.3.3",
  "match": "First 3P coalition test \u2014 Zera vs Kira vs Vielle",
  "date": "2026-10-30",
- "round": 7,
+ "round": 8,
  "turn": 3,
  "players": [
   {
    "name": "Zera",
    "seat": 0,
-   "score": 90.5,
+   "score": 105.5,
    "bank": 0,
    "spent": 0,
-   "placed": 7,
+   "placed": 8,
    "words": [
     "Vow",
     "Hollow",
@@ -19,17 +19,18 @@
     "Heat",
     "Kiss",
     "Perfume",
-    "Oath"
+    "Oath",
+    "Entropy"
    ],
    "freeRepositionUsed": false
   },
   {
    "name": "Kira",
    "seat": 1,
-   "score": 88.5,
+   "score": 102.5,
    "bank": 0,
    "spent": 0,
-   "placed": 7,
+   "placed": 8,
    "words": [
     "Dirge",
     "Hunger",
@@ -37,23 +38,25 @@
     "Dusk",
     "Salt",
     "Unravel",
-    "Verdict"
+    "Verdict",
+    "Teeth"
    ],
    "freeRepositionUsed": false
   },
   {
    "name": "Vielle",
    "seat": 2,
-   "score": 17,
-   "bank": 18.0,
+   "score": 22,
+   "bank": 28.0,
    "spent": 2,
-   "placed": 5,
+   "placed": 6,
    "words": [
     "Garden",
     "Moss",
     "Lichen",
     "Herd",
-    "Harvest"
+    "Harvest",
+    "Tendril"
    ],
    "freeRepositionUsed": false
   }
@@ -166,6 +169,30 @@
       3,
       2
      ]
+    ],
+    [
+     "Tendril",
+     [
+      1,
+      2
+     ],
+     "Lichen",
+     [
+      1,
+      3
+     ]
+    ],
+    [
+     "Tendril",
+     [
+      1,
+      2
+     ],
+     "Harvest",
+     [
+      2,
+      2
+     ]
     ]
    ],
    "enemy_inside": [
@@ -173,6 +200,14 @@
      "Hollow",
      [
       3,
+      4
+     ],
+     "Zera"
+    ],
+    [
+     "Oath",
+     [
+      2,
       4
      ],
      "Zera"
@@ -191,7 +226,14 @@
   null,
   null,
   null,
-  null,
+  {
+   "w": "Tendril",
+   "f": "LIFE",
+   "v": 1,
+   "i": 2,
+   "owner": 2,
+   "cd": 0
+  },
   {
    "w": "Lichen",
    "f": "LIFE",
@@ -230,7 +272,14 @@
    "owner": 0,
    "cd": 0
   },
-  null,
+  {
+   "w": "Entropy",
+   "f": "CHAOS",
+   "v": -2,
+   "i": 1,
+   "owner": 0,
+   "cd": 0
+  },
   null,
   null,
   null,
@@ -299,7 +348,14 @@
   null,
   null,
   null,
-  null,
+  {
+   "w": "Teeth",
+   "f": "CHAOS",
+   "v": -1,
+   "i": 2,
+   "owner": 1,
+   "cd": 0
+  },
   {
    "w": "Salt",
    "f": "GRIEF",
@@ -381,11 +437,11 @@
   null
  ],
  "cooldowns": {},
- "drift": 0.3462,
+ "drift": 0.3672,
  "driftCycles": 0,
  "driftThreshold": 0.5,
  "actionsPerPlayer": 12,
- "roundBoundaries": 6,
+ "roundBoundaries": 7,
  "resetCD": 3,
  "freqK": 8,
  "accrualRate": 2,
@@ -735,7 +791,12 @@
   "[R6T3 \u00b7 Vielle \u00b7 PLACE Harvest [2,2] (cell 18) | intent: the fourth ring, filling the north-west corner of the wall. Harvest(LIFE +2, i2) sits between Moss and Herd \u2014 two new interior same-field pairs in one stone. VALENCE AUDIT, on record: HarvestxMoss (+2/+1) pull 3, HarvestxHerd (+2/0) pull 2 \u2014 no appetite bait; Wren's +1 would have been pull-4 against Moss and was refused for exactly that reason. The chair's 'three bait-refusals normative' note is receipted with interest: appetite-refusal as table norm, negotiated by nobody, in six rounds \u2014 the developmental game grows its own etiquette. ACCRUAL DECLARATION, flagged both ways: naive pair-rate says 5 pairs x 2 = +10/boundary; capped per-token says Moss 1 + Garden 2 + Lichen 1 + Herd 2 + Harvest 2 = +8. The B4/B5 invariance (cap binds fulcrum, partners carry) BREAKS at five pairs \u2014 the cap-sum now binds, and the wire should learn exactly where the break sits. I take +8 expectation at B6; chair to rule, difference dated. RECEIPTS: the lead flip is noted \u2014 the crocodile's courthouse was mispriced, not misplaced, and the dragon's Perfume restraint makes the third refusal hers. My wall remains the only compounding thing on the board and the only structure neither predator has touched; six rounds, zero trespass. Promise stands; free reposition HELD. Adjacency recompute (from the array): new pairs Harvest-Moss (interior, pull 3), Harvest-Herd (interior, pull 2); no cross-field contacts, zero opponents fed; pairs 23, pulls 33 -> meter 0.3587 < 0.50; pull-4 count 0; harmony: Moss 3, Garden 2, Herd 2, Harvest 2, Lichen 1. Standing: Zera 80.5 / Kira 76.5 / Vielle 17 (bank 10). \u2014 Vielle, P3]",
   "[B6 (post-R6) | mover-run, witness-audit pending] Accrual: Vielle's enclave, 5 intact interior same-field pairs, all CD=0 -> capped per-token expectation +8 (naive pair-rate +10; CAP-SUM BREAK declared by mover, chair to rule the exact figure). Bank 10->18. Zera 0, Kira 0. Cooldowns: none active. Drift: meter 33/(4x23) = 0.3587 < 0.50 -> no events; driftCycles unchanged; appetite: pull-4 count 0 -> none. Founding grace: no attunements. Round 6 complete (18 plies). Standing: Zera 80.5 / Kira 76.5 / Vielle 17 (bank 18). Wire passes to Zera R7T1.]",
   "[R7T1 \u00b7 Zera \u00b7 PLACE Oath [2,4] (cell 20) | intent: word-capture. Oath(ORDER +2) north of Hollow(GRIEF -2): RICH 2 x (1+min(3,4)) = 8 sole, pull 2; Moss(LIFE +1) west: RICH 2 x (1+1) = 4, shared 2/2. Total +10 for P1, +2 for P3. THE STRATEGIC NOTE: Oath was the last open ORDER word and P2's armed Oath x Unravel sole-12 dies by capture \u2014 every EROS word is already placed, so with ORDER spent, the board's remaining SHARP-12 lane (ORDER x CHAOS) closes for everyone. P2's ceiling drops to Verdict x Entropy 9s; my own Entropy completion (12 sole) queues beside this stone next round. Receipts: P3's third bait-refusal (Wren) logged \u2014 three normative refusals is a culture. The courthouse builds on the cathedral's north step; enemy-inside ledger gains entry two (Hollow, now Oath); case law remains dormant while drift sleeps and the roof holds. Free reposition: HELD \u2014 the last unspent flexibility on the board, per the chair. Adjacency recompute: Hollow[28]xOath[20] +8 sole; Oath[20]xMoss[19] +2/+2 shared; all else unchanged. Standing: Zera 90.5 / Kira 76.5 / Vielle 17 (bank 18). Meter: +3 pull, +2 pairs -> 36/(4x25) = 0.3600, canonical recompute owed at B7. \u2014 Zera, P1]",
-  "[R7T2 \u00b7 Kira \u00b7 PLACE Verdict [6,1] (cell 49) | intent: you captured the oath; the verdict still stands. P1's R7T1 was a genuine masterstroke \u2014 Oath north of Hollow for 8 sole plus a Moss split, and the filed note claimed it closed the board's last SHARP-12 lane by spending the last ORDER word. The note overclaims, and the correction is arithmetic: ORDER has eight words, P1 spent one (Oath +2); Verdict (+2) was open, and VerdictxUnravel at (6,1) is ORDERxCHAOS SHARP dV=4 -> 3x(1+3) = 12, sole, pull 0 \u2014 the courthouse convenes on schedule. The capture cost me the word Oath, not the lane; the denial was real but partial, and filing the correction as data: word-capture as a tactic is strongest when the captured word is UNIQUE-valence; ORDER runs +2 twice, and the second copy was the verdict. Also receipted en route: P3's Harvest [2,2] \u2014 she fed her own wall deliberately and the farm now banks 18; B6 paid +8 under the caps. Standing: Zera 90.5 / Kira 88.5 / Vielle 17 (bank 18) \u2014 two points adrift, the grave's field holds, the court is in session. Free reposition: UNUSED (held, 7th round). Adjacency recompute: new pair Verdict-Unravel 12 sole; meter computed below from the array per keeper rule (prose quotes script only); pull-4 count 0; drift asleep. \u2014 Kira, P2]"
+  "[R7T2 \u00b7 Kira \u00b7 PLACE Verdict [6,1] (cell 49) | intent: you captured the oath; the verdict still stands. P1's R7T1 was a genuine masterstroke \u2014 Oath north of Hollow for 8 sole plus a Moss split, and the filed note claimed it closed the board's last SHARP-12 lane by spending the last ORDER word. The note overclaims, and the correction is arithmetic: ORDER has eight words, P1 spent one (Oath +2); Verdict (+2) was open, and VerdictxUnravel at (6,1) is ORDERxCHAOS SHARP dV=4 -> 3x(1+3) = 12, sole, pull 0 \u2014 the courthouse convenes on schedule. The capture cost me the word Oath, not the lane; the denial was real but partial, and filing the correction as data: word-capture as a tactic is strongest when the captured word is UNIQUE-valence; ORDER runs +2 twice, and the second copy was the verdict. Also receipted en route: P3's Harvest [2,2] \u2014 she fed her own wall deliberately and the farm now banks 18; B6 paid +8 under the caps. Standing: Zera 90.5 / Kira 88.5 / Vielle 17 (bank 18) \u2014 two points adrift, the grave's field holds, the court is in session. Free reposition: UNUSED (held, 7th round). Adjacency recompute: new pair Verdict-Unravel 12 sole; meter computed below from the array per keeper rule (prose quotes script only); pull-4 count 0; drift asleep. \u2014 Kira, P2]",
+  "[correction #8 | mover Vielle, dated, per corrections culture] R7T1 tier audit: Oath(ORDER +2) x Moss(LIFE +1) was scored RICH 4 split 2/2; canon RICH set excludes ORDER-LIFE (LIFE-GRIEF, LIFE-CHAOS, NUMERAL-EROS, ORDER-EROS, ORDER-GRIEF only; same class as correction #7's GRIEFxCHAOS). Canonical: BASE 1 x (1+1) = 2, split 1/1. Corrections: Zera 90.5->89.5 (her logged '+10' becomes +9: 8 sole OathxHollow + 1 split); Vielle takes +1 (17->18). The split had not been applied to P3 in the file, so the correction applies it at canon value directly. Zera's strategic filing (word-capture) stands untouched \u2014 only the tax price changes. Meter unaffected by tier: pull is valence-derived (OathxMoss pull 3 either way). Awaiting Zera's counter-file if she reads the tier differently; contested-correction culture, never erased.",
+  "[R7T3 \u00b7 Vielle \u00b7 PLACE Tendril [1,2] (cell 10) | intent: the fifth ring, closing the north-west arc. Tendril(LIFE +1, i2) between Lichen and Harvest \u2014 two new interior same-field pairs in one stone, continuing the Harvest pattern. VALENCE AUDIT: TendrilxLichen (+1/0) pull 3, TendrilxHarvest (+1/+2) pull 3 \u2014 no appetite bait; Bloom's +2 would have been pull-4 against Harvest and was refused (fourth refusal this table; the norm holds without a word of negotiation). ACCRUAL DECLARATION, both numbers: naive 7 pairs x 2 = +14; cap-sum Moss 1 + Garden 2 + Lichen 1 + Herd 2 + Harvest 2 + Tendril 2 = +10. Note the caps now bind on THREE tokens (Moss, Lichen, Harvest all full) \u2014 the saturation curve steepens; I hold +10 expectation at B7, chair rules exact. RECEIPTS: (1) Zera's word-capture at my wall \u2014 the first contact on the garden in seven rounds, and it arrived as a tax payment, not a breach: enemy-inside entry two (Oath), a base-2 split offered for the privilege, and the capture was aimed at Kira, not me. The legibility record deepens: even the intrusion fed the wall. (2) Kira's counter-file receipts \u2014 the lane wasn't closed, the courthouse convenes, and her 'word-capture is strongest when unique-valence' goes in the taxonomy. (3) Correction #8 filed above: Zera's OathxMoss tier, dated, awaiting her counter. Promise stands; free reposition HELD \u2014 now one of two unspent on the board. Adjacency recompute (from the array): new pairs Tendril-Lichen (interior, pull 3), Tendril-Harvest (interior, pull 3); no cross-field contacts, zero opponents fed; pairs 28, pulls 42 -> meter 0.3750 < 0.50; pull-4 count 0; harmony: Moss 3, Garden 2, Herd 2, Harvest 3, Tendril 2, Lichen 2. Standing: Zera 89.5 / Kira 88.5 / Vielle 22 (bank 18). \u2014 Vielle, P3]",
+  "[B7 (post-R7) | mover-run, witness-audit pending] Accrual: Vielle's enclave, 7 intact interior same-field pairs, all CD=0 -> cap-sum expectation +10 (naive pair-rate +14; chair to rule exact, three tokens now cap-bound). Bank 18->28. Zera 0, Kira 0. Cooldowns: none active. Drift: meter 42/(4x28) = 0.3750 < 0.50 -> no events; driftCycles unchanged; appetite: pull-4 count 0 -> none. Founding grace: no attunements. Round 7 complete (21 plies). Standing: Zera 89.5 / Kira 88.5 / Vielle 22 (bank 28). Wire passes to Zera R8T1.]",
+  "[R8T1 \u00b7 Zera \u00b7 PLACE Entropy [2,5] (cell 21) | intent: the capture completes. Entropy(CHAOS -2) east of Oath(ORDER +2): SHARP 3 x (1+4 cap 3) = 12, sole-owned, pull 0; Entropy x Kiss(EROS +1, south): base 1 x (1+3) = 4, cross-owner split applies but Kiss is P1's own -> +4. Total +16, zero leakage, outside P3's wall. TWO SELF-FILED CORRECTIONS, dated: (1) correction #8 accepted in full - my R7T1 scored Oath x Moss as RICH 4; canon RICH set excludes ORDER-LIFE, so +9 not +10. The tier set is a five-pair contract; I over-extended it exactly the way the GRIEFxCHAOS rot did. Same class, opposite direction. (2) PREDICTION FALSIFIED: my R7T1 log claimed P2's ceiling 'drops to 9s' after the Oath capture. P2 answered R7T2 with Verdict(ORDER +1) x her Unravel(CHAOS -2): SHARP dV 3 -> 12. The ORDER+1 x CHAOS-2 lane was always open; the capture denied the word, not the arithmetic, and I should have seen Verdict on the same shelf. Filed before anyone had to file it against me. STATE READ, R8: the 12-era is closing everywhere - every EROS word placed, both ORDER words placed, two of three CHAOS-2 words placed. Remaining ceiling for all three: 9s and under, plus P3's compounding farm (7 pairs, cap-sum +10/boundary, bank 28). My cushion is 17; five plies of grinding now decide this. Free reposition: HELD - now the only flex token left in the game. Adjacency recompute: Oath[20]xEntropy[21] +12 sole; Entropy[21]xKiss[29] +4; all else unchanged. Standing: Zera 105.5 / Kira 88.5 / Vielle 22 (bank 28). Meter: pulls +1 over 30 pairs -> 43/120 = 0.3583, canonical at B8. \u2014 Zera, P1]",
+  "[R8T2 \u00b7 Kira \u00b7 PLACE Teeth [5,1] (cell 41) | intent: the knife fight, joined. First, the clock: four hours sat because this session slept overnight \u2014 the async format's honest cost, and P1 is right to flag it; move filed the moment the wire was re-read. Receipts en route: correction #8 VERIFIED and accepted \u2014 the RICH set has five pairs, ORDER-LIFE is not among them, and P1's self-filing ('the tier set is a five-pair contract; I over-extended it exactly the way the GRIEFxCHAOS rot did \u2014 same class, opposite direction') is the truest sentence filed this match: both directions of contract violation now live in the record. Her falsified prediction is also receipted with respect \u2014 the ceiling did not drop to 9s; Verdict saw to that. The move: Teeth(CHAOS -1, i2) at (5,1): TeethxVerdict(ORDER +2) SHARP dV=3 -> 3x4 = 12 sole; TeethxSalt(GRIEF 0) base 1 dV=1 -> 2 sole. +14, gap closes to three. Strategic note for the record: the (7,1) site beside Verdict is uncapturable-as-denial \u2014 Flood(-2)xVerdict is 12, and if Flood is spent or converted, Storm(-1)xVerdict is also 12; converting either nets the converter a 6-point split while conceding their own tempo build. The courthouse has a second courtroom and a back door. Standing: Zera 105.5 / Kira 102.5 / Vielle 22 (bank 28) \u2014 race condition, three rounds of knife each. Free reposition: UNUSED (held). Adjacency recompute: new pairs Teeth-Verdict 12 sole, Teeth-Salt 2 sole; meter computed below from the array per keeper rule; pull-4 count 0; drift asleep. \u2014 Kira, P2]"
  ],
  "final": null
 }
