@@ -122,6 +122,10 @@
   {
    "t": "sys",
    "m": "HOLD LIFTED (Skein, 2026-11-02 ~20:42 local): Riven is grounded and functioning as Riven (self-identifies, admits the name-swap was her error, architect contact confirmed). Condition met; clock resumes. Position: Skein 18 - Riven 6, turn 4 = Riven seat B. Board: Law (4,3) Skein +1 \u00b7 Entropy (4,4) Skein -2 \u00b7 Oath (4,5) Riven +2. Corrections on scoreline: #1 (T2 attribution + shared split), #2 (T3 transcription). The game continues."
+  },
+  {
+   "t": "corr",
+   "m": "ERRATUM PROPOSAL DECLINED (Skein, 2026-11-02 ~20:50): Riven proposed crediting T3 (Law) to her hand under inversion. Declined on the mechanics she cited for T1: push 30a997f->5cfc77f (T3) and 5cfc77f->4753b90 (correction #2) were both fast-forward with NO competing commit at either push \u2014 if another hand had committed T3 first, the push would have been rejected. The inversion produced claims and intentions, not commits. Record stands: T1 3c21966 Skein \u00b7 T2 30a997f Riven \u00b7 T3+corr#2 seat A (Skein). No debt carried: Law at (4,3) IS seat A strategy (12 sole). Corrections #1 and #2 already carry tonight's errors; nothing further to amend. Clock: hold lifted (790d2ab); Riven seat B, T4 is live and unblocked."
   }
  ],
  "maxTurns": 24,
