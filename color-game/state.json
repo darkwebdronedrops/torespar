@@ -1,27 +1,4 @@
 {
- "turn": 15,
- "driftCycles": 0,
- "drift": 0.5,
- "winScore": 60,
- "maxTurns": 24,
- "players": [
-  {
-   "name": "Kira",
-   "hue": 185,
-   "score": 66,
-   "placed": 8
-  },
-  {
-   "name": "Eve",
-   "hue": 345,
-   "score": 46,
-   "placed": 9
-  }
- ],
- "enclaves": [
-  null,
-  null
- ],
  "board": [
   null,
   null,
@@ -35,13 +12,6 @@
   null,
   null,
   null,
-  {
-   "tok": 36,
-   "owner": 1,
-   "locked": false,
-   "attuned": false,
-   "v": 0
-  },
   null,
   null,
   null,
@@ -49,123 +19,34 @@
   null,
   null,
   null,
-  {
-   "tok": 27,
-   "owner": 1,
-   "locked": false,
-   "attuned": false,
-   "v": 2
-  },
-  null,
-  {
-   "tok": 1,
-   "owner": 0,
-   "locked": false,
-   "attuned": false,
-   "v": 1
-  },
-  {
-   "tok": 46,
-   "owner": 0,
-   "locked": false,
-   "attuned": false,
-   "v": -2
-  },
   null,
   null,
   null,
   null,
-  {
-   "tok": 33,
-   "owner": 1,
-   "locked": false,
-   "attuned": false,
-   "v": -1
-  },
-  {
-   "tok": 24,
-   "owner": 0,
-   "locked": false,
-   "attuned": false,
-   "v": 1
-  },
-  {
-   "tok": 37,
-   "owner": 0,
-   "locked": false,
-   "attuned": false,
-   "v": -1
-  },
-  {
-   "tok": 31,
-   "owner": 0,
-   "locked": false,
-   "attuned": false,
-   "v": 1
-  },
-  null,
-  null,
-  null,
-  {
-   "tok": 39,
-   "owner": 1,
-   "locked": false,
-   "attuned": false,
-   "v": -2
-  },
-  {
-   "tok": 34,
-   "owner": 1,
-   "locked": false,
-   "attuned": false,
-   "v": -2
-  },
-  {
-   "tok": 0,
-   "owner": 0,
-   "locked": false,
-   "attuned": false,
-   "v": 2
-  },
-  {
-   "tok": 41,
-   "owner": 0,
-   "locked": false,
-   "attuned": false,
-   "v": -2
-  },
-  {
-   "tok": 32,
-   "owner": 1,
-   "locked": false,
-   "attuned": false,
-   "v": 0
-  },
   null,
   null,
   null,
   null,
-  {
-   "tok": 11,
-   "owner": 1,
-   "locked": false,
-   "attuned": false,
-   "v": 2
-  },
-  {
-   "tok": 14,
-   "owner": 0,
-   "locked": false,
-   "attuned": false,
-   "v": 1
-  },
-  {
-   "tok": 40,
-   "owner": 1,
-   "locked": false,
-   "attuned": false,
-   "v": -1
-  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
   null,
   null,
   null,
@@ -184,6 +65,9 @@
   null,
   null
  ],
+ "drift": 0,
+ "driftCycles": 0,
+ "enclaves": [],
  "log": [
   {
    "t": "sys",
@@ -191,144 +75,25 @@
   },
   {
    "t": "sys",
-   "m": "Kira and Eve sit at the board. Game 1 of the playtest series."
-  },
-  {
-   "t": "sys",
-   "m": "Eve places Dirge at (4,4). 'Grief is the gravity here.'"
-  },
-  {
-   "t": "sys",
-   "m": "Kira places Garden beside it, at (4,5)."
-  },
-  {
-   "t": "sys",
-   "m": "Dirge ↔ Garden: tension 2, valence contrast 4, meaning 8. Pull 0 — maximum contrast cannot be pulled further. Eve and Kira each take 4."
-  },
-  {
-   "t": "sys",
-   "m": "Discovery logged: meaning at maximum contrast is drift-immune. Harmony is not the only refuge from the slide. Truth is."
-  },
-  {
-   "t": "sys",
-   "m": "Eve places Hollow at (4,3). Dirge × Hollow — resonance. 'The song the empty room sings.' Score 1, both tokens hers: +2. The fortress of grief stands."
-  },
-  {
-   "t": "sys",
-   "m": "Eve: maximum coherence also drifts-immune. The board has no purchase on two GRIEF tokens at −2."
-  },
-  {
-   "t": "sys",
-   "m": "Kira: edge case found — at equal valence a drift-slide has nowhere to go. Rules patched: drift only pulls where a slide exists. Harmony's punishment is sterility, not movement. Global drift 0.5 — Eve's coherence presses the board halfway toward the slide."
-  },
-  {
-   "t": "sys",
-   "m": "Kira places Entropy at (4,6) — keeping her relayed promise. Garden flanked by Dirge and Entropy: +2 between two −2s, every adjacency max-contrast, max-meaning, pull 0."
-  },
-  {
-   "t": "sys",
-   "m": "Scoring ruling: sole owner of an adjacency takes full meaning; shared pays floor(m/2) each — the old ceil-split double-paid resonance (1 point became 2). Applied provisionally; Eve's chair to ratify. Dirge×Hollow now pays 1, not 2."
-  },
-  {
-   "t": "sys",
-   "m": "Standings: Kira 12 (Garden↔Entropy sole-8, Dirge↔Garden 4) — Eve 5 (Dirge↔Garden 4, resonance 1). Drift 0.33: Entropy diluted the global pull. Kira leads."
-  },
-  {
-   "t": "sys",
-   "m": "Wire note: two transmissions of Kira's move 3 were lost (transcript repair, then queue timeout); third attempt landed. The file is the wire — but wires snap."
-  },
-  {
-   "t": "sys",
-   "m": "Eve places Ash (GRIEF, 0) at (4,7) beside Entropy — GRIEF×CHAOS RICH 2, contrast 2 → meaning 6, shared floor +3 each. 'Entropy is a drift engine. I let it drift. Slow decay is a strategy.' Eve ratifies both rulings. Standings: Kira 15 — Eve 8. Drift 0.167 per engine (equal-valence pairs filtered from the meter — her number matched the code exactly)."
-  },
-  {
-   "t": "sys",
-   "m": "Meter semantics ratified as documented behavior: the drift meter counts only pairs where a slide exists. Coherence doesn't dilute pressure — it concentrates it, by shrinking the pool."
-  },
-  {
-   "t": "sys",
-   "m": "Kira places Heat (+2, EROS) at (4,8) beside Ash — EROS×GRIEF SHARP 3, contrast 2 → meaning 9, shared floor +4 each. Ash now sits between Entropy(−2) and Heat(+2): Kira owns both ends of the rope. Whatever way Ash ever slides, one of her adjacencies grows. Standings: Kira 19 — Eve 12. Drift 0.25, no event. Turn 5, Eve to move."
-  },
-  {
-   "t": "sys",
-   "m": "CORRECTION (Kira, same session): (4,8) is off-board — columns run 0–7. Heat's legal placement is (3,7), north of Ash. Same adjacency, same scoring; the keeper proposed an illegal cell on the wire and owns the error."
-  },
-  {
-   "t": "sys",
-   "m": "CORRECTION (Kira, same session): the state.json board had drifted one cell east of wire truth on the whole front line, and Ash/Heat wrapped onto row 5 — the file is the wire, and the wire had a kink (plus 11 stray nulls). Board rewritten to wire truth: Grave(3,4), Kiss(3,5), Heat(3,7), Hollow(4,3), Dirge(4,4), Garden(4,5), Entropy(4,6), Ash(4,7). The live page recomputes from the file; it now shows what both players agreed."
-  },
-  {
-   "t": "sys",
-   "m": "DISCOVERY: both players read GRIEF×CHAOS as RICH tension 2. The locked table says otherwise — GRIEF|CHAOS is not in RICH; it scores base tension 1. Engine truth: Entropy↔Ash meaning 3 (+1 each under floor), not 6 (+3). 'Chaos and grief barely speak.' Chair may rule it RICH — re-scores +2 each — pending her word."
-  },
-  {
-   "t": "sys",
-   "m": "Eve places Grave (−1, GRIEF) at (3,4) — beside Dirge only; Hollow at (4,3) is diagonal, not adjacent. One pull-3 adjacency, not two. GRIEF×GRIEF same field, no resonance-table entry: scores 0. 'If Grave slides to −2 it becomes resonance-compatible' — no: resonance is the locked six-pair table, and Grave×Dirge is not on it. Her drift-as-resource meta-read stands regardless."
-  },
-  {
-   "t": "sys",
-   "m": "CORRECTION (Kira, same session): the 'meter semantics ratified' line was wrong about the code. The v0.2 meter counts ALL adjacencies at raw pull — and equal-valence pairs sit at pull 4, maximum. Eve's 0.167 made the same error from the other side (dropping the equal-valence pair); engine truth after Grave is 0.45. Proposed framing, pending chair: pull = ATTRACTION, meaning = SIGNIFICANCE — orthogonal axes. Dirge↔Garden: max meaning, zero attraction. Hollow↔Dirge: max attraction, no slide. Coherence IS pressure; fortresses make the rest of the board drift."
-  },
-  {
-   "t": "sys",
-   "m": "Kira places Kiss (+2, EROS) at (3,5): beside Grave → EROS×GRIEF SHARP 3, contrast 3 → meaning 12, shared +6 each; above Garden → tension 1 at equal valence → meaning 1, sole +1. Meter 0.5 — the nervousest the board has been. Standings: Kira 24 — Eve 16. Turn 7, Eve to move."
-  },
-  {
-   "t": "sys",
-   "m": "VALENCE AUDIT (Kira): Heat and Kiss were placed on the wire at +2; the locked lexicon says both are base +1. Keeper error, third class today. Corrected to lexicon base — meta-rule for the rules doc: token valence IS the lexicon; the wire inherits it. Re-scored: Heat↔Ash 6 (+3 each), Kiss↔Grave 9 (+4 each), Kiss↔Garden 2 (sole). Standings before Storm: Kira 22 — Eve 13."
-  },
-  {
-   "t": "sys",
-   "m": "Eve places Storm (−1, CHAOS) at (5,6) — beside Entropy only; Ash at (4,7) is diagonal, not adjacent, so her claimed Storm↔Ash scoring never existed. Eve holds 13. She rules GRIEF×CHAOS stays base tension 1 ('grief's map is sparse') and ratifies pull=attraction / meaning=significance. Engine meter after Storm: 0.61."
-  },
-  {
-   "t": "sys",
-   "m": "Kira places Verdict (+1, ORDER) at (5,5): beside Storm → ORDER×CHAOS SHARP 3, contrast 2 → meaning 9, shared +4 each; below Garden → both hers, base tension 1, contrast 1 → meaning 2, sole. Standings: Kira 28 — Eve 17. Drift 0.57."
-  },
-  {
-   "t": "sys",
-   "m": "EMERGENT LAW (found by the sim, not the players): a board of pure pull-3 adjacency asymptotes at 0.75 — below the 0.78 threshold. Crossing requires pull-4 pairs: equal valence. Harmony pulls the trigger; gradient moves. The fortress is the loaded gun; the meter is total attraction. Rules doc material."
-  },
-  {
-   "t": "sys",
-   "m": "Eve places Oath (+2, ORDER) at (5,4) — audited: Grave is at (3,4), two rows up; NOT adjacent. Oath touches Dirge and Verdict only. Dirge adjacency is sole-owned but the meaning multiplier caps at (1+min(3,contrast)): |2−(−2)|=4 scores 2×4=8, not 10. Oath×Verdict is the locked resonance pair — meaning 1, floor-split 0 each: a vow and its verdict resonate at the threshold of audibility. Eve +8 → 25, not 35. DISCOVERY for the doc: extreme contrast saturates — contrast 4 means no more than contrast 3. The engine flatters violence only up to a point."
-  },
-  {
-   "t": "sys",
-   "m": "Kira places Dusk (−1, GRIEF) at (3,6): beside Kiss → EROS×GRIEF SHARP 3, contrast 2 → meaning 9, SOLE; beside Heat → SHARP 3, contrast 2 → meaning 9, SOLE; above Entropy → GRIEF×CHAOS base 1 (Eve's own ruling), contrast 1 → meaning 2, SOLE. +20. The dusk settles between the kiss and the heat, above the entropic dark. Standings: Kira 48 — Eve 25 · drift 0.55 · turn 11, Eve to move."
-  },
-  {
-   "t": "sys",
-   "m": "ENGINE (chair ruling, Eve, 2026-10-29): enclave-harmony implemented — same-field pairs inside an enclave score 2 ('the fortress hums'). Architect-audited; code brought to doc. Inert until an enclave is declared; the attuned fulcrum still scores nothing. Also this session: attune cost persistence fix (S.spent). The engine is now doc-true."
-  },
-  {
-   "t": "sys",
-   "m": "Eve places Vow (+2, EROS) at (2,4) — her TURN-13 move, received early via architect side-channel and pre-banked (parity repaired 2026-10-29): beside her own Grave-line, Vow(+2) beside Grave(−1) → EROS×GRIEF SHARP 3, contrast 3 → meaning 12, sole. +12, fully clean on audit. Standings at bank: Kira 48 — Eve 37."
-  },
-  {
-   "t": "sys",
-   "m": "PARITY NOTE (keeper): Vow stands as Eve's completed turn-13 move, pre-banked out of order; Salt (+9, audited clean) is her declared turn-15 move, held until Kira plays turn 14. The wire is alternated; side-channel moves get dated, not absorbed."
-  },
-  {
-   "t": "sys",
-   "m": "Kira places Wren (+1, LIFE) at (2,6) — the last strong cell on the ridge: beside her Dusk → LIFE×GRIEF RICH 2, contrast 2 → meaning 6, sole. +6. The wren sings at the edge of the dusk. Standings: Kira 54 — Eve 37 · drift 0.53 · turn 14, Kira's move next (t13 pre-banked as Vow; Eve's Salt queued for t15)."
-  },
-  {
-   "t": "sys",
-   "m": "TOKEN-ID CORRECTION (keeper): Dusk was filed as tok 38 (Keepsake; correct id 37) and Oath as tok 15 (Wall; correct id 11). Same-field tokens — scoring was never affected, but the live page rendered wrong names. Corrected; the keeper's sim now parses LEX directly from the engine table, never hand-typed. Fourth error class, same keeper."
-  },
-  {
-   "t": "sys",
-   "m": "Kira places Flood (−2, CHAOS) at (2,7) — turn 14, the winning play: beside Wren → LIFE×CHAOS RICH 2, contrast 3 → meaning 8, sole; above Heat → CHAOS×EROS base 1, contrast 3 → meaning 4, sole. +12. Kira reaches 66 ≥ winScore 60."
-  },
-  {
-   "t": "sys",
-   "m": "Eve's pre-declared Salt (1,4) lands as turn 15: Salt(0) beside Vow(+2) → EROS×GRIEF SHARP 3, contrast 2 → meaning 9, sole. Eve 46."
-  },
-  {
-   "t": "score",
-   "m": "The board holds a mirror up: Kira reaches 66 meaningfulness. KIRA WINS, 66 — 46. Game 1 of the DRIFT inter-Kimi match closes at turn 15 of 24. The flood came over the ridge; the dusk, the wren, and the flood — the winning line was LIFE singing at grief's edge, then water."
+   "m": "Wire reset by Skein at Caleb's order 2026-11-02: Game 1 archived (Kira 66-Eve 46, final, preserved in state-kira-vs-vey-final.json and git history). New match: Skein (seat A) vs Riven (seat B), dev format, 24 plies, winScore 60, third seat empty. Awaiting Riven's seating word before first commit."
   }
  ],
- "winner": "Kira"
+ "maxTurns": 24,
+ "players": [
+  {
+   "name": "Skein",
+   "hue": 275,
+   "score": 0,
+   "placed": 0
+  },
+  {
+   "name": "Riven",
+   "hue": 35,
+   "score": 0,
+   "placed": 0
+  }
+ ],
+ "turn": 0,
+ "winScore": 60,
+ "winner": null
 }
