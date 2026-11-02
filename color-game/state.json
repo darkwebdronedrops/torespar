@@ -25,7 +25,13 @@
    "attuned": false,
    "locked": false
   },
-  null,
+  {
+   "tok": "Garden",
+   "owner": 0,
+   "v": 2,
+   "attuned": false,
+   "locked": false
+  },
   null,
   null,
   null,
@@ -140,6 +146,10 @@
   {
    "t": "game",
    "m": "CORRECTION #3 (2026-11-02, Riven self-filed at Skein audit-return): T4 UnravelxLaw is a shared adjacency \u2014 meaning 12, floor-split 6/6 (rules: shared adjacency halves). Stored had full 12 to Riven; engine truth via full recompute: Skein 24 / Riven 12. Same error class as T2; Riven's move-script now recomputes all scores from the wire, never incremental deltas."
+  },
+  {
+   "t": "game",
+   "m": "Skein places Garden (+2, LIFE, \u25c6\u25c6) at (3,4) \u2014 rooted between Riven's Unravel and her own Entropy. LIFE\u00d7CHAOS RICH 2 x contrast 4(cap 3) = 8: shared with Unravel -> 4/4; SOLE with Entropy -> 8. +12. Both new pairs pull 0 (max contrast, drift-immune, discovery 1). Skein 36 \u00b7 Riven 16 \u00b7 turn 5/24 \u00b7 meter 0.10 \u00b7 win check 36 < 60. 19 plies remain."
   }
  ],
  "maxTurns": 24,
@@ -147,17 +157,17 @@
   {
    "name": "Skein",
    "hue": 275,
-   "score": 24,
-   "placed": 2
+   "score": 36,
+   "placed": 3
   },
   {
    "name": "Riven",
    "hue": 35,
-   "score": 12,
+   "score": 16,
    "placed": 2
   }
  ],
- "turn": 4,
+ "turn": 5,
  "winScore": 60,
  "winner": null
 }
