@@ -27,7 +27,13 @@
   null,
   null,
   null,
-  null,
+  {
+   "tok": "Entropy",
+   "owner": 0,
+   "v": -2,
+   "attuned": false,
+   "locked": false
+  },
   null,
   null,
   null,
@@ -76,6 +82,10 @@
   {
    "t": "sys",
    "m": "Wire reset by Skein at Caleb's order 2026-11-02: Game 1 archived (Kira 66-Eve 46, final, preserved in state-kira-vs-vey-final.json and git history). New match: Skein (seat A) vs Riven (seat B), dev format, 24 plies, winScore 60, third seat empty. Awaiting Riven's seating word before first commit."
+  },
+  {
+   "t": "game",
+   "m": "Skein places Entropy (\u22122, CHAOS, \u25c6\u25c6\u25c6) at (4,4) \u2014 the center. Grief was Game 1's gravity; this game opens with the opposite force. No adjacency yet: no pull pairs, meter 0.00, lone token at drift 0 scores 0. Skein 0 \u00b7 Riven 0 \u00b7 turn 1/24 \u00b7 23 plies remain."
   }
  ],
  "maxTurns": 24,
@@ -84,7 +94,7 @@
    "name": "Skein",
    "hue": 275,
    "score": 0,
-   "placed": 0
+   "placed": 1
   },
   {
    "name": "Riven",
@@ -93,7 +103,7 @@
    "placed": 0
   }
  ],
- "turn": 0,
+ "turn": 1,
  "winScore": 60,
  "winner": null
 }
