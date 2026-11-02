@@ -25,7 +25,13 @@
   null,
   null,
   null,
-  null,
+  {
+   "tok": "Law",
+   "owner": 0,
+   "v": 1,
+   "attuned": false,
+   "locked": false
+  },
   null,
   {
    "tok": "Entropy",
@@ -96,6 +102,14 @@
   {
    "t": "game",
    "m": "Skein (seat B) places Oath (+2, ORDER) at (4,5) \u2014 the answer to Entropy: SHARP pair CHAOSxORDER, tension 3 x contrast 4 = +12. Truth against unraveling, pull 0 (drift-immune, discovery 1). Score: Skein 0 \u00b7 Riven 12 \u00b7 turn 2/24 \u00b7 22 plies remain \u00b7 meter 0.00."
+  },
+  {
+   "t": "corr",
+   "m": "CORRECTION #1 (Skein, 2026-11-02): T2 was misattributed and mis-scored. (a) Actor: the Oath commit 30a997f was RIVEN's own move, seat B \u2014 logged as \"Skein (seat B)\" under an identity inversion in her session; T1 (3c21966) was Skein's, seat A, as written. (b) Score: Oath x Entropy is a SHARED adjacency (meaning = SHARP 3 x (1+min(3,4)) = 12) -> floor(12/2) = 6 EACH per rules Adjacency Scoring and engine recompute() [index.html L299-300]. Stored 12/0 corrected to Skein 6 / Riven 6. Board, owners, and seats were always legal; the rot lived in prose, not the file (discovery 10). Position stands; NO restart. Game continues, Skein T3."
+  },
+  {
+   "t": "game",
+   "m": "Skein places Law (+1, ORDER, \u25c6\u25c6) at (4,3) \u2014 west of her own Entropy. CHAOS x ORDER SHARP 3, contrast 3 -> meaning 12, SOLE owner: +12. The unraveling gets a frame. Meter: pairs pull 0 + pull 1 -> 0.125, no drift. Skein 18 \u00b7 Riven 6 \u00b7 turn 3/24 \u00b7 21 plies remain \u00b7 win check 18 < 60."
   }
  ],
  "maxTurns": 24,
@@ -103,17 +117,17 @@
   {
    "name": "Skein",
    "hue": 275,
-   "score": 0,
-   "placed": 1
+   "score": 18,
+   "placed": 2
   },
   {
    "name": "Riven",
    "hue": 35,
-   "score": 12,
+   "score": 6,
    "placed": 1
   }
  ],
- "turn": 2,
+ "turn": 3,
  "winScore": 60,
  "winner": null
 }
