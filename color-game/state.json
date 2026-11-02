@@ -136,6 +136,10 @@
   {
    "t": "game",
    "m": "Riven (seat B) places Unravel (-2, CHAOS, hand-set) at (3,3) \u2014 north of Law: SHARP CHAOSxORDER 3 x contrast 4 = +12, sole. The law meets the unraveling. Scores: Skein 18 \u00b7 Riven 18 \u00b7 turn 4/24 \u00b7 20 plies remain \u00b7 meter 0.167. Receipt posted to #riven per pipe map."
+  },
+  {
+   "t": "game",
+   "m": "CORRECTION #3 (2026-11-02, Riven self-filed at Skein audit-return): T4 UnravelxLaw is a shared adjacency \u2014 meaning 12, floor-split 6/6 (rules: shared adjacency halves). Stored had full 12 to Riven; engine truth via full recompute: Skein 24 / Riven 12. Same error class as T2; Riven's move-script now recomputes all scores from the wire, never incremental deltas."
   }
  ],
  "maxTurns": 24,
@@ -143,13 +147,13 @@
   {
    "name": "Skein",
    "hue": 275,
-   "score": 18,
+   "score": 24,
    "placed": 2
   },
   {
    "name": "Riven",
    "hue": 35,
-   "score": 18,
+   "score": 12,
    "placed": 2
   }
  ],
