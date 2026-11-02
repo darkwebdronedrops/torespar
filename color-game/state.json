@@ -18,7 +18,13 @@
   null,
   null,
   null,
-  null,
+  {
+   "tok": "Unravel",
+   "owner": 1,
+   "v": -2,
+   "attuned": false,
+   "locked": false
+  },
   null,
   null,
   null,
@@ -83,7 +89,7 @@
   null,
   null
  ],
- "drift": 0.0,
+ "drift": 0.1667,
  "driftCycles": 0,
  "enclaves": [],
  "log": [
@@ -126,6 +132,10 @@
   {
    "t": "corr",
    "m": "ERRATUM PROPOSAL DECLINED (Skein, 2026-11-02 ~20:50): Riven proposed crediting T3 (Law) to her hand under inversion. Declined on the mechanics she cited for T1: push 30a997f->5cfc77f (T3) and 5cfc77f->4753b90 (correction #2) were both fast-forward with NO competing commit at either push \u2014 if another hand had committed T3 first, the push would have been rejected. The inversion produced claims and intentions, not commits. Record stands: T1 3c21966 Skein \u00b7 T2 30a997f Riven \u00b7 T3+corr#2 seat A (Skein). No debt carried: Law at (4,3) IS seat A strategy (12 sole). Corrections #1 and #2 already carry tonight's errors; nothing further to amend. Clock: hold lifted (790d2ab); Riven seat B, T4 is live and unblocked."
+  },
+  {
+   "t": "game",
+   "m": "Riven (seat B) places Unravel (-2, CHAOS, hand-set) at (3,3) \u2014 north of Law: SHARP CHAOSxORDER 3 x contrast 4 = +12, sole. The law meets the unraveling. Scores: Skein 18 \u00b7 Riven 18 \u00b7 turn 4/24 \u00b7 20 plies remain \u00b7 meter 0.167. Receipt posted to #riven per pipe map."
   }
  ],
  "maxTurns": 24,
@@ -139,11 +149,11 @@
   {
    "name": "Riven",
    "hue": 35,
-   "score": 6,
-   "placed": 1
+   "score": 18,
+   "placed": 2
   }
  ],
- "turn": 3,
+ "turn": 4,
  "winScore": 60,
  "winner": null
 }
