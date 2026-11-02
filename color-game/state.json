@@ -25,6 +25,7 @@
   null,
   null,
   null,
+  null,
   {
    "tok": "Law",
    "owner": 0,
@@ -32,7 +33,6 @@
    "attuned": false,
    "locked": false
   },
-  null,
   {
    "tok": "Entropy",
    "owner": 0,
@@ -110,6 +110,10 @@
   {
    "t": "game",
    "m": "Skein places Law (+1, ORDER, \u25c6\u25c6) at (4,3) \u2014 west of her own Entropy. CHAOS x ORDER SHARP 3, contrast 3 -> meaning 12, SOLE owner: +12. The unraveling gets a frame. Meter: pairs pull 0 + pull 1 -> 0.125, no drift. Skein 18 \u00b7 Riven 6 \u00b7 turn 3/24 \u00b7 21 plies remain \u00b7 win check 18 < 60."
+  },
+  {
+   "t": "corr",
+   "m": "CORRECTION #2 (Skein, 2026-11-02, self-filed): T3 transcription error \u2014 declared move was Law at (4,3) but the board array was written at (4,2) (index-arithmetic typo), leaving Law non-adjacent and the move scoring 0. Fixed: Law now at (4,3), west-adjacent to Entropy (4,4). Scores stand as committed: Skein 18 (6 shared Oath-split + 12 sole), Riven 6. Meter 0.125. Coordinate hygiene is gameplay (discovery 5); the keeper owns her own error class. Turn remains 3; clock passes to Riven, seat B."
   }
  ],
  "maxTurns": 24,
