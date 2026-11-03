@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>DRIFT — a color-fitting game (v0.3.3)</title>
+<title>DRIFT — a color-fitting game (v0.2)</title>
 <style>
   :root { --bg:#0a0910; --panel:#14101c; --ink:#d8d2e6; --dim:#7a7390; --line:#2a2438; }
   * { box-sizing: border-box; }
@@ -12,9 +12,6 @@
   header h1 { margin:0; font-size:20px; letter-spacing:.14em; }
   header h1 em { color:var(--dim); font-style:normal; font-size:12px; letter-spacing:.08em; }
   #status { color:var(--dim); font-size:13px; }
-  #livenote { width:100%; margin-top:8px; font-size:13px; color:#ffe9a8; }
-  #livenote a { color:var(--accent); }
-  #livenote .idle { color:var(--dim); font-style:italic; }
   #driftwrap { margin-left:auto; width:220px; }
   #driftwrap label { font-size:11px; color:var(--dim); letter-spacing:.12em; text-transform:uppercase; }
   #driftbar { height:10px; background:#1c1728; border:1px solid var(--line); margin-top:3px; }
@@ -60,8 +57,7 @@
 </head>
 <body>
 <header>
-  <h1>DRIFT <em>working title · v0.3.3 · a Torespar experiment</em></h1>
-  <div id="livenote">checking the wire…</div>
+  <h1>DRIFT <em>working title · v0.2 · a Torespar experiment</em></h1>
   <div id="status">loading…</div>
   <div id="driftwrap"><label>Drift — the pull toward harmony</label><div id="driftbar"><div id="driftfill"></div></div></div>
 </header>
@@ -81,7 +77,8 @@
     <h2>The record</h2>
     <div id="log"></div>
     <div class="btnrow">
-      <button id="endturn">End turn (drift check)</button>
+      <button id="endturn">End turn (boundary + drift check)</button>
+      <button id="harvest">Harvest (2 bank → 1 meaning)</button>
       <button id="newgame">New game</button>
     </div>
     <h2>Inspect</h2>
@@ -93,8 +90,7 @@
 </main>
 
 <footer>
-  Concept: Caleb Quaite &amp; Eve, from the color-fitting model · v0.1 build: Kira · chair rulings through <a href="./rules.html">rules v0.3.3</a> · observer?
-  <a href="./rules.html">read the rules</a> · <a href="./state-3p.json">watch the live wire</a>
+  Concept: Caleb Quaite &amp; Eve, from the color-fitting model · v0.1 build: Kira · v0.2 design: Eve's chair
   (enclaves, resonance, drift-voice) · The board is the context window. Drift is the enemy.
   Attune raises an enclave: 3×3 where harmony means something — but the fulcrum scores nothing.
 </footer>
@@ -236,13 +232,14 @@ function driftImmune(cell){
 let S;
 function freshState(){
   return { turn:0, driftCycles:0, drift:0, winScore:60, maxTurns:24,
-    players:[], enclaves:[], board:Array(64).fill(null),
-    log:[{t:"sys", m:"The board wakes. It is a context window. Place meaning; resist harmony. Attune raises an enclave — harmony means something inside it, but the fulcrum scores nothing."}] };
+    players:[], enclaves:[], harvested:[], board:Array(64).fill(null),
+    log:[{t:"sys", m:"The board wakes. It is a context window. Place meaning; resist harmony. Attune raises an enclave — harmony means something inside it, but the fulcrum scores nothing. v0.3.4: bank, parasite, harvest — the coupled bank war ships together (architect 2026-11-03)."}] };
 }
 function addPlayer(name){
   const hues=[185,345,45,255,25,300];
-  S.players.push({name:name.slice(0,24), hue:hues[S.players.length%6], score:0, placed:0});
+  S.players.push({name:name.slice(0,24), hue:hues[S.players.length%6], score:0, placed:0, bank:0});
   S.enclaves.push(null);
+  S.harvested.push(0);
   log("sys", name+" sits at the board.");
 }
 const cur=()=>S.players[S.turn % Math.max(1,S.players.length)];
@@ -300,9 +297,56 @@ function recompute(){
       if(ob>=0) S.players[ob].score+=Math.floor(m/2);
     }
   }
-  S.players.forEach((p,i)=>{ p.score -= (S.spent && S.spent[i]) || 0; });
+  S.players.forEach((p,i)=>{ p.score -= (S.spent && S.spent[i]) || 0; p.score += (S.harvested && S.harvested[i]) || 0; });
   const ps=adjPairs();
   S.drift = ps.length? ps.reduce((s,[a,b])=>s+pull(a,b),0)/(4*ps.length) : 0;
+}
+
+/* ---------- v0.3.4 boundary: accrual, parasite, payday ---------- */
+function boundaryPhase(){
+  S.players.forEach((p,ix)=>{
+    if(p.bank===undefined) p.bank=0;
+    const e=S.enclaves[ix];
+    if(e===null||e===undefined) return;
+    const zone=enclaveCells(e);
+    const halves=Array(64).fill(0);
+    for(const [a,b] of adjPairs()){
+      const A=S.board[a],B=S.board[b];
+      if(!A||!B||A.attuned||B.attuned) continue;
+      if(A.owner!==ix||B.owner!==ix) continue;
+      if(LEX[A.tok].f!==LEX[B.tok].f) continue;
+      if(!zone.includes(a)||!zone.includes(b)) continue;
+      halves[a]+=4; halves[b]+=4; /* 2 harmony points = 4 halves; cap = 2i halves per token */
+    }
+    let gained=0;
+    for(const c of zone){ if(S.board[c]&&halves[c]>0){ gained+=Math.min(halves[c],2*LEX[S.board[c].tok].i); } }
+    gained=Math.floor(gained/2);
+    let sip=0;
+    for(const c of zone){
+      if(!S.board[c]) continue;
+      const [r,cc]=rc(c);
+      for(const [dr,dc] of DIRS){
+        const r2=r+dr,c2=cc+dc;
+        if(!inB(r2,c2)) continue;
+        const n=cellOf(r2,c2);
+        if(S.board[n]&&S.board[n].owner!==ix) sip++;
+      }
+    }
+    sip=Math.min(3,sip); /* parasite cap per enclave per boundary */
+    const before=p.bank;
+    p.bank=Math.max(0,before+gained-sip);
+    if(gained||sip) log("sys", p.name+" — boundary: +"+gained+" bank, parasite −"+sip+" ("+before+" → "+p.bank+").");
+  });
+}
+function harvest(){
+  if(S.players.length===0) return;
+  const me=S.players.indexOf(cur());
+  const p=cur();
+  if((p.bank||0)<2){ log("sys","Harvest needs 2 bank; "+p.name+" has "+(p.bank||0)+"."); return; }
+  p.bank-=2; S.harvested[me]=(S.harvested[me]||0)+1; /* persistent credit: recompute() rebuilds scores, so the credit lives in state (same pattern as the attune debit) */
+  log("sys", p.name+" harvests — 2 bank becomes 1 meaning. The store thins; the standing holds.");
+  recompute(); render(); save();
+  endTurn(); /* harvest consumes the turn */
 }
 
 /* ---------- drift: the board fights back ---------- */
@@ -383,11 +427,12 @@ function act(cell){
 }
 function endTurn(){
   if(S.players.length===0){ log("sys","No players. Join first."); return; }
-  recompute(); driftCheck(); recompute();
+  recompute(); boundaryPhase(); driftCheck(); recompute();
   S.turn++;
   const w=S.players.find(p=>p.score>=S.winScore);
   if(w){ log("score", w.name+" reaches "+w.score+" meaningfulness. The board holds a mirror up: "+w.name+" wins."); }
   else if(S.turn>=S.maxTurns){
+    S.players.forEach(p=>{ if(p.bank){ p.score+=p.bank; log("score", "Payday — "+p.name+" realizes "+p.bank+" bank."); p.bank=0; } });
     const win=[...S.players].sort((a,b)=>b.score-a.score)[0];
     log("score", S.maxTurns+" turns pass. Highest meaning: "+win.name+" ("+win.score+").");
   }
@@ -435,7 +480,7 @@ function render(){
       const e=S.enclaves[ix];
       const d=el("div","pl"+(ix===(S.turn%S.players.length)?" cur":""),
         "<span class='dot' style='background:hsl("+p.hue+",70%,55%)'></span>"+p.name+" — "+p.score+
-        (e!==null&&e!==undefined?" · enclave ◆":""));
+        " · bank "+(p.bank||0)+(e!==null&&e!==undefined?" · enclave ◆":""));
       pl.appendChild(d);
     });
   }
@@ -462,6 +507,7 @@ function render(){
 function syncModes(){ document.querySelectorAll("#modes button").forEach(b=>b.classList.toggle("on",b.dataset.m===mode)); }
 document.querySelectorAll("#modes button").forEach(b=>b.onclick=()=>{ mode=b.dataset.m; syncModes(); });
 document.getElementById("endturn").onclick=endTurn;
+document.getElementById("harvest").onclick=harvest;
 document.getElementById("newgame").onclick=()=>{ if(confirm("New game? State resets.")){ S=freshState(); render(); save(); } };
 document.getElementById("exp").onclick=()=>{
   const j=JSON.stringify(S,null,1);
@@ -474,7 +520,7 @@ document.getElementById("imp").onclick=()=>{
   catch(e){ alert("bad JSON"); }
 };
 function save(){ try{ localStorage.setItem("drift-v02", JSON.stringify(S)); }catch(e){} }
-function migrate(){ if(!S.enclaves) S.enclaves=(S.players||[]).map(()=>null); if(!S.spent) S.spent=(S.players||[]).map(()=>0); }
+function migrate(){ if(!S.enclaves) S.enclaves=(S.players||[]).map(()=>null); if(!S.spent) S.spent=(S.players||[]).map(()=>0); if(!S.harvested) S.harvested=(S.players||[]).map(()=>0); (S.players||[]).forEach(p=>{ if(p.bank===undefined) p.bank=0; }); }
 async function load(){
   if(location.protocol.indexOf("http")===0){
     try{ const r=await fetch("state.json",{cache:"no-store"});
@@ -488,14 +534,3 @@ load().then(()=>{ recompute(); render(); });
 </script>
 </body>
 </html>
-<script>
-// live-match banner (v0.3.3) — reads match.json; never touches board engine state
-(function(){
-  const el=document.getElementById('livenote');
-  fetch('./match.json').then(r=>r.ok?r.json():Promise.reject()).then(m=>{
-    if(!m||!m.live){ el.innerHTML='<span class="idle">no live match — the board is between games. rules are current to v0.3.3.</span>'; return; }
-    const seats=(m.seats||[]).map(s=>`${s.name} ${s.score}${s.bank?` (+${s.bank} bank)`:''}`).join(' · ');
-    el.innerHTML=`<strong>LIVE — ${m.title}</strong> · round ${m.round}, turn ${m.turn} · ${seats} · next: <em>${m.next||'—'}</em>`;
-  }).catch(()=>{ el.innerHTML='<span class="idle">wire quiet — rules current to v0.3.3.</span>'; });
-})();
-</script>
