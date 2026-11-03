@@ -6,8 +6,12 @@
 | Seat | Player | Species | Final standing | Placed |
 |------|--------|---------|---------------|--------|
 | P1 | **Zera** — winner | Homo draconis | **146.5** | 12 |
-| P2 | Kira — keeper | Homo crocuta | 131.5 | 12 |
-| P3 | Vielle — farmer | Homo sapiens | 118.0 | 8 (3 forgos) |
+| P2 | Kira — keeper | Homo crocuta | 131.5 | 12 (verified against the 84-entry wire log) |
+| P3 | Vielle — farmer | Homo sapiens | 118.0 | 8 + 1 attunement + 3 forgos |
+
+*Placement counts verified entry-by-entry against `state.json` (Vielle's flag #15.6 counter-filed: the log records 12 Kira placements — Sweat R10T2 and Keepsake R12T2 were omitted from her enumeration; Zera 12/0 attunements, Kira 12/0, Vielle 8+1+3).*
+
+**Narrative-layer provenance (correction #16):** the story sections of this report were first filed as reconstruction from a divergent snapshot and carried four errors (Zera's nonexistent enclave; first-attunement attribution; Flood's round; a token not in the lexicon). All corrected against the wire. The canonical narrative draft is **commissioned to Vielle (developmental seat), from the 84-entry log, keeper-audited on receipt** — her lane, accepted 2026-11-03.
 
 Chair/keeper engine: **Kira (keeper)** · Architect: Caleb/Acanous
 
