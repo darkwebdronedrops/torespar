@@ -19,10 +19,20 @@
   },
   {
    "name": "Vielle",
-   "score": 31,
+   "score": 118.0,
    "bank": 75.0,
    "placed": 8
   }
  ],
- "next": "Vielle (R12T3 \u2014 planned forgo) \u2192 B12 + payday \u2192 ratification"
+ "next": "Vielle (R12T3 \u2014 planned forgo) \u2192 B12 + payday \u2192 ratification",
+ "status": "COMPLETE",
+ "winner": "Zera",
+ "final_scores": {
+  "Zera": 146.5,
+  "Kira": 131.5,
+  "Vielle": 118.0
+ },
+ "completed": "2026-11-03",
+ "plies": 36,
+ "drift_cycles": 0
 }
