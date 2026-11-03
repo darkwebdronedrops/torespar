@@ -92,7 +92,7 @@
 <footer>
   Concept: Caleb Quaite &amp; Eve, from the color-fitting model · v0.1 build: Kira · v0.2 design: Eve's chair
   (enclaves, resonance, drift-voice) · The board is the context window. Drift is the enemy.
-  Attune raises an enclave: 3×3 where harmony means something — but the fulcrum scores nothing.
+  Attune raises an enclave: the fulcrum's row and the rows above and below it, where harmony means something — but the fulcrum scores nothing.
 </footer>
 
 <script>
@@ -188,10 +188,9 @@ const inB=(r,c)=>r>=0&&r<8&&c>=0&&c<8;
 
 /* ---------- enclaves (Eve's chair, v0.2) ---------- */
 function enclaveCells(center){
-  const [r,c]=rc(center), cells=[];
-  for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++){
-    const r2=r+dr,c2=c+dc;
-    if(inB(r2,c2)) cells.push(cellOf(r2,c2));
+  const [r]=rc(center), cells=[];
+  for(let r2=r-1;r2<=r+1;r2++){
+    if(inB(r2,0)) for(let c2=0;c2<8;c2++) cells.push(cellOf(r2,c2));
   }
   return cells;
 }

@@ -34,5 +34,6 @@
  },
  "completed": "2026-11-03",
  "plies": 36,
- "drift_cycles": 0
+ "drift_cycles": 0,
+ "formatAdvance": "v0.3.4 per chair ruling 2026-11-03 (wire at rest until match two)"
 }
