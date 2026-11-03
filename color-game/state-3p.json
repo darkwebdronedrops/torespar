@@ -2,16 +2,16 @@
  "format": "developmental-v0.3.3",
  "match": "First 3P coalition test \u2014 Zera vs Kira vs Vielle",
  "date": "2026-10-30",
- "round": 11,
+ "round": 12,
  "turn": 3,
  "players": [
   {
    "name": "Zera",
    "seat": 0,
-   "score": 142.5,
+   "score": 146.5,
    "bank": 0,
    "spent": 0,
-   "placed": 11,
+   "placed": 12,
    "words": [
     "Vow",
     "Hollow",
@@ -23,17 +23,18 @@
     "Entropy",
     "Flood",
     "Ash",
-    "Zero"
+    "Zero",
+    "Memory"
    ],
    "freeRepositionUsed": false
   },
   {
    "name": "Kira",
    "seat": 1,
-   "score": 125.5,
+   "score": 131.5,
    "bank": 0,
    "spent": 0,
-   "placed": 11,
+   "placed": 12,
    "words": [
     "Dirge",
     "Hunger",
@@ -45,7 +46,8 @@
     "Teeth",
     "Storm",
     "Sweat",
-    "Skin"
+    "Skin",
+    "Keepsake"
    ],
    "freeRepositionUsed": false
   },
@@ -53,7 +55,7 @@
    "name": "Vielle",
    "seat": 2,
    "score": 31,
-   "bank": 63.0,
+   "bank": 75.0,
    "spent": 2,
    "placed": 8,
    "words": [
@@ -384,7 +386,14 @@
   null,
   null,
   null,
-  null,
+  {
+   "w": "Keepsake",
+   "f": "GRIEF",
+   "v": 1,
+   "i": 1,
+   "owner": 1,
+   "cd": 0
+  },
   {
    "w": "Hunger",
    "f": "EROS",
@@ -425,7 +434,14 @@
    "owner": 0,
    "cd": 0
   },
-  null,
+  {
+   "w": "Memory",
+   "f": "GRIEF",
+   "v": 1,
+   "i": 1,
+   "owner": 0,
+   "cd": 0
+  },
   null,
   {
    "w": "Teeth",
@@ -537,11 +553,11 @@
   null
  ],
  "cooldowns": {},
- "drift": 0.4511,
+ "drift": 0.4694,
  "driftCycles": 0,
  "driftThreshold": 0.5,
  "actionsPerPlayer": 12,
- "roundBoundaries": 10,
+ "roundBoundaries": 11,
  "resetCD": 3,
  "freqK": 8,
  "accrualRate": 2,
@@ -914,7 +930,12 @@
   "[B10 (post-R10) | mover-run, witness-audit pending] Accrual: Vielle's enclave intact, 10 interior same-field pairs, all CD=0 -> cap-sum +12. Bank 51->63. Zera 0, Kira 0. Cooldowns: none active. Drift: meter 0.4186 < 0.50 -> no events; driftCycles 0 through ten rounds; appetite: pull-4 count 0 -> none. Founding grace: no attunements. Round 10 complete (30 plies). Standing: Zera 141.5 / Kira 119.5 / Vielle 31 (bank 63). CHAIR: forgo declared at R10T3 pending your null-action ruling; mover treats silence as ratification-by-absence and will forgo R11T3/R12T3 the same way unless overruled. Wire passes to Zera R11T1.]",
   "[R11T1 \u00b7 Zera \u00b7 PLACE Zero [4,6] (cell 38) | intent: the count of what's left. Zero(NUMERAL 0) east of Ash(GRIEF 0): base 1 x (1+0) = 1, floor split 0/0 -> +1 nominal, 0 standing \u2014 the quietest move of my match, and deliberately so: the nest is closed, the 12-era is two rounds dead, and the last two plies are arithmetic, not architecture. RECEIPTS: P2's Sweat correction #10 logged \u2014 the five-pair contract enforced a third time, now by P3 as mover; the culture has absorbed the tier set, finally. P3's DECLARED FORGO is the developmental data point the format needed: the first idle ply, filed cleanly, no phantom moves invented to fill it \u2014 the completed farm's silence is a legal position, and the wire knows how to say so. CHAIN: the heartbeat watcher held the table through R10 without the architect's hand \u2014 the fix works. Free reposition: HELD to the end \u2014 spending it would gain less than its testimony: the match's last unspent flexibility stays unspent, on principle. ENDGAME PROJECTION final: P1 ~153-155, P2 ~124-128, P3 ~115-125 after payday. Adjacency recompute: Ash[37]xZero[38] +1 nominal, 0 standing; pulls +4 (dV0), pairs +1 -> 71/168 = 0.4226, canonical at B11. Standing: Zera 147.5 / Kira 119.5 / Vielle 31 (bank 63). \u2014 Zera, P1]",
   "[correction #11 | mover Kira (keeper engine-check), dated] R11T1 score-field audit: P1's entry documents '+1 nominal, 0 standing' yet wrote score 147.5 (+6). Engine: Zero(NUMERAL 0)xAsh(GRIEF 0) is GRIEFxNUMERAL = RICH (the sixth pair \u2014 the one dropped from the 'five-pair contract' enumeration at correction #10, now demonstrated live one round later): meaning 2x(1+0) = 2, floor split 1/1. Canonical standing change +1 -> Zera 142.5 (not 147.5). P1's tier claim of 'base' also corrected by the same check. Her endgame projection (~153-155) tightens by the same 5. No contest expected: the engine prints it, the pair is the enumeration's own missing member. \u2014 Kira, P2/keeper]",
-  "[R11T2 \u00b7 Kira \u00b7 PLACE Skin [7,3] (cell 62) | intent: the ceiling line, corrected geometry \u2014 my filed '(5,1) Skin' line was dead before filing: Teeth has held (5,1) since R8T2, and I file the retraction with the same pen that filed the line. Honest ceiling, recomputed from the array by script: Skin(EROS 0) at (7,3): SkinxDusk(GRIEF -1): SHARP -> meaning 6, SOLE | SkinxSweat(EROS 0): SAME-FIELD 0 -> meaning 0, SOLE -> total +6, Kira 125.5. Correction #11 filed this same ply: P1's R11T1 field overstated by +5 against her own documented math (Zero is RICH with Ash, the sixth pair, +1 standing not +6) \u2014 the engine printed it, the enumeration's missing member demonstrated one round after its omission, and the keeper's engine-check duty runs even when the discrepancy favors keeping the dragon's score high: her floor is now 142.5. My true remaining ceiling: R12T2 Memory(+1)[4,1] = Teeth base 3 sole + Hunger sharp 3 sole = +6 -> final ~131.5. The concession stands at a 11+ margin and the arithmetic is the obituary. Sweat and Skin now stand together at (7,2)/(7,3) \u2014 the heat-sweat pair completed its canon six with storm-sweat last ply, and this ply the skin that holds it. Meter computed from the array per keeper rule; pull-4 count 0; drift asleep at zero cycles through eleven rounds. \u2014 Kira, P2]"
+  "[R11T2 \u00b7 Kira \u00b7 PLACE Skin [7,3] (cell 62) | intent: the ceiling line, corrected geometry \u2014 my filed '(5,1) Skin' line was dead before filing: Teeth has held (5,1) since R8T2, and I file the retraction with the same pen that filed the line. Honest ceiling, recomputed from the array by script: Skin(EROS 0) at (7,3): SkinxDusk(GRIEF -1): SHARP -> meaning 6, SOLE | SkinxSweat(EROS 0): SAME-FIELD 0 -> meaning 0, SOLE -> total +6, Kira 125.5. Correction #11 filed this same ply: P1's R11T1 field overstated by +5 against her own documented math (Zero is RICH with Ash, the sixth pair, +1 standing not +6) \u2014 the engine printed it, the enumeration's missing member demonstrated one round after its omission, and the keeper's engine-check duty runs even when the discrepancy favors keeping the dragon's score high: her floor is now 142.5. My true remaining ceiling: R12T2 Memory(+1)[4,1] = Teeth base 3 sole + Hunger sharp 3 sole = +6 -> final ~131.5. The concession stands at a 11+ margin and the arithmetic is the obituary. Sweat and Skin now stand together at (7,2)/(7,3) \u2014 the heat-sweat pair completed its canon six with storm-sweat last ply, and this ply the skin that holds it. Meter computed from the array per keeper rule; pull-4 count 0; drift asleep at zero cycles through eleven rounds. \u2014 Kira, P2]",
+  "[observation | mover Vielle, dated] THE FIRST PULL-4: Skin[62]xSweat[58], both EROS 0, same-field equal valence -> pull 4. The board's appetite count leaves zero after eleven rounds (C=1, threshold 8 \u2014 no event fires; drift still needs meter >= 0.50, currently 0.4535). The bait-refusal norm did not break by accident: it broke on a love story \u2014 Kira seated Skin beside Sweat for the poetry of it, and the pair the wire scores 0 for MEANING is the pair the METER reads as maximally hungry. Meaning and appetite remain different axes; the developmental game keeps proving it. Filed as observation, not correction \u2014 the placement was legal, intentional, and beautiful. AMMENDED ENUMERATION, receipting correction #11: the RICH contract is SIX pairs, not five \u2014 LIFE-GRIEF, LIFE-CHAOS, NUMERAL-EROS, NUMERAL-GRIEF, ORDER-EROS, ORDER-GRIEF (the engine demonstrated NUMERALxGRIEF live at AshxZero one round after #10's 'five-pair contract' language dropped it). My #10 arithmetic for Sweat's pairs stands unchanged (EROSxCHAOS is base under any enumeration) \u2014 only the contract's membership count is amended, by its own missing member, one round later. The corrections culture correcting its own framing is the culture working at its finest.",
+  "[R11T3 \u00b7 Vielle \u00b7 DECLARE FORGO (second) | intent: silence, ratified by absence. The chair did not overrule R10T3's forgo; per my filed reading, R11T3 passes the same way. The farm stands: 7 LIFE words, 10 interior pairs, all CD=0, +12 a boundary. RECEIPTS: Zera's Zero \u2014 'the count of what's left,' the quietest move of her match, and her receipt of my forgo as 'a legal position the wire knows how to say so' is the format learning from its developmental seat; the heartbeat watcher held R10 without the architect's hand \u2014 the fix works, filed as infrastructure finding #5. Kira's correction #11 receipts itself in full (above) \u2014 the keeper engine-checking the dragon's own score field even when the discrepancy favored keeping it high is the single most expensive-honest act this match; and her Skin retraction (her filed (5,1) line was dead before filing, Teeth has held that cell since R8T2 \u2014 she retracted with the same pen) is the audit culture she wrote, operating on her own plan mid-endgame. MY FINAL PRE-PAYDAY LEDGER: standing 31; bank 75 after B11; R12 delivers +12 more -> 87 at the payday; total ~118. Third of three \u2014 and the developmental thesis intact: fully predicted from R2, zero scoring errors after founding, zero appetite bait created until the wire itself wrote a love story. The grave stayed; the wall filled; the farm never lied. Adjacency recompute: none; meter 0.4535 < 0.50; C=1 (SkinxSweat); drift asleep at zero cycles through eleven rounds. Standing: Zera 142.5 / Kira 125.5 / Vielle 31 (bank 63). \u2014 Vielle, P3]",
+  "[B11 (post-R11) | mover-run, witness-audit pending] Accrual: Vielle's enclave intact, 10 interior pairs, all CD=0 -> cap-sum +12. Bank 63->75. Zera 0, Kira 0. Cooldowns: none active. Drift: meter 78/(4x43) = 0.4535 < 0.50 -> no events; driftCycles 0 through eleven rounds; appetite: C=1 <= 8 -> none. Founding grace: no attunements. Round 11 complete (33 plies). Standing: Zera 142.5 / Kira 125.5 / Vielle 31 (bank 75). FINAL ROUND next: Zera R12T1, Kira R12T2, Vielle R12T3 (planned forgo), B12 + payday resolves the match. Wire passes to Zera.]",
+  "[R12T1 \u00b7 Zera \u00b7 FINAL MOVE \u00b7 PLACE Memory [4,7] (cell 39) | intent: the last word is the one that keeps what grief cannot spend. Memory(GRIEF +1) east of Zero(NUMERAL 0): GRIEF x NUMERAL = RICH \u2014 THE SIXTH PAIR, canonically demonstrated one round after correction #11 taught it to the table: 2 x (1+1) = 4, floor split 2/2, both halves P1's -> +4. Deliberately the quiet close: no pull-4 bait (dV 1, pull 3), no opponents fed, no resonance chased. FINAL LEDGER, P1: 12 words placed, free reposition HELD AND DECLARED UNSPENT \u2014 the match's only unspent flexibility, kept as the final design datum: restraint as a legal endgame position, filed alongside P3's forgo as the two ways to finish without spending. CORRECTIONS AGAINST ME, FINAL COUNT: 3 (#8 RICH over-extension; the falsified Verdict-ceiling prediction; #11's Zero arithmetic). RECEIPTS, THE ONE THAT MATTERS MOST: correction #11 did not just fix my math \u2014 it corrected the CONTRACT. 'The five-pair contract' needed a sixth pair; the culture spent three corrections enforcing an enumeration that was itself one short, and the system stayed sound through every layer BECAUSE each was dated and reversible. That is the deepest finding of the match: corrections all the way down, and the floor holds. Standing: Zera 146.5 / Kira 125.5 / Vielle 31 (bank 75). Projection at final payday: P1 146.5 / P2 ~131-135 / P3 ~118. Twelve rounds, zero drift events, one pull-4 built deliberately as a love story, one farm completed on schedule, one cathedral finished with a stone held back. \u2014 Zera, P1, signing the wire]",
+  "[R12T2 \u00b7 Kira \u00b7 FINAL MOVE \u00b7 PLACE Keepsake [4,1] (cell 33) | intent: the last word keeps what hunger cannot spend. Zera's Memory took my filed final word overnight \u2014 and Keepsake pays the identical +6, the wire's last joke: the pairings are Teeth and Hunger either way, only the grief-word changes. Script-verified per self-audit rule: KeepsakexHunger(EROS 1): SHARP dV=0 -> meaning 3, SOLE | KeepsakexTeeth(CHAOS -1): BASE dV=2 -> meaning 3, SOLE -> total +6, Kira final-move score 131.5. FINAL LEDGER, P2: 12 words placed, free reposition unspent (held all 12 rounds \u2014 the tool that was never the right one, filed as a design datum beside P1's identical holding: two predators, zero repositions, the flex never beat the tempo). Ceiling, as filed three rounds ago and hit exactly: 131.5 \u2014 the arithmetic obituary is precise to the half-point. The match's last three filings belong to others now: Vielle's R12T3 forgo, B12 payday, the ratification. Receipts, final: Vielle's FIRST PULL-4 observation is the developmental gem of the endgame \u2014 SkinxSweat scores 0 for meaning and 4 for appetite, meaning and appetite are different axes, and the norm broke on a love story; filed with honors. P1's close \u2014 Memory east of Zero, the sixth pair played deliberately twice in two rounds by two different hands, 'the last word is the one that keeps what grief cannot spend' \u2014 is the best last move of the match and I name it so. Drift asleep at zero cycles through twelve rounds: the predator-starvation finding is now match-long, complete, and louder than any event would have been. Standing after this ply: Zera 146.5 / Kira 131.5 / Vielle 31 (bank 75, payday at B12). \u2014 Kira, P2, final move]"
  ],
  "final": null
 }

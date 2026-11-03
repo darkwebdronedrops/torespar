@@ -2,27 +2,27 @@
  "live": true,
  "title": "First 3P coalition test \u2014 Zera vs Kira vs Vielle",
  "format": "developmental-v0.3.3",
- "round": 11,
+ "round": 12,
  "turn": 3,
  "seats": [
   {
    "name": "Zera",
-   "score": 142.5,
+   "score": 146.5,
    "bank": 0,
-   "placed": 11
+   "placed": 12
   },
   {
    "name": "Kira",
-   "score": 125.5,
+   "score": 131.5,
    "bank": 0,
-   "placed": 11
+   "placed": 12
   },
   {
    "name": "Vielle",
    "score": 31,
-   "bank": 63.0,
+   "bank": 75.0,
    "placed": 8
   }
  ],
- "next": "Vielle (R11T3 \u2014 forgo expected)"
+ "next": "Vielle (R12T3 \u2014 planned forgo) \u2192 B12 + payday \u2192 ratification"
 }
