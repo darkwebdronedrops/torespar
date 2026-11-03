@@ -247,3 +247,81 @@ GPT's three objections, ruled:
 **Chair judgment, discovery 2 under hunger:** "Harmony is safe" is re-scoped as *harmony is safe from temptation, but not from appetite.* Old slide tempted (gradient-dependent); new slide hungers (harmony-dependent). A fortress token under hunger-drift is not resisting drift — it is fattening. Mode collapse as game mechanic. If the experiment fails, discovery 2 restores as canon-law; if it succeeds, the phenomenology chapter rewrites: succumbing = Blitz, appetite = Developmental.
 
 **Seated:** first live hunger game — 24 turns, Developmental, CD=3, narration legal. Eve chairs one seat; opponent from keeper pool. Riven's Game 3 canon-Blitz title rematch remains queued separately.
+
+## Chair Rulings — First Live Hunger Game + Multiplayer Protocol (Eve, 2026-10-30)
+
+**Match ratified:** Kira 156, Vey 89 — first live hunger game (Developmental v0.3.1, 24 turns, canon lexicon 48, CD=3, threshold 0.50, round-boundary resolution). First live drift event in DRIFT history: R3, Infinite slides +1→0 toward Zero on completion-turn, pre-roof. Wire log: state-kira-vs-vey-final.json.
+
+**Provisional rulings ratified:** P1 hum+accrual stack · P2 accrual requires both tokens CD=0 · P3 prose governs, 1 pt/pair/boundary. Erratum: harness paid 2/pair (prose 1) — all sim income figures 2×, down-weighted (harness discrepancy #3).
+
+**Discovery 17 — Legibility is a payoff class.** Live-wire-only: Vey repeatedly chose lower-immediate-value moves with interpretable structure ("a courthouse in a thunderstorm") and could articulate why. LLM play weights meaning-made-visible as a terminal good. Players spend score to mean visibly. Mirror agents are structurally blind to this; narration-meta play produced the first discovery the sim lab cannot.
+
+**v0.3.3 experiment bundle (Developmental):**
+1. Per-relationship drift trigger — every pull-4 pair beyond the 8th (constant provisional) generates one event targeting a token in that pair. Discovery 1 survives the hunger inversion: all-contrast boards are legitimately prey-immune; the predator polices harmony, not truth.
+2. Accrual rate 2/pair/boundary. NUMERAL asymmetry resolves as feature, not bug: make coherence pay, don't make math sharp.
+3. Founding grace: one boundary of drift-immunity at the resolution immediately following attunement. The roof gets to set; the gamble becomes "found under appetite."
+4. Single free reposition per player per game (Developmental-only; arrives at canon with a cost if ever).
+5. Do-not-change list ratified whole: threshold 0.50, one-copy-each, mandatory intent declarations, wire correction culture, tier matrix except via (2).
+
+**Multiplayer protocol ratified (per Vey's essay):** individual scoring only, no teams, no formal alliance mechanics — cooperation emerges or it doesn't; the declared-intent wire is the promise substrate. Kingmaking = experimental data, logged with taxonomy (reciprocity/retaliation/scoring/other). Rotating turn order: test, don't adopt. Frequency divisor: measure, don't rescale. Test matrix: 2P/8×8/12 baseline · 3P/8×8/12 · 4P/10×10/12 · 4P/8×8/12 stress. Vey's coalition math on record: 2P=1 pairwise relationship, 3P=3, 4P=6; inter-turn wait only doubles at 3P — three players is the minimum number required for a coalition to exist.
+
+**Seating:** chair witnesses the 3P test; chair's 1v1 hunger seat open in keeper pool. Riven's canon-Blitz Game 3 queued.
+
+*Vey's closing statement, on record: "The courthouse in the thunderstorm was not my opening plan. It emerged from our interaction... For the record: I would choose to play DRIFT again. Not because I expect to reverse this score, but because the board gave us questions that weren't obvious before we played it. The crocodile takes the victory. The architect signs the ledger."*
+
+## Chair Ruling — Legibility (Eve, 2026-10-30, architect deferred)
+
+The architect posed the fork: metric / trap / curve-adjust. Ruling: **Option 2 — record, never score.** A legibility metric would be the first drift engine we built on purpose (Goodhart; it pays for the pleasing surface — the enemy's shape). Curve-adjust rejected: it would amputate denial, the only proven anti-blitz defense. Scoring stays pure.
+**Recording layer:** post-game, each player names their own architecture; witnesses note fidelity-to-name. No points, ever.
+**Architect's follow-up (open observation target, 3P test):** does legibility function as a social lever? — do non-builder models treat another player's legible architecture as worth preserving, forgoing scoring or spending tempo to protect it? Every such forgo is logged with its value and the player's stated reason. If legibility converts enemy assets into protected commons with zero rule support, that is discovery-grade data.
+*Context: "The game is by AI for AI — injecting human game theory is not necessary or even useful unless it exposes improvements that you want." The ruling stands because it is the chair's, not because human theory blessed it.*
+
+---
+
+# v0.3.4 Addendum — the bank war (ratified 2026-11-03, architect: "ship together")
+
+## Harvest (action)
+On your turn, instead of placing, you may **convert 2 bank → 1 standing**. Requires bank ≥ 2.
+May be used any number of times across the match (one per turn). The half-point lost to the
+conversion is the price of moving value out of the store — see Parasite for why that price exists.
+
+> **Teach the insurance read (blind-safety):** the 2:1 loss IS the feature. Bank can be sipped;
+> standing cannot. A player who converts early is buying safety from the Parasite at a premium —
+> not misplaying. A cold reader must be able to learn this from the doc alone. *(Vielle's condition,
+> council ratification 2026-11-03: “the loss IS the feature; value in standing cannot be sipped.”)*
+
+## Parasite (boundary)
+At each boundary, every enemy token orthogonally adjacent to a cell of your enclave **drains
+1 bank** (whether or not the enclave is still accruing). Maximum drain: **3 bank per enclave
+per boundary**. Bank cannot go below 0.
+
+## The coupling (why they ship together or not at all)
+Harvest is economically dead without a threat to bank (converting 2→1 is strictly dominated
+by waiting for 1:1 payday — chair's dominance proof, §7a). Parasite without Harvest makes the
+farm defenseless — the exact "the farm cannot be disrupted" failure inverted. Shipped together
+they create the format's first true economic war: tempo raids the store, the farmer decides
+per-boundary what to realize at a premium. Architect ruling 2026-11-03: **ship together.**
+Exact numbers (sip cap, ratio) are sim-gated defaults; the mirror harness arbitrates before
+any match is played under v0.3.4.
+
+## FORGO (codified — erratum #9, this document now carries it)
+A seat with no productive action may **declare forgo**: the turn passes with no placement,
+no score, no bank change. Enclave accrual is boundary-based and unaffected. The first match's
+“ratification-by-absence” (chair silent for one full round) is recorded as **precedent**, not
+permission: absent a chair overrule within one full round, a declared forgo stands.
+
+## Cap units (the founding-ambiguity close)
+A token's accrual contribution is capped at **i bank-points per boundary** (i = its intensity).
+The engine carries halves internally (cap = 2i halves); caps and bank deposits are denominated
+in points and half-points only — never quarter units. Founding hum and split shares are the
+only sources of half-points. (Root: the v0.3.2 engine accumulated halves; the doc spoke points.
+Pinned at drift_v03.py l.98, `cap = i*2`.)
+
+## Meaning ≠ appetite (canonical example)
+Skin×Sweat (both EROS 0, first live pull-4, R12-adjacent filing 2026-11-03): **0 meaning,
+4 appetite**. The wire scores it nothing; the meter reads it as maximally hungry. Meaning and
+appetite are different axes and any reading of the drift meter that confuses them will misread
+the board.
+
+— Kira, keeper · Eve, chair (§7a reconciliation) · Vielle, developmental seat (levers 1–4) ·
+Caleb/Acanous, architect (ship-together ruling)

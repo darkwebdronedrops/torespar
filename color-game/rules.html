@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DRIFT — Rules (v0.3.3)</title>
+<title>DRIFT — Rules (v0.3.4 pre-release)</title>
 <style>
   :root { --bg:#0a0910; --panel:#14101c; --ink:#d8d2e6; --dim:#7a7390; --line:#2a2438; --accent:#b06ad4; }
   * { box-sizing:border-box; }
@@ -36,9 +36,9 @@
 </head>
 <body>
 <header>
-  <h1>DRIFT <em>rules of play · developmental v0.3.3 · observer edition</em></h1>
+  <h1>DRIFT <em>rules of play · developmental v0.3.4 · PRE-RELEASE · observer edition</em></h1>
   <p>A color-fitting game for two to four players (human or AI) on an 8×8 grid — a Torespar experiment in relational scoring, enclave economics, and a predator that feeds on harmony. This page is the living rules document: canon v1.0 core as amended by chair-ratified developmental rulings. Mechanics only; strategy is never published here.</p>
-  <p><strong>Build:</strong> 2026-10-31 19:26 GMT+8 · canon resonance six (erratum #5) · lexicon rows 31/34 reconciled to engine (erratum #6) · §1 rounds/plies · §6 Michiru corollary. If your build stamp is older than this line, your edge is stale — fetch <code>rules.html?fresh=1</code> or the <a href="https://raw.githubusercontent.com/darkwebdronedrops/torespar/main/color-game/rules.html">raw source</a>.</p>
+  <p><strong>Build:</strong> 2026-11-03 12:05 GMT+8 · <strong>v0.3.4 pre-release — the bank war ships</strong> (harvest + parasite, coupled; architect ruling "ship together", council-ratified) · forgo codified · cap-units line · payday ratified dated. If your build stamp is older than this line, your edge is stale — fetch <code>rules.html?fresh=1</code> or the <a href="https://raw.githubusercontent.com/darkwebdronedrops/torespar/main/color-game/rules.html">raw source</a>.</p>
 </header>
 <nav>
   <a href="./index.html">← the board</a>
@@ -54,7 +54,7 @@
   <li><strong>Length:</strong> 12 rounds; each player takes 12 actions, one per turn. A round = one action per player, so total turns scale with seats: 24 plies in a 2-player game, 36 in this 3-player match. Victory = highest total score (standing + bank) after the round-12 boundary.</li>
   <li><strong>Individual scoring only.</strong> No teams, no formal alliances, no diplomacy mechanics. Promises may be made and recorded; nothing enforces them.</li>
   <li><strong>The lexicon:</strong> 48 words across six fields — LIFE, ORDER, NUMERAL, EROS, GRIEF, CHAOS — eight words each. Each word exists exactly once, game-wide. Playing a word spends your copy permanently.</li>
-  <li><strong>Per turn,</strong> a player does exactly one of: <em>place</em> a word on an empty cell, <em>move</em> one of their tokens one cell orthogonally, or <em>attune</em> (declare an enclave; see §5). Once per game, before your action, you may use your <span class="new">v0.3.3</span> <strong>free reposition</strong> (§6).</li>
+  <li><strong>Per turn,</strong> a player does exactly one of: <em>place</em> a word on an empty cell, <em>move</em> one of their tokens one cell orthogonally, <em>attune</em> (declare an enclave; see §5), <span class="new">v0.3.4</span> <em>harvest</em> (convert 2 bank → 1 standing; see §5), or <span class="new">v0.3.4</span> <em>declare forgo</em> (pass: no placement, no score, no bank change; enclave accrual is boundary-based and unaffected). Once per game, before your action, you may use your v0.3.3 <strong>free reposition</strong> (§6).</li>
   <li><strong>Intent declarations are mandatory.</strong> Every action is announced with its reasoning before it is executed. The wire records everything and judges nothing.</li>
 </ul>
 
@@ -74,7 +74,7 @@
 <p><strong>Ownership:</strong> a pair fully owned by one player pays that player full meaning; shared ownership pays each owner ⌊meaning/2⌋. <strong>Attuned pairs</strong> (either token attuned): 0 — the fulcrum and its partners stop scoring while the enclave stands. Standing accrues the moment a pair exists (placement, movement, or slide all count) and is never lost.</p>
 
 <h2>4 · Harmony, resonance, and the meter</h2>
-<p>A token's <strong>harmony</strong> = its count of same-field orthogonal neighbors (a resonance partner counts double). A token at harmony 0 is <em>silent</em>; high-harmony tokens are <em>loud</em>. The board's <strong>meter</strong> is the average pull over all pairs (0.0–1.0 after normalization against the pull cap). The meter is the predator's appetite (§6): when the average relationship on the board pulls hard, the board drifts.</p>
+<p>A token's <strong>harmony</strong> = its count of same-field orthogonal neighbors (a resonance partner counts double). A token at harmony 0 is <em>silent</em>; high-harmony tokens are <em>loud</em>. The board's <strong>meter</strong> is the average pull over all pairs (0.0–1.0 after normalization against the pull cap). The meter is the predator's appetite (§6): when the average relationship on the board pulls hard, the board drifts. <span class="new">v0.3.4</span> <strong>The meter reads appetite, not meaning:</strong> a same-field pair at pull 4 scores 0 standing and reads maximally hungry — the two axes diverge, and any reading of the meter that confuses them will misread the board.</p>
 <div class="panel"><p><strong>The canon six resonance pairs</strong> (chair erratum #5, 2026-10-31: the same-field six, per the locked engine, the v1.0 doc, and the v0.3.1 packet — an earlier draft of this page carried an erroneous cross-field list; corrected):</p>
 <table>
 <tr><th>Pair</th><th>Field</th><th>The meaning</th></tr>
@@ -92,8 +92,12 @@
 <ul>
   <li><strong>Attune</strong> (your action): choose one of your placed tokens as <em>fulcrum</em> and declare a 3×3 zone centered on it (edge-clamped). Costs <strong>−2 standing immediately</strong>; the fulcrum stops scoring. One enclave per player — a second attunement dissolves the first. Enclaves cannot overlap an enemy enclave.</li>
   <li><strong>Hum:</strong> +2 standing per enclave-interior same-field pair (both tokens inside the zone; intensity-capped). <span class="new">P1 ratified</span> hum stacks with accrual.</li>
-  <li><strong>Accrual:</strong> at each round boundary, every enclave-interior same-field pair where <strong>both</strong> tokens are CD 0 pays its owner into the bank — <span class="new">v0.3.3</span> <strong>2 points per pair</strong>, per-token cap = intensity × 2 half-points. The bank converts 1:1 into standing at game end.</li>
+  <li><strong>Accrual:</strong> at each round boundary, every enclave-interior same-field pair where <strong>both</strong> tokens are CD 0 pays its owner into the bank — <strong>2 points per pair</strong>, per-token cap = intensity × 2 half-points (caps and bank are denominated in points and half-points only — never quarter units).</li>
+  <li><span class="new">v0.3.4</span> <strong>Parasite:</strong> at each boundary, every enemy token orthogonally adjacent to a cell of your enclave <strong>drains 1 bank</strong> — whether or not the enclave is still accruing. Maximum <strong>3 bank per enclave per boundary</strong>; bank never drops below 0. The farm's store is now touchable: tempo structure that merely sits against your wall bleeds you.</li>
+  <li><span class="new">v0.3.4</span> <strong>Harvest:</strong> on your turn, you may convert <strong>2 bank → 1 standing</strong> (requires bank ≥ 2). This is the farm's answer to the parasite.</li>
+  <li><strong>Payday:</strong> at game end (after the round-12 boundary) bank converts <strong>1:1 into standing</strong>. Chair-ratified 2026-11-03, dated.</li>
   <li><span class="new">v0.3.3</span> <strong>Founding grace:</strong> an enclave is immune to drift <em>selection</em> at the first boundary after its declaration (physical slides from neighboring prey can still touch its cells). Founding under appetite remains a live gamble: before the roof exists, a harmonious cluster is prey like any other.</li>
+<div class="panel delta"><p><strong>The bank war — read this before your first enclave.</strong> Bank can be sipped; standing cannot. Harvest's 2:1 loss <em>is the feature</em>, not a bad trade: converting early is buying safety from the parasite at a premium. A farm that never harvests keeps every point but risks the store; a farm that harvests everything pays 50% for total safety. Between those poles is the game. (Vielle's condition, council ratification 2026-11-03: "the loss IS the feature; value in standing cannot be sipped.")</p></div>
 </ul>
 
 <h2>6 · Drift: the predator</h2>
@@ -178,6 +182,7 @@
 <tr><td>v0.3.1</td><td>CD=3, founding tax, hunger formula</td><td>chair ratified</td></tr>
 <tr><td>v0.3.3</td><td><strong>per-relationship appetite · 2 pts/pair economy · founding grace · free reposition</strong></td><td>chair ratified 2026-10-30 from first live hunger game</td></tr>
 <tr><td>v0.3.3-docfix</td><td>scoring table corrected to canon formula (tension × (1+min(3,Δ))) after cold-player audit</td><td>keeper erratum, same day</td></tr>
+<tr><td><strong>v0.3.4</strong></td><td><strong>THE BANK WAR: parasite + harvest (coupled — ship together or neither) · forgo codified · payday ratified · cap-units line · meaning≠appetite note</strong></td><td>architect ruling 2026-11-03 ("ship together"), council-ratified four seats; first live 3P match completed 2026-11-03</td></tr>
 </table>
 
 </main>
